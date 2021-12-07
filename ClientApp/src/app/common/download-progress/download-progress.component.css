@@ -1,0 +1,77 @@
+::ng-deep .mat-dialog-container {
+  padding: 0px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #009677 !important;
+  box-sizing: border-box !important;
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 4px !important;
+  overflow: unset;
+}
+
+.title {
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.025em;
+  color: #009677;
+  margin: 15px;
+}
+
+.middiv {
+  margin-left: 35px;
+  /* margin-right: 46px; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative
+}
+
+.loader {
+  margin-top: 10px !important;
+  margin-left: auto;
+  margin-bottom: auto;
+  margin-right: auto;
+  border: 5px solid #009677;
+  border-radius: 50%;
+  border-top: 5px solid #A7A9AC;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#myProgress {
+  width: 91%;
+  background-color: grey;
+  margin: 15px;
+}
+
+#myBar {
+  width: 1%;
+  height: 4px;
+  background-color: #50b848 !important;
+}

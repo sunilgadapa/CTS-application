@@ -1,0 +1,253 @@
+<mat-toolbar *ngIf="headerShow" class="position-fixed">
+  <div class="green_strip"></div>
+  <mat-toolbar-row *ngIf="headerShow">
+    <img title="Toggle Left Pane" class="hamburger" alt="assets/images/Hamburger.jpg" src="assets/images/Hamburger.jpg" (click)="drawer.toggle()" />
+    <div class="navbarLogoDiv">
+      <img [routerLink]="[redirectUrl]" class="navbarLogo" src="assets/images/Navbar logo.jpg" alt="assets/images/Navbar logo.jpg"/>
+    </div>
+    <div class="navbarMiddleDiv">   
+      <form [formGroup]="maualdatasearchform">
+       
+
+
+
+
+
+
+     
+      <button *ngIf="viewDocument" class="btn-header" style="float: right;background-color: transparent;" mat-button [matMenuTriggerFor]="belowMenu">
+              <span class="sn-header-dll"> View Document</span>
+        <img  style="vertical-align: middle;" src="assets/images/dashicons_arrow-down-alt2.png" alt="assets/images/dashicons_arrow-down-alt2.png"> 
+       </button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+        <div style="height:105px;overflow: auto;">
+          <mat-radio-group class="example-radio-group">
+            <mat-radio-button style="border-bottom: 1px solid #dcddde;padding-left: 5px;
+          margin-bottom: 0px;padding-top: 7px;padding-bottom: 7px;" (click)="$event.stopPropagation();"
+              class="example-radio-button" *ngFor="let season of [1,2,3,4,5]" [value]="season">
+              CTS_IT3F_interfacefilespecs_20201109T131650_20201109T19170.txt
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div style="height: 50px; background: #F8F8F8;">
+          <button class="btn-primary-default btn-export">
+            <label>Export</label>
+          </button>
+        </div>
+      </mat-menu>
+
+
+
+
+      <mat-select [formControlName]="'tax_period'"  (selectionChange)="selectTaxPeriods()" class="notiTypeSelectHeader" multiple
+      disableOptionCentering disableRipple [ngClass]="statusddl2 ? 'ddl2 ddl2-ddlopen' : 'ddl2 ddl2-ddlclose'"
+     placeholder="Tax Period" panelClass="myPanelClassTaxperiod" (openedChange)="toggleArrow2()">
+
+      <mat-select-trigger style="font-weight: 700;
+      font-size: 14px;
+      line-height: 15px;">
+        {{maualdatasearchform.controls.tax_period.value.length>Tax_Period.length ? 'All' : ''}}
+        <span *ngIf="maualdatasearchform.controls.tax_period.value.length < Tax_Period.length"
+          class="example-additional-selection">
+
+          <span *ngFor="let m of maualdatasearchform.controls.tax_period.value; let i=index">
+            <span *ngIf="i!=0">,</span><span> {{m.Name}}</span>
+          </span>
+        </span>
+      </mat-select-trigger>
+
+      <mat-option #allSelected3 (click)="toggleAllTaxPeriod()" [value]="0">All</mat-option>
+      <mat-option *ngFor="let taxperiod of Tax_Period" [value]="taxperiod" (click)="toggleTaxPeriod()">
+        {{taxperiod.Name}}
+      </mat-option>
+    </mat-select>
+
+
+    <mat-select  [formControlName]="'tax_module'" disableOptionCentering class="notiTypeSelectHeader" style="width: 120px !important;" [(ngModel)]="taxId"
+    (selectionChange)="selectTaxModules()"
+    [ngClass]="statusddl ? 'ddl ddl-ddlopen' : 'ddl ddl-ddlclose'"
+    panelClass="myPanelClassTaxmodule" (openedChange)="toggleArrowTaxtype()" disableRipple
+    placeholder="Tax Module">
+    <mat-radio-group  [formControlName]="'tax_module'" [(ngModel)]="taxId">
+        <mat-option *ngFor="let tax of Tax_modules;let i=index"
+            [value]=tax.lookup_value_id>
+            <mat-radio-button [value]=tax.lookup_value_id id="{{i}}">
+                <span style="font-size: 12px !important;"> {{
+                    tax.lookup_value_name
+                    }} </span>
+            </mat-radio-button>
+        </mat-option>
+    </mat-radio-group>
+</mat-select>
+    </form>
+    </div>
+    <span class="example-spacer"></span>
+    <mat-icon class="icnNotification" title="Notifications" [matBadge]="notificationCount" matBadgeColor="warn" matBadgeOverlap="true"
+      matBadgeSize="small" (click)="showHideNotifications()">notifications</mat-icon>
+    <mat-card style="overflow: auto;max-height: 80vh;" class="viewNotifications" *ngIf="showNotifications==1">
+      <div class="notiHeaderDiv">
+         <mat-select [(ngModel)]="notification_status" style="float:left !important;width:45% !important ;margin-left: 24px !important;" 
+         class="notification-popup-header" disableOptionCentering disableRipple  (openedChange)="toggleArrow4()"
+                            [ngClass]="statusddl4 ? 'ddl4-ddlopen' : 'ddl4-ddlclose'"
+                            panelClass="myPanelClassTaxperiod" (selectionChange)="getNotificationMessage($event)"
+                            placeholder="Notification ({{notificationResult.length}})">
+                            <mat-radio-group [(ngModel)]="notification_status" disableRipple>
+                              <mat-option value='0'>
+                                <mat-radio-button value='0'>
+                                    <span style="font-size: 12px !important;">All
+                                        </span>
+                                </mat-radio-button>
+                              </mat-option>  
+                              <mat-option value='1'>
+                                    <mat-radio-button value='1'>
+                                        <span style="font-size: 12px !important;">Unread
+                                            </span>
+                                    </mat-radio-button>
+                                </mat-option>
+                                <mat-option value='2'>
+                                  <mat-radio-button  value='2'>
+                                      <span style="font-size: 12px !important;">Archieved
+                                          </span>
+                                  </mat-radio-button>
+                              </mat-option>
+                            </mat-radio-group>
+                        </mat-select>
+                        <mat-select [(ngModel)]="notification_pref" style="width:45% !important" class="notification-popup-header-preferance" disableOptionCentering disableRipple  (openedChange)="toggleArrow3()"
+                            [ngClass]="statusddl3 ? 'ddl3-ddlopen' : 'ddl3-ddlclose'" panelClass="myPanelClassTaxperiod"
+                            placeholder="Notification Preferance">
+                            <mat-radio-group [(ngModel)]="notification_pref" disableRipple>
+                                <mat-option >
+                                    <mat-radio-button [value]="1">
+                                        <span style="font-size: 12px !important;">None
+                                            </span>
+                                    </mat-radio-button>
+                                </mat-option>
+                                <mat-option >
+                                  <mat-radio-button [value]="2">
+                                      <span style="font-size: 12px !important;">Dashboard
+                                          </span>
+                                  </mat-radio-button>
+                              </mat-option>
+                              <mat-option >
+                                <mat-radio-button  [value]="3">
+                                    <span style="font-size: 12px !important;">E-mail
+                                        </span>
+                                </mat-radio-button>
+                            </mat-option>
+                            <mat-option >
+                              <mat-radio-button [value]="4">
+                                  <span style="font-size: 12px !important;">Both
+                                      </span>
+                              </mat-radio-button>
+                          </mat-option>
+                            </mat-radio-group>
+                        </mat-select>
+                        <em class='fa fa-ellipsis-v'></em>
+      </div>
+      <div style="border: 1px solid #DCDDDE;" *ngFor="let notification of notificationResult" [ngSwitch]="notification.MessagingEvent">
+        <div>
+          <mat-expansion-panel hideToggle (opened)="getNotificationByIdAndUpdate(notification)">
+            <mat-expansion-panel-header>
+              <mat-panel-title *ngIf="!notification.IsRead" class="notification-title" style="font-weight: bolder;">
+                {{notification.MessageHeader}}
+              </mat-panel-title>
+
+              <mat-panel-title *ngIf="notification.IsRead" class="notification-title">
+                {{notification.MessageHeader}}
+              </mat-panel-title>
+
+              <mat-panel-description>
+                ...
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ng-template matExpansionPanelContent>
+              <div class="">
+                <p class="notification-content" style="margin-left: 25px;">Message :{{notificationResultById?.Message}}</p>
+                <p class="notification-content" style="margin-left: 25px;">Process Name :{{notificationResultById?.ProcessName}}</p>
+                <p class="notification-content" style="margin-left: 25px;">Tax Module :{{notificationResultById?.TaxModule}}</p>
+                <p class="notification-content" style="margin-left: 25px;">Line Of Business :{{notificationResultById?.LineOfBusiness}}</p>
+                <p class="notification-content" style="margin-left: 25px;">File Name :{{notificationResultById?.FileName}}</p>
+                <p class="notification-content" style="margin-left: 25px;"> Status :{{notificationResultById?.DisplayStatus}}</p>
+                <p class="notification-content" style="margin-left: 25px;"> Time Of Message : {{notificationResultById?.MessageDate}}</p>
+                <div  *ngSwitchCase="'FILE_LOAD_OUTCOME'">
+                  <div style="width: 100%;">
+                    <p class="notification-content" style="margin-left: 160px; font-weight: bold;float: left;"> Trailer</p>
+                    <p class="notification-content" style="margin-right: 25px; font-weight: bold;float: right;"> Loaded</p>
+                  </div>
+                  <br>
+                  <div style="width: 100%;">
+                    <p class="notification-content" style="margin-left: 160px;float: left;"> 100</p>
+                    <p class="notification-content" style="margin-right: 25px;float: right;"> 200</p>
+                  </div>
+                  <br>
+                  <div style="width: 100%;">
+                    <p class="notification-content" style="margin-left: 160px; float: left;"> 100</p>
+                    <p class="notification-content" style="margin-right: 25px; float: right;"> 20</p>
+                  </div>
+                  <br>
+                  <div style="width: 100%;">
+                    <p class="notification-content" style="margin-left: 160px; float: left;"> 50</p>
+                    <p class="notification-content" style="margin-right: 25px; float: right;"> 80</p>
+                  </div>
+                  <br>
+                  <div style="width: 100%;">
+                    <p class="notification-content" style="margin-left: 160px; float: left;"> 10</p>
+                    <p class="notification-content" style="margin-right: 25px; float: right;"> 20</p>
+                  </div>
+                  <br>
+                  <p class="notification-content" style="margin-left: 25px;"> Link To View Errors :	http://OMRCTSP01/CTS.Platform.Web/XYZ </p>
+                </div>
+                <div  *ngSwitchCase="'FILE_TO_BE_SIGNEDOFF'">
+                  <div style="width: 100%;">
+                    <p class="notification-content" style="margin-left: 160px; font-weight: bold;float: left;"> Trailer</p>
+                    <p class="notification-content" style="margin-right: 25px; font-weight: bold;float: right;"> Loaded</p>
+                  </div>
+                  <br>
+                  <div style="width: 100%;">
+                    <p class="notification-content" style="margin-left: 160px;float: left;"> 100</p>
+                    <p class="notification-content" style="margin-right: 25px;float: right;"> 200</p>
+                  </div>
+                  <br>
+                  <div style="width: 100%;">
+                    <p class="notification-content" style="margin-left: 160px; float: left;"> 100</p>
+                    <p class="notification-content" style="margin-right: 25px; float: right;"> 20</p>
+                  </div>
+                  <br>
+                  <p class="notification-content" style="margin-left: 25px;"> Link To Sign Off:	http://OMRCTSP01/CTS.Platform.Web/XYZ </p>
+                </div>
+                <br>
+                <p class="notification-content" style="margin-left: 25px;">Thank You</p>
+                <p class="notification-content" style="margin-left: 25px;">The CTS team</p>
+              </div>
+            </ng-template>
+          </mat-expansion-panel>
+          <div class="notification-day-time" style="margin-left: 25px;">
+            {{notification.Duration}} <span style="margin-left: 10px;">{{notification.StatusTime}}</span>
+          </div> 
+         <div class="archieve" *ngIf="!notification.IsArchive" (click)="archiveNotification(notification,1)" style="cursor: pointer;">ARCHIVE</div>
+         <div class="archieve" *ngIf="notification.IsArchive" (click)="archiveNotification(notification,0)" style="cursor: pointer;margin-left: 72%;">UNDO ARCHIVE</div>
+        </div>
+      </div>
+    <div class="notiHeaderDiv"></div>  
+    </mat-card>
+    <div class="qa">{{region}}</div>
+    <div class="lnseparator"></div>
+    <div>
+      <div class="greetings">
+        <span class="usernameSpan1">Welcome <span class="usernameSpan"><label title="{{userName}}">&nbsp; {{ userName
+              }}</label></span></span>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #drawer mode="over" opened="false" role="navigation">
+    <mat-nav-list role="list">
+      <app-menudrawer *ngFor="let item of navItems;let i=index" [item]="item" [drawer]="drawer">
+      </app-menudrawer>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,115 @@
+.scroll {
+  height: 420px;
+  overflow: auto;
+ }
+md-checkbox.md-checked[disabled].red .md-icon {
+  background-color: rgba(255, 0, 0, 0.26);
+}
+ :host ::ng-deep .mat-grid-tile .mat-figure {
+display: inline !important;
+}
+::ng-deep .mat-dialog-container {
+    padding: 0px !important;
+    
+    background: #FFFFFF !important;
+    border: 1px solid #009677 !important;
+    box-sizing: border-box !important;
+    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 4px !important;
+    /* height: 97% !important; */
+  }
+  .title{
+    font-family: Montserrat,sans-serif;
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 24px;
+display: flex;
+align-items: center;
+letter-spacing: 0.025em;
+color: #009677;
+  }
+  .titlediv{
+    background: #ffffff;
+   
+  }
+  .errortext{
+    font-family: Montserrat,sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.025em;
+    color: #D23C3C;
+    }
+    .errorimg{
+      margin-right:7px;
+    }
+    .middiv{
+     
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+    .inputform{
+      width: 100%;
+    }
+    .titletable{
+      background: #F8F8F8;
+      width: 100%;
+      padding-top: 10px;
+    }
+   .checkboxdiv{
+    border: 1px solid #DCDDDE;
+    box-sizing: border-box;
+    border-radius: 4px;
+   }
+   .example-margin {
+    margin: 0 12px;
+  }
+  mat-checkbox {
+    font-family: Montserrat,sans-serif !important;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.015em;
+    
+    color: #282828;
+  }
+  mat-grid-list{
+  margin-top: 10px;
+    margin-left: 10px;
+  }
+  @media only screen 
+  and (device-height: 756px) 
+   {
+   .scroll{
+     height: 580px;
+   }
+   }
+   .cancelbtn
+   {
+     margin-left: 34px;
+   }
+   .savebtn{
+     margin-right: 34px;
+   }
+   .tabletr{
+    vertical-align: top !important;
+   }
+   
+  .input-wrapper-user {
+    position: relative
+  }
+  .input-wrapper-user:after {
+    font-family: 'FontAwesome',sans-serif;
+    content: '\f073';
+    position: absolute;
+    right: 18px;
+    top:9px;
+    color:#808285
+  }

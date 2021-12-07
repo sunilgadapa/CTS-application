@@ -1,0 +1,16 @@
+{
+    "env":"LOCAL",
+    "identityBaseUrl":"https://localhost:44371/api/",
+    "userManagementBaseUrl":"https://localhost:44345/api/",
+    "adminBaseUrl":"https://localhost:44359/api/",
+    "domainDefinitionBaseUrl":"https://localhost:44314/api/",
+    "manualDataloadBaseUrl":"https://localhost:44331/api/",
+    "sassSubmissionBaseUrl":"https://localhost:44372/api/",
+    "reportingBaseUrl":"https://localhost:44361/api/",
+    "snsNotificationBaseUrl":"https://localhost:44380/api/",
+    "signalRBaseUrl":"https://localhost:44380/",
+    "dashboardBaseUrl":"https://localhost:44315/api/",
+    "tenantId": "00691924-e082-4301-a3dc-1732afd14289",  
+    "uiClienId": "4eb2bd8f-3e95-424c-89d9-2c90d2c7c786",
+    "sessionTimeOut": "3600000"
+}

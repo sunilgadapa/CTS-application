@@ -1,0 +1,286 @@
+<div class="titlediv">
+    <table class="titletable" style="width: 100% ;">
+        <caption></caption>
+        <th id="tabletax"></th>
+        <tr>
+            <td style="width: 100%;padding-left: 5%;">
+                <p class="title">
+                    {{isUpdatebtn? 'Update' : 'Add a'}} Tax Period
+                </p>
+            </td>
+
+        </tr>
+    </table>
+    <div class="middiv ">
+        <form [formGroup]="registerForm">
+            <table style="width: 100%;">
+                <caption></caption>
+                <th id="tabletax"></th>
+                <tr style="height: 18px;">
+                </tr>
+                <tr class="tabletr">
+                    <td style="width: 30%;">
+                        <label class="formlbl">Tax Module<span class="required_star">*</span> </label>
+                    </td>
+                    <td style="width: 70%;">
+                        <mat-select disableOptionCentering class="input-default" [(ngModel)]="taxId"
+                            formControlName="Tax_Module" [ngClass]="statusddl ? 'ddl ddl-ddlopen' : 'ddl ddl-ddlclose'"
+                            panelClass="myPanelClassTaxperiod" (openedChange)="toggleArrowTaxtype()" disableRipple
+                            placeholder="Select">
+                            <mat-radio-group formControlName="Tax_Module" [(ngModel)]="taxId">
+                                <mat-option *ngFor="let tax of taxModules;let i=index" [value]="tax.lookup_value_id">
+                                    <mat-radio-button [value]=tax.lookup_value_id id="{{i}}">
+                                        <span style="font-size: 12px !important;"> {{
+                                            tax.lookup_value_name
+                                            }} </span>
+                                    </mat-radio-button>
+                                </mat-option>
+                            </mat-radio-group>
+                        </mat-select>
+
+                        <div *ngIf=" f.Tax_Module.errors  && (registerForm.controls.Tax_Module.touched || registerForm.controls.Tax_Module.dirty)"
+                            class="invalid-feedback">
+                            <div
+                                *ngIf="f.Tax_Module.errors.required && (registerForm.controls.Tax_Module.touched || registerForm.controls.Tax_Module.dirty)">
+                <tr>
+                    <td class="valerrortxt">
+                        <img class="errorIcon" src="assets/images/Icon_Error.png" alt="assets/images/Icon_Error.png" />
+                    </td>
+                    <td class="valerrortxt">
+                        Tax module is required.
+                    </td>
+                </tr>
+    </div>
+</div>
+</td>
+</tr>
+
+
+<tr style="height: 18px;">
+</tr>
+<tr class="tabletr">
+    <td style="width: 30%;">
+        <label class="formlbl">Tax Year<span class="required_star">*</span></label>
+    </td>
+    <td style="width: 70%;">
+        <input [readonly]="taxYear_readonly" placeholder="Tax Year" formControlName="Tax_Year" type="text"
+            class="input-default inputform" />
+
+        <div *ngIf=" f.Tax_Year.errors  && (registerForm.controls.Tax_Year.touched || registerForm.controls.Tax_Year.dirty)"
+            class="invalid-feedback">
+            <div
+                *ngIf="f.Tax_Year.errors.required && (registerForm.controls.Tax_Year.touched || registerForm.controls.Tax_Year.dirty)">
+<tr>
+    <td class="valerrortxt">
+        <img class="errorIcon" src="assets/images/Icon_Error.png" alt="assets/images/Icon_Error.png" />
+    </td>
+    <td class="valerrortxt">
+        Tax year is required.
+    </td>
+</tr>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height: 18px;">
+</tr>
+
+<tr class="tabletr">
+    <td style="width: 30%;">
+        <label class="formlbl">Submission Type<span class="required_star">*</span></label>
+    </td>
+    <td style="width: 70%;">
+        <mat-select disableOptionCentering class="input-default" [(ngModel)]="taxPeriodType"
+            formControlName="Submission_Type" [ngClass]="statusddl1 ? 'ddl ddl-ddlopen' : 'ddl ddl-ddlclose'"
+            panelClass="myPanelClassTaxperiod" (openedChange)="toggleArrowsubmitype()" disableRipple placeholder="Select">
+            <mat-radio-group formControlName="Submission_Type" [(ngModel)]="taxPeriodType">
+                <mat-option *ngFor="let taxType of taxPeriodTypes;let i=index" [value]="taxType.lookup_value_id">
+                    <mat-radio-button [value]=taxType.lookup_value_id id="{{i}}">
+                        <span style="font-size: 12px !important;"> {{
+                            taxType.lookup_value_name
+                            }} </span>
+                    </mat-radio-button>
+                </mat-option>
+            </mat-radio-group>
+        </mat-select>
+
+        <div *ngIf=" f.Submission_Type.errors  && (registerForm.controls.Submission_Type.touched || registerForm.controls.Submission_Type.dirty)"
+                            class="invalid-feedback">
+                            <div
+                                *ngIf="f.Submission_Type.errors.required && (registerForm.controls.Submission_Type.touched || registerForm.controls.Submission_Type.dirty)">
+                <tr>
+                    <td class="valerrortxt">
+                        <img class="errorIcon" src="assets/images/Icon_Error.png" alt="assets/images/Icon_Error.png" />
+                    </td>
+                    <td class="valerrortxt">
+                        Submission type is required.
+                    </td>
+                </tr>
+    </div>
+</div>
+    </td>
+</tr>
+<tr style="height: 18px;">
+</tr>
+
+
+<tr class="tabletr">
+    <td style="width: 30%;">
+        <label class="formlbl">Tax period description<span class="required_star">*</span></label>
+    </td>
+    <td style="width: 70%;">
+        <input placeholder="Tax period description" formControlName="Tax_Period_Description" type="text"
+            class="input-default inputform" />
+
+            <div *ngIf=" f.Tax_Period_Description.errors  && (registerForm.controls.Tax_Period_Description.touched || registerForm.controls.Tax_Period_Description.dirty)"
+            class="invalid-feedback">
+            <div
+                *ngIf="f.Tax_Period_Description.errors.required && (registerForm.controls.Tax_Period_Description.touched || registerForm.controls.Tax_Period_Description.dirty)">
+<tr>
+    <td class="valerrortxt">
+        <img class="errorIcon" src="assets/images/Icon_Error.png" alt="assets/images/Icon_Error.png" />
+    </td>
+    <td class="valerrortxt">
+        Tax period description is required.
+    </td>
+</tr>
+</div>
+</div> 
+    </td>
+</tr>
+<tr style="height: 18px;">
+</tr>
+<tr class="tabletr" style="width: 100%;">
+    <td style="width: 30%;">
+        <label class="formlbl">Submission Period<span class="required_star">*</span></label>
+    </td>
+    <td style="width: 70%;">
+<tr>
+    <td class="input-wrapper" (click)="picker.open()">
+        <input formControlName="Submission_Period1" style="width: 100%;" (click)="picker.open()"
+            class="input-default date-input" type="text" matInput [matDatepicker]="picker"
+            placeholder="{{datePlaceholder}}" />
+        <mat-datepicker #picker></mat-datepicker>
+
+        <div *ngIf=" f.Submission_Period1.errors  && (registerForm.controls.Submission_Period1.touched || registerForm.controls.Submission_Period1.dirty)"
+            class="invalid-feedback">
+            <div
+                *ngIf="f.Submission_Period1.errors.required && (registerForm.controls.Submission_Period1.touched || registerForm.controls.Submission_Period1.dirty)">
+<tr>
+    <td class="valerrortxt">
+        <img class="errorIcon" src="assets/images/Icon_Error.png" alt="assets/images/Icon_Error.png" />
+    </td>
+    <td class="valerrortxt">
+        Submission Period is required.
+    </td>
+</tr>
+</div>
+</div>
+    </td>
+    <td class="input-wrapper" (click)="picker1.open()">
+        <input formControlName="Submission_Period2" style="width: 100%;" (click)="picker1.open()"
+            class="input-default date-input" type="text" matInput [matDatepicker]="picker1"
+            placeholder="{{datePlaceholder}}" />
+        <mat-datepicker #picker1></mat-datepicker>
+        <div *ngIf=" f.Submission_Period2.errors  && (registerForm.controls.Submission_Period2.touched || registerForm.controls.Submission_Period2.dirty)"
+        class="invalid-feedback">
+        <div
+            *ngIf="f.Submission_Period2.errors.required && (registerForm.controls.Submission_Period2.touched || registerForm.controls.Submission_Period2.dirty)">
+<tr>
+<td class="valerrortxt">
+    <img class="errorIcon" src="assets/images/Icon_Error.png" alt="assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt">
+    Submission Period is required.
+</td>
+</tr>
+</div>
+</div>
+    </td>
+</tr>
+
+
+</td>
+
+</tr>
+<tr style="height: 18px;">
+</tr>
+
+<tr class="tabletr" style="width: 100%;">
+    <td style="width: 30%;">
+        <span class="formlbl">Landing Period<span class="required_star">*</span></span>
+    </td>
+    <td style="width: 70%;">
+<tr>
+    <td class="input-wrapper" (click)="picker2.open()">
+        <input style="width: 100%;" (click)="picker2.open()" formControlName="Landing_Period1"
+            class="input-default date-input" type="text" matInput [matDatepicker]="picker2"
+            placeholder="{{datePlaceholder}}" />
+        <mat-datepicker #picker2></mat-datepicker>
+        <div *ngIf=" f.Landing_Period1.errors  && (registerForm.controls.Landing_Period1.touched || registerForm.controls.Landing_Period1.dirty)"
+        class="invalid-feedback">
+        <div
+            *ngIf="f.Landing_Period1
+            .errors.required && (registerForm.controls.Landing_Period1.touched || registerForm.controls.Landing_Period1.dirty)">
+<tr>
+<td class="valerrortxt">
+    <img class="errorIcon" src="assets/images/Icon_Error.png" alt="assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt">
+    Landing Period is required.
+</td>
+</tr>
+</div>
+</div>
+    </td>
+    <td class="input-wrapper" (click)="picker3.open()">
+        <input formControlName="Landing_Period2" style="width: 100%;" (click)="picker3.open()"
+            class="input-default date-input" type="text" matInput [matDatepicker]="picker3"
+            placeholder="{{datePlaceholder}}" />
+        <mat-datepicker #picker3></mat-datepicker>
+
+        <div *ngIf=" f.Landing_Period2.errors  && (registerForm.controls.Landing_Period2.touched || registerForm.controls.Landing_Period2.dirty)"
+        class="invalid-feedback">
+        <div
+            *ngIf="f.Landing_Period2
+            .errors.required && (registerForm.controls.Landing_Period2.touched || registerForm.controls.Landing_Period2.dirty)">
+<tr>
+<td class="valerrortxt">
+    <img class="errorIcon" src="assets/images/Icon_Error.png" alt="assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt">
+    Landing Period is required.
+</td>
+</tr>
+</div>
+</div>
+    </td>
+</tr>
+
+
+</td>
+
+</tr>
+<tr style="height: 18px;">
+</tr>
+</table>
+</form>
+</div>
+</div>
+<table style="padding-bottom: 10px;" class="titletable">
+    <caption></caption>
+    <th id="tabletax"></th>
+    <tr style="width: 100%;">
+        <td>
+            <button class="btn-secondary-default cancelbtn" mat-raised-button
+                mat-dialog-close><label>Cancel</label></button>
+        </td>
+        <td style="float: right;">
+            <button *ngIf="!isUpdatebtn" (click)="addTaxPeriod()" class="btn-primary-default savebtn" mat-raised-button
+                [disabled]="registerForm.invalid"><label>Add</label></button>
+            <button *ngIf="isUpdatebtn" (click)="addTaxPeriod()" class="btn-primary-default savebtn" mat-raised-button
+                [disabled]="textChanged==false || registerForm.invalid"><label>Update</label></button>
+        </td>
+    </tr>
+</table>
+<ngx-loading [show]="loading" [template]="loadingTemplate"></ngx-loading>

@@ -1,0 +1,39 @@
+<div class="titlediv">
+
+    <mat-dialog-content>
+        <table class="titletable" style="width: 100% ;">
+            <caption></caption>
+            <th id=""></th>
+            <tr>
+                <td style="width: 40%;padding-left: 5%;">
+                    <p class="title">
+                        {{header}}
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <div class="middiv ">
+            <tr>
+                <td>
+                    <img alt="" src="assets//images/rightsign.png" style="margin-right:21px ;" />
+                </td>
+                <td>
+                    <p class="pclass">
+                        {{message}}
+                    </p>
+                </td>
+            </tr>
+        </div>
+    </mat-dialog-content>
+</div>
+
+<table style="padding-bottom: 10px;" class="titletable">
+    <caption></caption>
+    <th id=""></th>
+    <tr style="width: 100%;">
+        <td style="float: right;">
+            <button class="btn-primary-default savebtn" (click)="okprocessfile()" mat-raised-button
+                mat-dialog-close><label>ok</label></button>
+        </td>
+    </tr>
+</table>

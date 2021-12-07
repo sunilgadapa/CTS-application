@@ -1,0 +1,7 @@
+TaxYear|SourceSystemID|Brand|ClientID
+2019|OM01|b1|1
+2019|OM01|b2|2
+2019|OM02|b3|3
+
+
+

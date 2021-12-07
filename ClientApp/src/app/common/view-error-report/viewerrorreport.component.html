@@ -1,0 +1,41 @@
+
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual data Load Validaion Error</title>
+</head>
+
+<body>
+
+  <mat-drawer-container>
+    <mat-drawer #appDrawer mode="over" opened="false">
+        <mat-nav-list>
+          <app-menudrawer *ngFor="let item of navItems" [item]="item">
+          </app-menudrawer>
+        </mat-nav-list>(
+        <button class="btnLogout">
+          <img style="margin-right: 8px;" alt="" src="assets/images/side-nav-icons/logout.png" />
+          Logout
+        </button>
+      </mat-drawer>
+    <mat-drawer-content>
+      <app-header></app-header>
+      <div class="mainDiv">
+      <div class="tblcontainer">
+        <div class="tablewrapper" id="contentToConvert">
+            <iframe title="" width="1340" height="541.25" 
+            src="https://app.powerbi.com/reportEmbed?reportId=4981cd16-dd56-4c2d-aaf6-ef5715c29931&autoAuth=true"
+            allowFullScreen="true"></iframe>
+        </div>
+      </div>
+      </div>
+    
+    </mat-drawer-content>
+  </mat-drawer-container>
+</body>
+
+</html>

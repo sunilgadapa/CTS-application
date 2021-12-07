@@ -1,0 +1,1111 @@
+<div class="topDiv">
+  <mat-radio-group disableRipple [(ngModel)]="selectedradio" class="rediobtn">
+    <table class="rediobtntable">
+      <caption></caption>
+      <th id=""></th>
+      <tr style="height: 38px;">
+        <td class="btnradio" style="text-align: center;padding-top: 0px;">
+          <mat-radio-button *ngIf="from=='subent' || from=='funent'" class="rediobtn" value="1">Communication
+            Data</mat-radio-button>
+        </td>
+        <td class="btnradio" style="text-align: center;padding-top: 0px;">
+          <mat-radio-button *ngIf="from=='subent' || from=='funent'" class="rediobtn" value="2">Legal Data
+          </mat-radio-button>
+        </td>
+        <td class="btnradio" style="text-align: center;padding-top: 0px;"
+          [ngClass]="from=='subent' || from=='funent' ? 'allRadio' : 'missRadio'">
+          <mat-radio-button class="rediobtn" value="3">Miscellaneous Data</mat-radio-button>
+        </td>
+      </tr>
+    </table>
+  </mat-radio-group>
+  <div class="CommunicationDiv" *ngIf="selectedradio=='1'">
+    <form name="EmailForm1" id="EmailForm1">
+    </form>
+    <form name="formContact" id="formContact"></form>
+    <div>
+      <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Address">
+          <div class="addressdiv ">
+<div class="row"> 
+<div class='col-7'>
+<table mat-table [dataSource]="AddressDataSource">
+  <caption></caption>
+  <ng-container *ngFor="let column of columnAddressData;" [cdkColumnDef]="column.columnDef">
+    <ng-container *ngIf="column.columnDef === 'addressType'">
+      <th style="padding-left: 4px !important" id="headerColumn" mat-header-cell *cdkHeaderCellDef>{{ column.header }}<span class="required_star">*</span></th>
+      <td style="vertical-align: top;width: 30% !important ;" *cdkCellDef="let row;  let k = index;">
+     <mat-select id="add-{{k}}" name="text-{{k}}" [disabled]="row.address_id!=0" (selectionChange)="setAddressLayout(row,$event.value,k)"  [ngModelOptions]="{standalone: true}" [(value)]="row.address_type_id" [(ngModel)]="row.address_type_id"
+       disableOptionCentering disableRipple
+        required class="input-default"
+        disableRipple [ngClass]="statusddl[k] ? ' form-control ddl-ddlopen' : ' form-control ddl-ddlclose'"
+        placeholder="Select Address Type" panelClass="myPanelClassAddressType"
+        (openedChange)="toggleArrow(k)">
+       <mat-radio-group id="add-{{k}}" name="text-{{k}}" [(value)]="row.address_type_id" [ngModelOptions]="{standalone: true}" [(ngModel)]="row.address_type_id">
+          <mat-option *ngFor="let addressData of AdresstypeData;let i=index"
+            [value]="addressData.lookup_value_id">
+            <mat-radio-button [value]="addressData.lookup_value_id" id="{{i}}">
+              {{addressData.lookup_value_name}}
+            </mat-radio-button>
+          </mat-option>
+        </mat-radio-group>
+      </mat-select>
+      </td>
+    </ng-container>
+    <th  style="padding-left: 4px !important" id="headerColumn" mat-header-cell *cdkHeaderCellDef>{{ column.header }} <span *ngIf="column.header!='Expiry Date' && column.header!=''" class="required_star">*</span> </th>
+      <div *ngIf="column.columnDef=='effectiveDate'">
+        <td style="vertical-align: baseline;width: 20% !important ;" *cdkCellDef="let row ;let i = index"
+          class="input-wrapper" (click)="picker7.open()">
+          <input [(ngModel)]="row.ddMMyyyyEffective"    [(value)]="row.ddMMyyyyEffective" style="width: 100%;" (click)="picker7.open()"
+          class="input-default date-input" type="text" matInput [matDatepicker]="picker7" placeholder="{{datePlaceholder}}"/>
+        <mat-datepicker #picker7></mat-datepicker>
+        </td>
+      </div>
+      <div *ngIf="column.columnDef=='expiryDate'">
+        <td style="vertical-align: baseline;width: 20% !important ;" *cdkCellDef="let row ;let i = index"
+          class="input-wrapper" (click)="picker8.open()">
+          <input [(value)]="row.ddMMyyyyExpiry" [(ngModel)]="row.ddMMyyyyExpiry"  (click)="picker8.open()"
+    class="input-default date-input" type="text" matInput [matDatepicker]="picker8" placeholder="{{datePlaceholder}}"/>
+  <mat-datepicker #picker8></mat-datepicker>
+        </td>
+      </div>
+      <div *ngIf="column.columnDef=='ViewDetails'">
+        <td  style="vertical-align: baseline;width: 20% !important;" *cdkCellDef="let row ;let i = index" (click)="assignaddress(row,i)">
+         <a style="cursor: pointer; text-decoration: underline;"  [ngClass]="{highlighted: selectedAddress.isSelected(row)}" >View Details</a>
+        </td>
+      </div>
+  </ng-container>
+  <tr mat-header-row class="tableHeader" *matHeaderRowDef="columnsToDisplayAddressData"></tr>
+  <tr mat-row *matRowDef="let row;columns: columnsToDisplayAddressData "></tr>
+</table>
+</div>
+<div class='col-5'>
+  <div class="addressDiv"> 
+  <form [formGroup]="addressForm">
+   
+<table *ngIf="addressTypeLayout=='01'" class="addressTable" style="margin-top: 12px;">
+  <caption></caption>
+  <th id=""></th>
+<tr>
+<td style="width: 40%;">
+<label class="formlbl">Unit Number </label>
+</td>
+<td style="width: 60%;">
+<input type="text" style="width: 87%;" placeholder="Enter Unit Number" name="UserName" class="input-default"
+  formControlName="unit_number" />
+<div
+  *ngIf="f.unit_number.errors  && (addressForm.controls.unit_number.touched || addressForm.controls.unit_number.dirty)"
+  class="invalid-feedback">
+  <div
+    *ngIf="f.unit_number.errors.required && (addressForm.controls.unit_number.touched || addressForm.controls.unit_number.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+Unit Number is required.
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.unit_number.errors.pattern && (addressForm.controls.unit_number.touched || addressForm.controls.unit_number.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.unitNumber.patternMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.unit_number.errors.maxlength && (addressForm.controls.unit_number.touched || addressForm.controls.unit_number.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.unitNumber.maxLengthMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.unit_number.errors.minlength && (addressForm.controls.unit_number.touched || addressForm.controls.unit_number.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.unitNumber.minLengthMsg}}
+</td>
+</tr>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 40%;">
+<label class="formlbl">
+<p>Complex Name </p>
+</label>
+</td>
+<td style="width: 60%;">
+<input type="text" style=" width: 90%;
+                            " placeholder="Enter Complex Name" class="input-default"
+formControlName="complex_name" />
+<div 
+*ngIf="f.complex_name.errors  && (addressForm.controls.complex_name.touched || addressForm.controls.complex_name.dirty)"
+class="invalid-feedback">
+<div
+*ngIf="f.complex_name.errors.required && (addressForm.controls.complex_name.touched || addressForm.controls.complex_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+Complex Name is required.
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.complex_name.errors.pattern && (addressForm.controls.complex_name.touched || addressForm.controls.complex_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.complexName.patternMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.complex_name.errors.maxlength && (addressForm.controls.complex_name.touched || addressForm.controls.complex_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.complexName.maxLengthMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.complex_name.errors.minlength && (addressForm.controls.complex_name.touched || addressForm.controls.complex_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.complexName.minLengthMsg}}
+</td>
+</tr>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 40%;">
+<label class="formlbl">Street Number </label>
+</td>
+<td style="width: 60%;">
+<input type="text" style="width: 87%;" placeholder="Enter Street Number" name="UserName" class="input-default"
+formControlName="street_number" />
+<div
+*ngIf="f.street_number.errors  && (addressForm.controls.street_number.touched || addressForm.controls.street_number.dirty)"
+class="invalid-feedback">
+<div
+*ngIf="f.street_number.errors.pattern && (addressForm.controls.street_number.touched || addressForm.controls.street_number.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+Street number Must contain only number.
+</td>
+</tr>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 40%;">
+<!--  -->
+<label class="formlbl">Street Name </label>
+</td>
+<td style="width: 60%;">
+<input type="text"style="    width: 90%;
+" placeholder="Enter Street Name" name="UserName" class="input-default"
+formControlName="street_name" />
+<div 
+*ngIf="f.street_name.errors  && (addressForm.controls.street_name.touched || addressForm.controls.street_name.dirty)"
+class="invalid-feedback">
+<div
+*ngIf="f.street_name.errors.required && (addressForm.controls.street_name.touched || addressForm.controls.street_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+Street Name is required.
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.street_name.errors.pattern && (addressForm.controls.street_name.touched || addressForm.controls.street_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.streetName.patternMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.street_name.errors.maxlength && (addressForm.controls.street_name.touched || addressForm.controls.street_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.streetName.maxLengthMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.street_name.errors.minlength && (addressForm.controls.street_name.touched || addressForm.controls.street_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.streetName.minLengthMsg}}
+</td>
+</tr>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 15%;">
+<label class="formlbl">Suburb </label>
+</td>
+<td style="width: 35%;">
+<input type="text" style="    width: 87%;" placeholder="Enter Suburb Name" name="UserName"
+class="input-default" formControlName="suburb_id" />
+<div style="margin-left: 10%;"
+*ngIf="f.suburb_id.errors  && (addressForm.controls.suburb_id.touched || addressForm.controls.suburb_id.dirty)"
+class="invalid-feedback">
+<div
+*ngIf="f.suburb_id.errors  && (addressForm.controls.suburb_id.touched || addressForm.controls.suburb_id.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+Suburb is required.
+</td>
+</tr>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 16%;">
+<label class="formlbl">City</label>
+</td>
+<td style="width: 34%;">
+<input type="text" style="    width: 90%;
+" placeholder="Enter City Name" name="UserName" class="input-default" formControlName="city_id" />
+<div *ngIf="f.city_id.errors  && (addressForm.controls.city_id.touched || addressForm.controls.city_id.dirty)"
+class="invalid-feedback">
+<div *ngIf="f.city_id.errors  && (addressForm.controls.city_id.touched || addressForm.controls.city_id.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+City is required.
+</td>
+</tr>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 40%;">
+<label class="formlbl">Postal Code</label>
+</td>
+<td style="width: 60%;">
+<input type="text" style="width: 87%;" placeholder="Enter Postal Code" class="input-default"
+formControlName="postal_code" />
+<div 
+*ngIf="f.postal_code.errors  && (addressForm.controls.postal_code.touched || addressForm.controls.postal_code.dirty)"
+class="invalid-feedback">
+<div
+*ngIf="f.postal_code.errors.required && (addressForm.controls.postal_code.touched || addressForm.controls.postal_code.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+Postal Code is required.
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.postal_code.errors.pattern && (addressForm.controls.postal_code.touched || addressForm.controls.postal_code.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.postalCode.patternMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.postal_code.errors.maxlength && (addressForm.controls.postal_code.touched || addressForm.controls.postal_code.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.postalCode.maxLengthMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.postal_code.errors.minlength && (addressForm.controls.postal_code.touched || addressForm.controls.postal_code.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon"  alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.postalCode.minLengthMsg}}
+</td>
+</tr>
+</div>
+</div>
+</td>
+</tr>
+</table>
+<table *ngIf="addressTypeLayout=='02'" class="addressTable" style="margin-top: 12px;">
+  <caption></caption>
+  <th id=""></th>
+<tr>
+<td style="width: 40%;">
+<label class="formlbl">Address Line 1 </label>
+</td>
+<td style="width: 60%;">
+<input type="text" style="width: 87%;" placeholder="Enter Address line 1" name="UserName" class="input-default"
+formControlName="unit_number" />
+<div
+*ngIf="f.unit_number.errors  && (addressForm.controls.unit_number.touched || addressForm.controls.unit_number.dirty)"
+class="invalid-feedback">
+<div
+*ngIf="f.unit_number.errors.required && (addressForm.controls.unit_number.touched || addressForm.controls.unit_number.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+Address Line 1 is required.
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.unit_number.errors.pattern && (addressForm.controls.unit_number.touched || addressForm.controls.unit_number.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.unitNumber.patternMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.unit_number.errors.maxlength && (addressForm.controls.unit_number.touched || addressForm.controls.unit_number.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.unitNumber.maxLengthMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.unit_number.errors.minlength && (addressForm.controls.unit_number.touched || addressForm.controls.unit_number.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.unitNumber.minLengthMsg}}
+</td>
+</tr>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 40%;">
+<label class="formlbl">
+<p>Address Line 2 </p>
+</label>
+</td>
+<td style="width: 60%;">
+<input type="text" style="    width: 90%;
+                           " placeholder="Enter Address Line 2" class="input-default"
+formControlName="complex_name" />
+<div
+*ngIf="f.complex_name.errors  && (addressForm.controls.complex_name.touched || addressForm.controls.complex_name.dirty)"
+class="invalid-feedback">
+<div
+*ngIf="f.complex_name.errors.required && (addressForm.controls.complex_name.touched || addressForm.controls.complex_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  <img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  Address Line 2 is required.
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.complex_name.errors.pattern && (addressForm.controls.complex_name.touched || addressForm.controls.complex_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  <img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  {{validation.validationsArray.fundANdSubAddress.complexName.patternMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.complex_name.errors.maxlength && (addressForm.controls.complex_name.touched || addressForm.controls.complex_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  <img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  {{validation.validationsArray.fundANdSubAddress.complexName.maxLengthMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.complex_name.errors.minlength && (addressForm.controls.complex_name.touched || addressForm.controls.complex_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  <img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  {{validation.validationsArray.fundANdSubAddress.complexName.minLengthMsg}}
+</td>
+</tr>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 40%;">
+<label class="formlbl">Address Line 3 </label>
+</td>
+<td style="width: 60%;">
+<input type="text" style="width: 87%;" placeholder="Enter Address Line 3" name="UserName" class="input-default"
+formControlName="street_name" />
+<div
+*ngIf="f.street_name.errors  && (addressForm.controls.street_name.touched || addressForm.controls.street_name.dirty)"
+class="invalid-feedback">
+<div
+*ngIf="f.street_name.errors.required && (addressForm.controls.street_name.touched || addressForm.controls.street_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+Street Name is required.
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.street_name.errors.pattern && (addressForm.controls.street_name.touched || addressForm.controls.street_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.streetName.patternMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.street_name.errors.maxlength && (addressForm.controls.street_name.touched || addressForm.controls.street_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.streetName.maxLengthMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.street_name.errors.minlength && (addressForm.controls.street_name.touched || addressForm.controls.street_name.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+<img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+{{validation.validationsArray.fundANdSubAddress.streetName.minLengthMsg}}
+</td>
+</tr>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 40%;">
+<label class="formlbl">Address Line 4 </label>
+</td>
+<td style="width: 60%;">
+<input type="text" style="    width: 90%;
+                               " placeholder="Enter Address Line 4" name="UserName"
+class="input-default" formControlName="city_id" />
+<div 
+*ngIf="f.city_id.errors  && (addressForm.controls.city_id.touched || addressForm.controls.city_id.dirty)"
+class="invalid-feedback">
+<div *ngIf="f.city_id.errors  && (addressForm.controls.city_id.touched || addressForm.controls.city_id.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  <img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  City is required.
+</td>
+</tr>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 15%;">
+<label class="formlbl">Postal Code<span class="required_star">*</span> </label>
+</td>
+<td style="width: 35%;">
+  <input type="text" style="width: 87%;" placeholder="Enter Postal Code" class="input-default"
+formControlName="postal_code" />
+<div style="margin-left: 10%;"
+*ngIf="f.postal_code.errors  && (addressForm.controls.postal_code.touched || addressForm.controls.postal_code.dirty)"
+class="invalid-feedback">
+<div
+*ngIf="f.postal_code.errors.required && (addressForm.controls.postal_code.touched || addressForm.controls.postal_code.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  <img class="errorIcon"  alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  Postal Code is required.
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.postal_code.errors.pattern && (addressForm.controls.postal_code.touched || addressForm.controls.postal_code.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  <img class="errorIcon"  alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  {{validation.validationsArray.fundANdSubAddress.postalCode.patternMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.postal_code.errors.maxlength && (addressForm.controls.postal_code.touched || addressForm.controls.postal_code.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  <img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  {{validation.validationsArray.fundANdSubAddress.postalCode.maxLengthMsg}}
+</td>
+</tr>
+</div>
+<div
+*ngIf="f.postal_code.errors.minlength && (addressForm.controls.postal_code.touched || addressForm.controls.postal_code.dirty)">
+<tr>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  <img class="errorIcon" alt="assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+</td>
+<td class="valerrortxt" style="vertical-align: middle !important ;">
+  {{validation.validationsArray.fundANdSubAddress.postalCode.minLengthMsg}}
+</td>
+</tr>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height: 5px;"></tr>
+</table>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div style="height: 46px;background-color: #F8F8F8;margin-bottom: 5px;">
+  <button (click)="addAddressDataRow()" class="addrowbtn" mat-raised-button><label style="cursor: pointer;"> Add
+      Address </label></button>
+</div>
+<table style="background-color:#F8F8F8;">
+  <caption></caption>
+  <th id=""></th>
+  <tr style="width: 100%;">
+    <td>
+      <button class="btn-secondary-default cancelbtn" mat-raised-button mat-dialog-close><label>Cancel</label></button>
+    </td>
+    <td style="float: right;">
+      <button class="btn-primary-default savebtn" mat-raised-button (click)="SaveAddressData()"
+        [disabled]="addressForm.invalid"><label>save</label></button>
+    </td>
+  </tr>
+</table>
+</mat-tab>
+<mat-tab label="E-Mail Address">
+  <form name="EmailForm1" id="EmailForm1">
+    <div class="example-large-box mat-elevation-z4">
+      <table mat-table [dataSource]="EmailDataSource">
+        <caption></caption>
+        <ng-container *ngFor="let column of columnsEmailData;" [cdkColumnDef]="column.columnDef">
+          <ng-container *ngIf="column.columnDef === 'lookup_value_id'">
+            <th style="padding-left: 20px !important" id="headerColumn" mat-header-cell *cdkHeaderCellDef>{{ column.header }}  <span *ngIf="column.header!='Expiry Date'" class="required_star">*</span></th>
+            <td style="vertical-align: top;width: 30% !important ;" *cdkCellDef="let row;  let k = index;">
+              <mat-select required (openedChange)="toggleArrowEmail(k)"
+                [ngClass]="emailDll[k] ? ' ddl-ddlopen' : 'ddl-ddlclose'" disableOptionCentering disableRipple
+                class="input-default" (selectionChange)="setValidationsEmail($event.value,k)" name="emailect-{{k}}"
+                [(value)]="row.lookup_value_id" [(ngModel)]="row.lookup_value_id"
+                *ngIf="column.columnDef === 'lookup_value_id'" panelClass="myPanelClassMiss"
+                placeholder="----Select----" required>
+                <mat-radio-group name="emailect-{{k}}" [(value)]="row.lookup_value_id" [(ngModel)]="row.lookup_value_id">
+                  <mat-option [value]="data.lookup_value_id" *ngFor="let data of ddlEmail;let i=index">
+                    <mat-radio-button [value]=data.lookup_value_id id="{{i}}"> {{data.lookup_value_name}}
+                    </mat-radio-button>
+                  </mat-option>
+                </mat-radio-group>
+              </mat-select>
+            </td>
+          </ng-container>
+          <ng-container *ngIf="column.columnDef != 'lookup_value_id'">
+            <th style="padding-left: 20px !important" id="headerColumn" mat-header-cell *cdkHeaderCellDef>{{ column.header }}<span *ngIf="column.header!='Expiry Date'" class="required_star">*</span> </th>
+            <div *ngIf="column.columnDef=='value'">
+              <td style="vertical-align: baseline;width: 30% !important ;" *cdkCellDef="let row ;let i = index">
+                <input name="valueEmail-{{i}}" (input)="testValidation(validationForEmail[i],i,row.value,'email')"
+                  title="Value hint" [id]="i" [minlength]="validationForEmail[i].MinLength"
+                  [maxlength]="validationForEmail[i].MaxLength" required [pattern]="validationForEmail[i].Pattern"
+                  [(ngModel)]="row.value" class="input-default" placeholder="Enter value">
+                <div class="valerrortxt" style="padding-top: 3px;text-align: left;
+                                            padding-left: 10px;" id="email-p-{{i}}"></div>
+                <div class="valerrortxt" style="
+                                             padding-left: 10px;padding-top: 3px;text-align: left;" id="email-l-{{i}}">
+                </div>
+              </td>
+            </div>
+            <div *ngIf="column.columnDef=='effectiveDate'">
+              <td style="vertical-align: baseline;width: 20% !important ;" *cdkCellDef="let row ;let i = index"
+                class="input-wrapper" (click)="picker1.open()">
+                  <input name="EdateEmail-{{i}}" *ngIf="column.columnDef=='effectiveDate'" (click)="picker1.open()"
+                  class="input-default date-input" type="text" required [(ngModel)]="row.effectiveDate"
+                  value="row.effectiveDate" matInput [matDatepicker]="picker1" placeholder="{{datePlaceholder}}">
+                <mat-datepicker #picker1></mat-datepicker>
+              </td>
+            </div>
+            <div *ngIf="column.columnDef=='expiryDate'">
+              <td style="vertical-align: baseline;width: 20% !important ;" *cdkCellDef="let row ;let i = index"
+                class="input-wrapper" (click)="picker2.open()">
+                  <input name="ExdateEmail-{{i}}" *ngIf="column.columnDef=='expiryDate'" (click)="picker2.open()"
+                  class="input-default date-input" type="text"  [(ngModel)]="row.expiryDate"
+                  value="row.expiryDate" matInput [matDatepicker]="picker2" placeholder="{{datePlaceholder}}">
+                <mat-datepicker #picker2></mat-datepicker>
+              </td>
+            </div>
+          </ng-container>
+        </ng-container>
+        <tr mat-header-row class="tableHeader" *matHeaderRowDef="columnsToDisplayEmailData"></tr>
+        <tr mat-row *matRowDef="
+                                            let row;
+                                            columns: columnsToDisplayEmailData
+                                              | paginate
+                                                : { id:'email',                                   
+                                                    itemsPerPage: size,
+                                                    currentPage: pageIndexEmailData,
+                                                    totalItems: EmailDataTable.length
+                                                  }
+                                          "></tr>
+      </table>
+    </div>
+    <div style="height: 46px;background-color: #F8F8F8;">
+      <button (click)="addEmailDataRow()" class="addrowbtn" mat-raised-button><label> Add
+          row</label></button>
+    </div>
+    <div class="pegidiv">
+      <pagination-controls id='email' (pageChange)="c = $event; paginateEmailData(c)" [directionLinks]="directionLinks"
+        class="pagination" [previousLabel]="EmailLabels.previousLabel" [nextLabel]="EmailLabels.nextLabel">
+      </pagination-controls>
+    </div>
+    <table class="bottomtable-buttons">
+      <caption></caption>
+      <th id=""></th>
+      <tr style="width: 100%;">
+        <td>
+          <button class="btn-secondary-default cancelbtn" mat-raised-button
+            mat-dialog-close><label>Cancel</label></button>
+        </td>
+        <td style="float: right;">
+          <button class="btn-primary-default savebtn" mat-raised-button [disabled]="!formStatusEmail"
+            (click)="saveEmailData()"><label>save</label></button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</mat-tab>
+<mat-tab label="Contact Number">
+  <form name="formContact" id="formContact">
+    <div class="example-large-box mat-elevation-z4">
+      <table mat-table [dataSource]="contactDataSource">
+        <caption></caption>
+        <ng-container *ngFor="let column of columnsContactData;" [cdkColumnDef]="column.columnDef">
+          <ng-container *ngIf="column.columnDef === 'lookup_value_id'">
+            <th style="padding-left: 20px !important" id="" mat-header-cell *cdkHeaderCellDef>{{ column.header }}<span *ngIf="column.header!='Expiry Date'" class="required_star">*</span></th>
+            <td style="vertical-align: top;width: 30% !important ;" *cdkCellDef="let row;  let k = index;">
+              <mat-select required (openedChange)="toggleArrowContact(k)"
+                [ngClass]="contactDll[k] ? ' ddl-ddlopen' : 'ddl-ddlclose'" disableOptionCentering disableRipple
+                class="input-default" (selectionChange)="setValidationsEmail($event.value,k)" name="contactect-{{k}}"
+                [(value)]="row.lookup_value_id" [(ngModel)]="row.lookup_value_id"
+                *ngIf="column.columnDef === 'lookup_value_id'" panelClass="myPanelClassMiss"
+                placeholder="----Select----">
+                <mat-radio-group name="contactdrop" [(value)]="row.lookup_value_id" [(ngModel)]="row.lookup_value_id">
+                  <mat-option [value]="contactmis.lookup_value_id" *ngFor="let contactmis of ddlContact;let i=index">
+                    <mat-radio-button [value]=contactmis.lookup_value_id id="{{i}}">
+                      {{contactmis.lookup_value_name}}
+                    </mat-radio-button>
+                  </mat-option>
+                </mat-radio-group>
+              </mat-select>
+            </td>
+          </ng-container>
+          <ng-container *ngIf="column.columnDef != 'lookup_value_id'">
+            <th style="padding-left: 20px !important" id="" mat-header-cell *cdkHeaderCellDef>{{ column.header }}<span *ngIf="column.header!='Expiry Date'" class="required_star">*</span></th>
+            <div *ngIf="column.columnDef=='country_code'">
+              <td style="vertical-align: top;width: 11% !important ;" *cdkCellDef="let row ;let i = index">
+                <input name="valuecodeContact-{{i}}"
+                  (input)="testValidation(validationForContact[i],i,row.country_code,'code')" title="Value hint"
+                  id="id-{{i}}" [minlength]="validationForContact[i].MinLength"
+                  [maxlength]="validationForContact[i].MaxLength" required [pattern]="validationForContact[i].Pattern"
+                  [(ngModel)]="row.country_code" class="input-default" placeholder="Country code">
+                <div class="valerrortxt" style="padding-top: 3px;text-align: left;
+                                            padding-left: 10px;" id="code-p-{{i}}"></div>
+                <div class="valerrortxt" style="
+                                             padding-left: 10px;padding-top: 3px;text-align: left;" id="code-l-{{i}}">
+                </div>
+              </td>
+            </div>
+            <div *ngIf="column.columnDef=='value'">
+              <td style="vertical-align: baseline;width: 19% !important ;" *cdkCellDef="let row ;let i = index">
+                <input name="valueContact-{{i}}" title="Value hint"
+                  (input)="testValidation(validationForContact[i],i,row.value,'contact')" [id]="i"
+                  [minlength]="validationForContact[i].MinLength" [maxlength]="validationForContact[i].MaxLength"
+                  required [pattern]="validationForContact[i].Pattern" [(ngModel)]="row.value" class="input-default"
+                  placeholder="Enter Value">
+                <div class="valerrortxt" style="padding-top: 3px;text-align: left;
+                                            padding-left: 10px;" id="contact-p-{{i}}"></div>
+                <div class="valerrortxt" style="
+                                             padding-left: 10px;padding-top: 3px;text-align: left;"
+                  id="contact-l-{{i}}"></div>
+              </td>
+            </div>
+            <div *ngIf="column.columnDef=='effectiveDate'">
+              <td style="vertical-align: baseline;width: 20% !important ;" *cdkCellDef="let row ;let i = index"
+                class="input-wrapper" (click)="picker3.open()">
+                        <input name="EdateContact-{{i}}" *ngIf="column.columnDef=='effectiveDate'" (click)="picker3.open()"
+                  class="input-default date-input" type="text" required [(ngModel)]="row.effectiveDate"
+                  value="row.effectiveDate" matInput [matDatepicker]="picker3" placeholder="{{datePlaceholder}}">
+                <mat-datepicker #picker3></mat-datepicker>
+              </td>
+            </div>
+            <div *ngIf="column.columnDef=='expiryDate'">
+              <td style="vertical-align: baseline;width: 20% !important ;" *cdkCellDef="let row ;let i = index"
+                class="input-wrapper" (click)="picker4.open()">
+                <input name="ExdateContact-{{i}}" *ngIf="column.columnDef=='expiryDate'" (click)="picker4.open()"
+                  class="input-default date-input" type="text"  [(ngModel)]="row.expiryDate"
+                  value="row.expiryDate" matInput [matDatepicker]="picker4" placeholder="{{datePlaceholder}}">
+                <mat-datepicker #picker4></mat-datepicker>
+              </td>
+            </div>
+          </ng-container>
+        </ng-container>
+        <tr mat-header-row class="tableHeader" *matHeaderRowDef="columnsToDisplayContactData"></tr>
+        <tr mat-row *matRowDef="
+                                            let row;
+                                            columns: columnsToDisplayContactData
+                                              | paginate
+                                                : { id:'contact',                                   
+                                                    itemsPerPage: size,
+                                                    currentPage: pageIndexContactData,
+                                                    totalItems: contactDataTable.length
+                                                  }
+                                          "></tr>
+      </table>
+    </div>
+    <div style="height: 46px;background-color: #F8F8F8;">
+      <button (click)="addContactDataRow()" class="addrowbtn" mat-raised-button><label> Add
+          row</label></button>
+    </div>
+    <div class="pegidiv">
+      <pagination-controls id='contact' (pageChange)="d = $event; paginateContactData(d)"
+        [directionLinks]="directionLinks" class="pagination" [previousLabel]="ContactLabels.previousLabel"
+        [nextLabel]="ContactLabels.nextLabel">
+      </pagination-controls>
+    </div>
+    <table class="bottomtable-buttons">
+      <caption></caption>
+      <th id=""></th>
+      <tr style="width: 100%;">
+        <td>
+          <button class="btn-secondary-default cancelbtn" mat-raised-button
+            mat-dialog-close><label>Cancel</label></button>
+        </td>
+        <td style="float: right;">
+          <button class="btn-primary-default savebtn" mat-raised-button [disabled]="!formStatusContact"
+            (click)="saveContactData()"><label>save</label></button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</mat-tab>
+</mat-tab-group>
+</div>
+</div>
+<div *ngIf="selectedradio=='2'">
+  <form name="legalForm" id="legalForm">
+    <div class="example-large-box mat-elevation-z4">
+      <table mat-table [dataSource]="legalDataSource">
+        <caption></caption>
+        <ng-container *ngFor="let column of columnsLegalData;" [cdkColumnDef]="column.columnDef">
+          <ng-container *ngIf="column.columnDef === 'lookup_value_id'">
+            <th style="padding-left: 20px !important" id="" mat-header-cell *cdkHeaderCellDef>{{ column.header }}<span *ngIf="column.header!='Expiry Date'" class="required_star">*</span></th>
+            <td style="vertical-align: top;width: 30% !important ;" *cdkCellDef="let row;  let k = index;">
+              <mat-select required [ngClass]="legalDll[k] ? ' ddl-ddlopen' : 'ddl-ddlclose'"
+                (openedChange)="toggleArrowLegal(k)" disableOptionCentering disableRipple class="input-default"
+                name="legelect-{{k}}" [(value)]="row.lookup_value_id"
+                (selectionChange)="setValidationsLegal($event.value,k)" [(ngModel)]="row.lookup_value_id"
+                *ngIf="column.columnDef === 'lookup_value_id'" panelClass="myPanelClassMiss"
+                placeholder="----Select----">
+                <mat-radio-group name="legaldrop" [(value)]="row.lookup_value_id" [(ngModel)]="row.lookup_value_id">
+                </mat-radio-group>
+                <mat-option [value]="data.lookup_value_id" *ngFor="let data of ddlLegalData;let i=index">
+                  <mat-radio-button [value]=data.lookup_value_id id="{{i}}"> {{data.lookup_value_name}}
+                  </mat-radio-button>
+                </mat-option>
+              </mat-select>
+            </td>
+          </ng-container>
+          <ng-container *ngIf="column.columnDef != 'lookup_value_id'">
+            <th style="padding-left: 20px !important" id="" mat-header-cell *cdkHeaderCellDef>{{ column.header }}<span *ngIf="column.header!='Expiry Date'" class="required_star">*</span></th>
+            <div *ngIf="column.columnDef=='value'">
+              <td style="vertical-align: top;width: 30% !important ;" *cdkCellDef="let row ;let i = index">
+                <input *ngIf="validationForLegal[i].lookupTypeId==0"
+                  (input)="testValidation(validationForLegal[i],i,row.value,'legal')" name="valueLegal-{{i}}"
+                  title="Value hint" [id]="i" [minlength]="validationForLegal[i].MinLength"
+                  [maxlength]="validationForLegal[i].MaxLength" required [pattern]="validationForLegal[i].Pattern"
+                  [(ngModel)]="row.value" class="input-default" placeholder="Enter Value">
+                <mat-select required [ngClass]="legalValueDll[i] ? ' ddl-ddlopen' : 'ddl-ddlclose'"
+                  (openedChange)="toggleArrowValueLegal(i)" disableOptionCentering disableRipple class="input-default"
+                  *ngIf="validationForLegal[i].lookupTypeId==1" name="value-{{i}}" [id]="i" [(value)]="row.value"
+                  [(ngModel)]="row.value" panelClass="myPanelClassMiss" placeholder="----Select----">
+                  <mat-radio-group [(value)]="row.value" [(ngModel)]="row.value">
+                    <mat-option value="{{data.LookupValueId}}"
+                      *ngFor="let data of validationForLegal[i].domainValues;let i=index">
+                      <mat-radio-button value={{data.LookupValueId}} id="{{i}}"> {{data.LookupValueName}}
+                      </mat-radio-button>
+                    </mat-option>
+                  </mat-radio-group>
+                </mat-select>
+                <div class="valerrortxt" style="padding-top: 3px;text-align: left;
+                             padding-left: 10px;" id="legal-p-{{i}}"></div>
+                <div class="valerrortxt" style="
+                              padding-left: 10px;padding-top: 3px;text-align: left;" id="legal-l-{{i}}"></div>
+              </td>
+            </div>
+            <div *ngIf="column.columnDef=='effectiveDate'">
+              <td style="vertical-align: baseline;width: 20% !important ;" *cdkCellDef="let row ;let i = index"
+                class="input-wrapper" (click)="picker6.open()">
+                       <input name="EdateLegal-{{i}}" *ngIf="column.columnDef=='effectiveDate'" (click)="picker6.open()"
+                  class="input-default date-input" type="text" required [(ngModel)]="row.effectiveDate"
+                  value="row.effectiveDate" matInput [matDatepicker]="picker6" placeholder="{{datePlaceholder}}">
+                <mat-datepicker #picker6></mat-datepicker>
+              </td>
+            </div>
+            <div *ngIf="column.columnDef=='expiryDate'">
+              <td style="vertical-align: baseline;width: 20% !important ;" *cdkCellDef="let row ;let i = index"
+                class="input-wrapper" (click)="picker5.open()">
+                    <input name="ExdateLegal-{{i}}" *ngIf="column.columnDef=='expiryDate'" (click)="picker5.open()"
+                  class="input-default date-input" type="text"  [(ngModel)]="row.expiryDate"
+                  value="row.expiryDate" matInput [matDatepicker]="picker5" placeholder="{{datePlaceholder}}">
+                <mat-datepicker #picker5></mat-datepicker>
+              </td>
+            </div>
+          </ng-container>
+        </ng-container>
+        <tr mat-header-row class="tableHeader" *matHeaderRowDef="columnsToDisplayLegalData"></tr>
+        <tr mat-row *matRowDef="
+                                let row;
+                                columns: columnsToDisplayLegalData
+                                  | paginate
+                                    : { id:'legal',                                   
+                                        itemsPerPage: size,
+                                        currentPage: pageIndexLegalData,
+                                        totalItems: legalDataTable.length
+                                      }
+                              "></tr>
+      </table>
+      <div style="height: 46px;background-color: #F8F8F8;">
+        <button (click)="addLegalDataRow()" class="addrowbtn" mat-raised-button><label> Add
+            row</label></button>
+      </div>
+      <div class="pegidiv">
+        <pagination-controls id='legal' (pageChange)="b = $event; paginateLegalData(b)"
+          [directionLinks]="directionLinks" class="pagination" [previousLabel]="legalDataLabels.previousLabel"
+          [nextLabel]="legalDataLabels.nextLabel">
+        </pagination-controls>
+      </div>
+    </div>
+    <table class="bottomtable-buttons">
+      <caption></caption>
+      <th id=""></th>
+      <tr style="width: 100%;">
+        <td>
+          <button class="btn-secondary-default cancelbtn" mat-raised-button
+            mat-dialog-close><label>Cancel</label></button>
+        </td>
+        <td style="float: right;">
+          <button class="btn-primary-default savebtn" mat-raised-button [disabled]="!formStatusLegal"
+            (click)="saveLegalData()"><label>save</label></button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<div *ngIf="selectedradio=='3'">
+  <form name="myForm" id="myForm">
+    <div class="example-large-box mat-elevation-z4">
+      <table mat-table [dataSource]="Miscellanousdata">
+        <caption></caption>
+        <ng-container *ngFor="let column of columnsMiscData;" [cdkColumnDef]="column.columnDef">
+          <ng-container *ngIf="column.columnDef === 'Miscellanous Data'">
+            <th style="padding-left: 20px !important" style="padding-left: 20px !important" id="" mat-header-cell *cdkHeaderCellDef>{{ column.header }}<span *ngIf="column.header!='Expiry Date'" class="required_star">*</span></th>
+            <td style="vertical-align: top;width: 30% !important ;" *cdkCellDef="let row;  let k = index;">
+              <mat-select required [ngClass]="misscDll[k] ? ' ddl-ddlopen' : 'ddl-ddlclose'" disableOptionCentering
+                disableRipple class="input-default" name="miselect-{{k}}" [(value)]="row.lookup_value_id"
+                (selectionChange)="setValidationsMissc($event.value,k)" [(ngModel)]="row.lookup_value_id"
+                *ngIf="column.columnDef === 'Miscellanous Data'" panelClass="myPanelClassMiss"
+                placeholder="----Select----" (openedChange)="toggleArrowMissc(k)">
+                <mat-radio-group name="miscdrop" [(value)]="row.lookup_value_id" [(ngModel)]="row.lookup_value_id">
+                  <mat-option [value]="data.lookup_value_id" *ngFor="let data of DropdownData;let i=index">
+                    <mat-radio-button [value]=data.lookup_value_id id="{{i}}"> {{data.lookup_value_name}}
+                    </mat-radio-button>
+                  </mat-option>
+                </mat-radio-group>
+              </mat-select>
+            </td>
+          </ng-container>
+          <ng-container *ngIf="column.columnDef != 'Miscellanous Data'">
+            <th style="padding-left: 20px !important" id="" mat-header-cell *cdkHeaderCellDef>{{ column.header }}<span *ngIf="column.header!='Expiry Date'" class="required_star">*</span></th>
+            <div *ngIf="column.columnDef=='value'">
+              <td style="vertical-align: top;width: 30% !important ;" *cdkCellDef="let row ;let i = index">
+            
+                <input *ngIf="validationForMissc[i].lookupTypeId==0" name="value-{{i}}"
+                  (input)="testValidation(validationForMissc[i],i,row.value,'misc')"
+                  title="{{validationForMissc[i].Pattern}} min {{ validationForMissc[i].MinLength }} max {{validationForMissc[i].MaxLength}}"
+                  [id]="i" [minlength]="validationForMissc[i].MinLength" [maxlength]="validationForMissc[i].MaxLength"
+                  required [pattern]="validationForMissc[i].Pattern" [(ngModel)]="row.value" class="input-default"
+                  placeholder="Enter value">
+                <mat-select required [ngClass]="misscValueDll[i] ? ' ddl-ddlopen' : 'ddl-ddlclose'"
+                  (openedChange)="toggleArrowValueMissc(i)" disableOptionCentering disableRipple class="input-default"
+                  *ngIf="validationForMissc[i].lookupTypeId==1" name="value-{{i}}" [id]="i" [(value)]="row.value"
+                  [(ngModel)]="row.value" panelClass="myPanelClassMiss" placeholder="----Select----">
+                  <mat-radio-group [value]="row.value" [(ngModel)]="row.value">
+                    <mat-option value="{{data.LookupValueId}}"
+                      *ngFor="let data of validationForMissc[i].domainValues;let j=index">
+                      <mat-radio-button value={{data.LookupValueId}} id="{{j}}"> {{data.LookupValueName}}
+                      </mat-radio-button>
+                    </mat-option>
+                  </mat-radio-group>
+                </mat-select>
+                <div class="valerrortxt" style="padding-top: 3px;text-align: left;
+                             padding-left: 10px;" id="misc-p-{{i}}"></div>
+                <div class="valerrortxt" style="
+                              padding-left: 10px;padding-top: 3px;text-align: left;" id="misc-l-{{i}}"></div>
+              </td>
+            </div>
+            <div *ngIf="column.columnDef=='Effective Date'">
+              <td style="vertical-align: baseline;width: 20% !important" *cdkCellDef="let row ;let i = index"
+                class="input-wrapper" (click)="picker10.open()">
+                <input name="Edate-{{i}}" *ngIf="column.columnDef=='Effective Date'" (click)="picker10.open()"
+                  class="input-default date-input" type="text" required [(ngModel)]="row.effectiveDate"
+                  value="row.effectiveDate " matInput [matDatepicker]="picker10" placeholder="{{datePlaceholder}}">
+                <mat-datepicker #picker10></mat-datepicker>
+              </td>
+            </div>
+            <div *ngIf="column.columnDef=='Expiry Date'">
+              <td style="vertical-align: baseline;width: 20% !important ;" *cdkCellDef="let row ;let i = index"
+                class="input-wrapper" (click)="Expicker.open()">
+              
+                <input name="Exdate-{{i}}" *ngIf="column.columnDef=='Expiry Date'" (click)="Expicker.open()"
+                  class="input-default date-input" type="text"  [(ngModel)]="row.ExpiryDate"
+                  value="row.ExpiryDate" matInput [matDatepicker]="Expicker" placeholder="{{datePlaceholder}}">
+                <mat-datepicker #Expicker></mat-datepicker>
+              </td>
+            </div>
+          </ng-container>
+        </ng-container>
+        <tr mat-header-row class="tableHeader" *matHeaderRowDef="ColumnsToDisplayMiscData"></tr>
+        <tr mat-row *matRowDef="
+                                let row;
+                                columns: ColumnsToDisplayMiscData
+                                  | paginate
+                                    : { id:'mis',                                   
+                                        itemsPerPage: size,
+                                        currentPage: PageIndexMissData,
+                                        totalItems: MymissDatable.length
+                                      }
+                              "></tr>
+      </table>
+      <div style="height: 46px;background-color: #F8F8F8;">
+        <button name="addmiscrow" (click)="addrow()" class="addrowbtn" mat-raised-button><label> Add
+            row</label></button>
+      </div>
+      <div class="pegidiv">
+        <pagination-controls id='mis' (pageChange)="a = $event; paginate(a)" [directionLinks]="directionLinks"
+          class="pagination" [previousLabel]="missLabels.previousLabel" [nextLabel]="missLabels.nextLabel">
+        </pagination-controls>
+      </div>
+    </div>
+    <table class="bottomtable-buttons">
+      <caption></caption>
+      <th id=""></th>
+      <tr style="width: 100%;">
+        <td>
+          <button class="btn-secondary-default cancelbtn" mat-raised-button
+            mat-dialog-close><label>Cancel</label></button>
+        </td>
+        <td style="float: right;">
+          <button class="btn-primary-default savebtn" type="submit" [disabled]="!formStatusMissc"
+            (click)="AddMiscellaneosData()"><label>save</label></button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+</div>

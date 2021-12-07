@@ -1,0 +1,242 @@
+::ng-deep .mat-dialog-container {
+  padding: 0px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #009677 !important;
+  box-sizing: border-box !important;
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 4px !important;
+  /* height: 98% !important; */
+}
+.input-wrapper:after {
+  top: 3px !important;
+}
+.title {
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.025em;
+  color: #009677;
+}
+.titlediv {
+  background: #ffffff;
+}
+.middiv {
+  margin-top: 35px;
+}
+.scroll {
+  height: 70%;
+  overflow: auto;
+}
+.inputform {
+  width: 97%;
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 142%;
+  /* or 20px */
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.025em;
+  color: #282828;
+}
+.tabletr {
+  vertical-align: top !important;
+}
+.savebtn {
+  margin-right: 34px;
+}
+.cancelbtn {
+  margin-left: 29px;
+}
+.msgDiv {
+  margin-top: 19px;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+.msgBodyDiv {
+  padding: 10px;
+  border: 1px solid #A7A9AC;
+  box-sizing: border-box;
+  /* box-shadow: inset 0px 4px 23px rgba(0, 0, 0, 0.15); */
+  border-radius: 4px;
+  margin-top: 26px;
+  margin-left: 4%;
+  margin-right: 4%;
+  min-height: 120px;
+}
+.fromP {
+  margin-top: 11px;
+  margin-left: 7%;
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  /* display: flex; */
+  align-items: center;
+  letter-spacing: 0.025em;
+  color: #808285;
+}
+.fromSpan {
+  background: #E8F0FA;
+  border-radius: 19px;
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  /* display: flex; */
+  align-items: center;
+  letter-spacing: 0.025em;
+  color: #808285;
+  margin-left: 2%;
+  padding-right: 17px;
+  padding-left: 17px;
+  padding-top: 2px;
+  padding-bottom: 3px;
+}
+.hrLine {
+  margin-left: 4%;
+  border-top: 1px solid rgba(51, 51, 51, 0.15);
+}
+.subSpan {
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+  margin-left: 2%;
+  align-items: center;
+  letter-spacing: 0.025em;
+  color: #808285;
+}
+.gretingP {
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 142%;
+  /* or 20px */
+  margin-left: 7%;
+  /* display: flex; */
+  align-items: center;
+  letter-spacing: 0.025em;
+  margin-top: 14px;
+  color: #808285;
+}
+.msgBodyP {
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 142%;
+  margin-left: 7% !important;
+  align-items: center;
+  letter-spacing: 0.025em;
+  color: #808285;
+}
+.firstLineP {
+  margin-top: 35px;
+  margin-bottom: 0px;
+}
+.msgMainP {
+  margin: 0px;
+  margin-bottom: 2px !important;
+}
+.msgBottomP {
+  margin-top: 17px;
+}
+.msgLastP {
+  margin-bottom: 40px;
+}
+.saveBtn {
+  float: right;
+  margin-right: 1.5%;
+  margin-top: 20px;
+}
+.userNameSpan {
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  align-items: center;
+  letter-spacing: 0.025em;
+  margin-left: 8px;
+  color: #282828;
+}
+@media only screen and (device-height: 756px) {
+  .scroll {
+    height: 580px;
+  }
+}
+.bottomDiv {
+  height: 34px;
+  background: #969696;
+  border-radius: 0px 0px 3px 3px;
+}
+.PreviousSpan {
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.025em;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+.date {
+  float: right;
+  border: none !important;
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.025em;
+}
+.date-effective {
+  color: #00C0E8;
+}
+.date-expiry {
+  color: #D23C3C;
+}
+.dateTable {
+  float: right;
+  margin-right: 20px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+.emailFields {
+  border: none;
+  height: 36px;
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  align-items: center;
+  letter-spacing: 0.025em;
+  color: #282828;
+}
+input:focus {
+  outline: none !important;
+  outline-style: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+.bottomFixedDiv {
+  position: fixed;
+  width: 44.85%;
+  bottom: 14px;
+}

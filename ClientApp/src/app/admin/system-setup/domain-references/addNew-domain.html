@@ -1,0 +1,280 @@
+<div class="titlediv">
+  <table class="titletable" style="width: 100% ;">
+    <caption></caption>
+    <th id=""></th>
+    <tr>
+      <td style="width: 100%;padding-left: 5%;">
+        <p class="title">
+          {{isUpdatebtn? 'Update' : 'Add'}} New Domain
+        </p>
+      </td>
+    </tr>
+  </table>
+  <div class="scroll">
+    <div class="middiv ">
+      <form [formGroup]="AddDomainRefForm">
+        <table style="width: 100%;">
+          <caption></caption>
+          <th id=""></th>
+          <tr style="height: 15px;">
+          </tr>
+          <tr class="tabletr">
+            <td style="width: 35%;">
+              <label class="formlbl">Domain Name<span class="required_star">*</span> </label>
+            </td>
+            <td style="width: 65%;">
+              <input type="text" class="input-default inputform" formControlName="lookup_type"
+                [ngClass]="{ 'is-invalid': f.lookup_type.errors  && (AddDomainRefForm.controls.lookup_type.touched || AddDomainRefForm.controls.lookup_type.dirty) }" />
+              <div
+                *ngIf="f.lookup_type.errors  && (AddDomainRefForm.controls.lookup_type.touched || AddDomainRefForm.controls.lookup_type.dirty)"
+                class="invalid-feedback">
+                <div
+                  *ngIf="f.lookup_type.errors.required && (AddDomainRefForm.controls.lookup_type.touched || AddDomainRefForm.controls.lookup_type.dirty)">
+          <tr>
+            <td class="valerrortxt">
+              <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+            </td>
+            <td class="valerrortxt">
+              Domain name is required.
+            </td>
+          </tr>
+    </div>
+    <div
+      *ngIf="f.lookup_type.errors.pattern && (AddDomainRefForm.controls.lookup_type.touched || AddDomainRefForm.controls.lookup_type.dirty)">
+      
+      <tr>
+        <td class="valerrortxt">
+          <img class="errorIcon"  alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+        </td>
+        <td class="valerrortxt">
+          {{validation.validationsArray.domainAndReference.addDomain.domainName.patternMsg}}
+        </td>
+      </tr>
+      
+      
+     
+    </div>
+    <div
+      *ngIf="f.lookup_type.errors.maxlength && (AddDomainRefForm.controls.lookup_type.touched || AddDomainRefForm.controls.lookup_type.dirty)"
+     >
+     
+      
+     <tr>
+      <td class="valerrortxt">
+        <img class="errorIcon"  alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+      </td>
+      <td class="valerrortxt">
+        {{validation.validationsArray.domainAndReference.addDomain.domainName.maxLengthMsg}}
+      </td>
+    </tr>
+     
+    
+    </div>
+    <div
+      *ngIf="f.lookup_type.errors.minlength && (AddDomainRefForm.controls.lookup_type.touched || AddDomainRefForm.controls.lookup_type.dirty)"
+      >
+      <tr>
+        <td class="valerrortxt">
+          <img class="errorIcon"  alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+        </td>
+        <td class="valerrortxt">
+          {{validation.validationsArray.domainAndReference.addDomain.domainName.minLengthMsg}}
+        </td>
+      </tr>
+       
+      
+    
+    </div>
+  </div>
+  </td>
+  </tr>
+  <tr style="height: 15px;">
+  </tr>
+  <tr class="tabletr">
+    <td style="width: 35%;">
+      <label class="formlbl">
+        <p>Domain Alias<span class="required_star">*</span></p>
+      </label>
+    </td>
+    <td style="width: 65%;">
+      <input type="text" class="input-default inputform" [readonly]="Alias_readonly"
+        formControlName="lookup_value_alias"
+        [ngClass]="{ 'is-invalid': f.lookup_value_alias.errors  && (AddDomainRefForm.controls.lookup_value_alias.touched || AddDomainRefForm.controls.lookup_value_alias.dirty) }" />
+      <div
+        *ngIf="f.lookup_value_alias.errors  && (AddDomainRefForm.controls.lookup_value_alias.touched || AddDomainRefForm.controls.lookup_value_alias.dirty)"
+        class="invalid-feedback">
+        <div
+          *ngIf="f.lookup_value_alias.errors.required && (AddDomainRefForm.controls.lookup_value_alias.touched || AddDomainRefForm.controls.lookup_value_alias.dirty)"
+         >
+          
+          <tr>
+            <td class="valerrortxt">
+              <img class="errorIcon"  alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+            </td>
+            <td class="valerrortxt">
+              Domain alias is required.
+            </td>
+          </tr>
+          
+         </div>
+        <div
+          *ngIf="f.lookup_value_alias.errors.pattern && (AddDomainRefForm.controls.lookup_value_alias.touched || AddDomainRefForm.controls.lookup_value_alias.dirty)"
+         >
+         <tr>
+          <td class="valerrortxt">
+            <img class="errorIcon"  alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+          </td>
+          <td class="valerrortxt">
+            {{validation.validationsArray.domainAndReference.addDomain.domainAlias.patternMsg}}
+          </td>
+        </tr>
+         
+        
+        </div>
+        <div
+          *ngIf="f.lookup_value_alias.errors.maxlength && (AddDomainRefForm.controls.lookup_value_alias.touched || AddDomainRefForm.controls.lookup_value_alias.dirty)"
+         >
+         <tr>
+          <td class="valerrortxt">
+            <img class="errorIcon"  alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+          </td>
+          <td class="valerrortxt">
+            {{validation.validationsArray.domainAndReference.addDomain.domainAlias.maxLengthMsg}}
+          </td>
+        </tr>
+        
+        </div>
+        <div
+          *ngIf="f.lookup_value_alias.errors.minlength && (AddDomainRefForm.controls.lookup_value_alias.touched || AddDomainRefForm.controls.lookup_value_alias.dirty)"
+         >
+         <tr>
+          <td class="valerrortxt">
+            <img class="errorIcon"  alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+          </td>
+          <td class="valerrortxt">
+            {{validation.validationsArray.domainAndReference.addDomain.domainAlias.minLengthMsg}}
+          </td>
+        </tr>
+        
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr style="height: 15px;">
+  </tr>
+  <tr class="tabletr">
+    <td style="width: 35%;">
+      <label class="formlbl">
+        <p>Description</p>
+      </label>
+    </td>
+    <td style="width: 65%;">
+      <textarea type="textarea" style="height: 130px;resize: vertical;" Rows="5" class="input-default inputform"
+        formControlName="lookup_type_description"
+        [ngClass]="{ 'is-invalid': f.lookup_type_description.errors  && (AddDomainRefForm.controls.lookup_type_description.touched || AddDomainRefForm.controls.lookup_type_description.dirty) }">
+          </textarea>
+      <div
+        *ngIf="f.lookup_type_description.errors  && (AddDomainRefForm.controls.lookup_type_description.touched || AddDomainRefForm.controls.lookup_type_description.dirty)"
+        class="invalid-feedback">
+        <div
+          *ngIf="f.lookup_type_description.errors.pattern && (AddDomainRefForm.controls.lookup_type_description.touched || AddDomainRefForm.controls.lookup_type_description.dirty)"
+         >
+         <tr>
+          <td class="valerrortxt">
+            <img class="errorIcon"  alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+          </td>
+          <td class="valerrortxt">
+            {{validation.validationsArray.domainAndReference.addDomain.domainDescription.patternMsg}}
+          </td>
+        </tr>
+       
+        </div>
+        <div
+          *ngIf="f.lookup_type_description.errors.maxlength && (AddDomainRefForm.controls.lookup_type_description.touched || AddDomainRefForm.controls.lookup_type_description.dirty)"
+          >
+          <tr>
+            <td class="valerrortxt">
+              <img class="errorIcon"  alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+            </td>
+            <td class="valerrortxt">
+              {{validation.validationsArray.domainAndReference.addDomain.domainDescription.maxLengthMsg}}
+            </td>
+          </tr>
+       
+        </div>
+        <div
+          *ngIf="f.lookup_type_description.errors.minlength && (AddDomainRefForm.controls.lookup_type_description.touched || AddDomainRefForm.controls.lookup_type_description.dirty)"
+         >
+         <tr>
+          <td class="valerrortxt">
+            <img class="errorIcon"  alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+          </td>
+          <td class="valerrortxt">
+            {{validation.validationsArray.domainAndReference.addDomain.domainDescription.minLengthMsg}}
+          </td>
+        </tr>
+        
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr style="height: 15px;">
+  </tr>
+  <tr class="tabletr">
+    <td style="width: 35%;">
+      <label class="formlbl">
+        <p>Submission Domain<span class="required_star">*</span></p>
+      </label>
+    </td>
+    <td style="width: 65%;">
+      <label class="switch">
+        <input (input)="validate()" type="checkbox" formControlName="submission_domain_flag">
+        <span class="slider round"></span>
+        <div *ngIf="submitted && f.submission_domain_flag.errors" class="invalid-feedback">
+          <div *ngIf="f.submission_domain_flag.errors.required" class="valerrortxt">Submission</div>
+        </div>
+      </label>
+    </td>
+  </tr>
+  <tr style="height: 15px;">
+  </tr>
+  <tr class="tabletr">
+    <td style="width: 35%;">
+      <label class="formlbl">
+        <p>Use For Validation<span class="required_star">*</span></p>
+      </label>
+    </td>
+    <td style="width: 65%;">
+      <label class="switch">
+        <input (input)="validate()" type="checkbox" formControlName="validation_domain_flag">
+        <span class="slider round"></span>
+        <div *ngIf="submitted && f.validation_domain_flag.errors" class="invalid-feedback">
+          <div *ngIf="f.validation_domain_flag.errors.required" class="valerrortxt">Validation required</div>
+        </div>
+      </label>
+    </td>
+  </tr>
+  <tr style="height: 15px;">
+  </tr>
+  </table>
+  </form>
+</div>
+</div>
+</div>
+<table style="padding-bottom: 10px;" class="titletable">
+  <caption></caption>
+  <th id=""></th>
+  <tr style="width: 100%;">
+    <td>
+      <button class="btn-secondary-default cancelbtn" mat-raised-button
+        (click)="onNoClick()"><label>Cancel</label></button>
+    </td>
+    <td style="float: right;">
+      <button *ngIf="!isUpdatebtn" (click)="AddDomainRefName()" class="btn-primary-default savebtn" mat-raised-button [disabled]="AddDomainRefForm.invalid"
+       ><label>Add</label></button>
+       <button *ngIf="isUpdatebtn"  (click)="AddDomainRefName()" class="btn-primary-default savebtn" mat-raised-button [disabled]="textChanged==false || AddDomainRefForm.invalid"
+       ><label>Update</label></button>
+    </td>
+  </tr>
+</table>
+<ngx-loading [show]="loading" [template]="loadingTemplate"></ngx-loading>

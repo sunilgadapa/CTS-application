@@ -1,0 +1,173 @@
+<div class="titlediv">
+  <table class="titletable" style="width: 100% ;">
+    <caption></caption>
+    <th id=""></th>
+    <tr>
+      <td style="width: 30%;padding-left: 5%;">
+        <p class="title">
+          User Details :
+        </p>
+      </td>
+      <td style="width: 70%;">
+        <div>
+    <tr style="height: 37px;">
+      <td style="vertical-align: middle;"><img *ngIf="enableErrorIcon" style="height: 13px;" class="valerrortxt"
+          src="assets/images/Icon_Error.png" alt="assets/images/Icon_Error.png"/></td>
+      <td style="vertical-align: middle;line-height: 23px !important;" class="errortext">
+        {{userInput}}
+      </td>
+    </tr>
+</div>
+</td>
+</tr>
+</table>
+<div class="scroll">
+  <div class="middiv ">
+    <form [formGroup]="userForm">
+      <table style="width: 100%;">
+        <caption></caption>
+        <th id=""></th>
+        <tr style="height: 18px;">
+        </tr>
+        <tr class="tabletr">
+          <td style="width: 30%;">
+            <label class="formlbl">User ID<span class="required_star">*</span> </label>
+          </td>
+          <td style="width: 70%;">
+            <input [readonly]="isUpdatebtn" style="text-transform: uppercase" formControlName="user_id" type="text"
+              class="input-default inputform" (keyup)="onKey($event)" maxlength="14" />
+          </td>
+        </tr>
+        <tr style="height: 10px;">
+        </tr>
+        <tr class="tabletr">
+          <td style="width: 30%;">
+            <label class="formlbl">Date of Expiry</label>
+          </td>
+          <td style="width: 70%;" class="input-wrapper-user" (click)="picker.open()">          
+            <input formControlName="date_of_expiry" onHover="(this.type='date')"
+              class="input-default inputform date-input" (click)="picker.open()" type="text" matInput
+              [matDatepicker]="picker" placeholder="{{datePlaceholder}}">
+            <mat-datepicker #picker></mat-datepicker>
+          </td>
+        </tr>
+        <tr style="height: 10px;">
+        </tr>
+        <tr class="tabletr">
+          <td style="width: 30%;">
+            <label class="formlbl">Tax Module <span class="required_star">*</span></label>
+          </td>
+          <td style="width: 70%;">
+            <div class="checkboxdiv">
+              <mat-grid-list cols="2" rowHeight="30px">
+                <mat-grid-tile *ngFor="let a of Tax_modules">
+                  <mat-checkbox [checked]="newTaxModuleIds.includes(a.lookup_value_id)"
+                    (change)="selectTaxModules($event,a)" class="example-margin">{{a.lookup_value_name}}
+                  </mat-checkbox>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </td>
+        </tr>
+        <tr style="height: 10px;">
+        </tr>
+        <tr class="tabletr">
+          <td style="width: 30%;">
+            <label class="formlbl">Roles <span class="required_star">*</span></label>
+          </td>
+          <td style="width: 70%;">
+            <div class="checkboxdiv">
+              <mat-grid-list cols="2" rowHeight="30px">
+                <mat-grid-tile *ngFor="let a of Roles">
+                  <mat-checkbox class="example-margin" [checked]="newRoleIds.includes(a.RoleId)"
+                    (change)="selectRoles($event,a)">{{a.RoleName}}</mat-checkbox>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </td>
+        </tr>
+        <tr style="height: 10px;">
+        </tr>
+        <tr class="tabletr">
+          <td style="width: 30%;">
+            <label [ngStyle]="{'color': 
+              !Entities.includes('Source System') ? '#808285':'#282828'}" class="formlbl">Source System <span
+                *ngIf="Entities.includes('Source System')" class="required_star">*</span></label>
+          </td>
+          <td style="width: 70%;">
+            <div class="checkboxdiv">
+              <mat-grid-list cols="2" rowHeight="30px">
+                <mat-grid-tile *ngFor="let a of Source_Systems">
+                  <mat-checkbox
+                    [checked]="(newDynamicIds.includes(a.lookup_value_id))||(SourceSystemsToAdd.includes(a.lookup_value_id)&&Entities.includes('Source System'))"
+                    [disabled]="!Entities.includes('Source System')" (change)="selectSourceSystems($event,a)"
+                    class="example-margin">{{a.lookup_value_name}}</mat-checkbox>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </td>
+        </tr>
+        <tr style="height: 10px;">
+        </tr>
+        <tr class="tabletr">
+          <td style="width: 30%;">
+            <label [ngStyle]="{'color': 
+              !Entities.includes('Retirement Fund Entity') ? '#808285':'#282828'}" class="formlbl">Fund Entity <span
+                *ngIf="Entities.includes('Retirement Fund Entity')" class="required_star">*</span></label>
+          </td>
+          <td style="width: 70%;">
+            <div class="checkboxdiv">
+              <mat-grid-list cols="2" rowHeight="30px">
+                <mat-grid-tile *ngFor="let a of Fund_Entity">
+                  <mat-checkbox
+                    [checked]="(newDynamicIds.includes(a.lookup_value_id))||(FundEntitiesToAdd.includes(a.lookup_value_id)&&Entities.includes('Retirement Fund Entity'))"
+                    [disabled]="!Entities.includes('Retirement Fund Entity')" (change)="selectFundEntities($event,a)"
+                    class="example-margin">{{a.lookup_value_name}}</mat-checkbox>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </td>
+        </tr>
+        <tr style="height: 10px;">
+        </tr>
+        <tr class="tabletr">
+          <td style="width: 30%;">
+            <label [ngStyle]="{'color': 
+              !Entities.includes('Brand') ? '#808285':'#282828'}" class="formlbl">Brands <span
+                *ngIf="Entities.includes('Brand')" class="required_star">*</span></label>
+          </td>
+          <td style="width: 70%;">
+            <div class="checkboxdiv">
+              <mat-grid-list cols="2" rowHeight="30px">
+                <mat-grid-tile *ngFor="let a of Brand_Data">
+                  <mat-checkbox
+                    [checked]="(newDynamicIds.includes(a.lookup_value_id))||(BrandsToAdd.includes(a.lookup_value_id)&&Entities.includes('Brand'))"
+                    [disabled]="!Entities.includes('Brand')" (change)="selectBrands($event,a)" class="example-margin">
+                    {{a.lookup_value_name}}</mat-checkbox>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+</div>
+<table style="    padding-bottom: 10px;" class="titletable">
+  <caption></caption>
+  <th id=""></th>
+  <tr style="width: 100%;">
+    <td>
+      <button class="btn-secondary-default cancelbtn" mat-raised-button
+        (click)="onCloseClick()"><label>Cancel</label></button>
+    </td>
+    <td style="float: right;">
+      <button
+        [disabled]="!isUserExists||!isTaxModuleSelected||!isRolesSelected||!isMandatoryCheckboxSelected || !textChanged"
+        class="btn-primary-default savebtn" mat-raised-button (click)="onConfirmClick()"><label>{{isUpdatebtn? 'UPDATE'
+          : 'SUBMIT'}}</label></button>
+    </td>
+  </tr>
+</table>
+<ngx-loading [show]="loading" [template]="loadingTemplate"></ngx-loading>

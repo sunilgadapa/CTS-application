@@ -1,0 +1,200 @@
+<label class="page-title">Users</label>
+<img title="refresh" [@rotatedState]="state" class="refreshIcon" alt="assets/images/Group 46.png" src="assets/images/Group 46.png"
+  (click)="rotate()" />
+<div class="mainDiv">
+  <div class="container1 row">
+    <div style="margin-top: 13px;" class="selectTypeDiv" class="col-3">
+      <label class="lblstatus">Status</label>
+      <mat-select class="input-default " style="margin-top: 4px;padding-top: 6px !important;" disableOptionCentering
+        [(ngModel)]="selectedItem" placeholder="Select User Status" disableRipple
+        [ngClass]="statusddl ? ' ddl-ddlopen' : ' ddl-ddlclose'" panelClass="myPanelClasssUserSatus"
+        (openedChange)="toggleArrow()">
+        <mat-radio-group [(ngModel)]="selectedItem">
+          <mat-option *ngFor="let stat of status;let i=index" [value]="stat.value">
+            <mat-radio-button [value]=stat.value id="{{i}}">{{
+              stat.name
+              }}
+            </mat-radio-button>
+          </mat-option>
+        </mat-radio-group>
+      </mat-select>
+    </div>
+    <div style="margin-top: 13px;" class="selectTypeDiv" class="col-9">
+      <button style="margin-top: 23px;" class="btn-primary-default " (click)="searchUsers()">
+        <label>SEARCH</label>
+      </button>
+    </div>
+  </div>
+  <div class="demo">
+  </div>
+  <div class="tblcontainer">
+    <div class="tablewrapper">
+      <table class="table1" mat-table [dataSource]="dataSource" *ngIf="dataSource.filteredData.length>0">
+        <caption></caption>
+        <ng-container *ngFor="let column of columns;" [cdkColumnDef]="column.columnDef">
+          <ng-container *ngIf="column.columnDef === 'select'; else notSelect">
+            <th mat-header-cell *matHeaderCellDef id="">
+              <mat-checkbox style="margin-left: 20px;" (change)="$event ? masterToggle() : null"
+                [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()" (change)="userToUpdateAndDelete()">
+              </mat-checkbox>
+              {{ column.header }}
+            </th>
+            <td mat-cell *matCellDef="let row" style="padding-top: 0%;">
+              <mat-checkbox style="margin-left: 20px;" (click)="$event.stopPropagation()"
+                (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                (change)="userToUpdateAndDelete()">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+          <ng-template #notSelect>
+            <th mat-header-cell *cdkHeaderCellDef id="">{{ column.header }}</th>
+            <td mat-cell *cdkCellDef="let row">
+              <div *ngIf="column.header=='Roles'">
+                <ng-container>
+                  <div *ngIf="row.strRoleNames?.length > 1">
+                    <p [matMenuTriggerFor]="menu">
+                      {{row.strRoleNames[0]}}
+                      <span *ngIf="row.strRoleNames?.length > 1" style="font-weight: 900;cursor: pointer">
+                        <strong>
+                          +{{row.strRoleNames.length - 1}}
+                          {{row.strRoleNames?.length === 2 ? 'other' :
+                          'others'}}
+                        </strong>
+                      </span>
+                    </p>
+                  </div>
+                  <div *ngIf="row.strRoleNames?.length == 1">
+                    <p> {{row.strRoleNames[0]}}</p>
+                  </div>
+                </ng-container>
+                <mat-menu class="userPop" #menu="matMenu">
+                  <button *ngFor="let name of row.strRoleNames" mat-menu-item disabled>
+                    <table>
+                      <caption></caption>
+                      <th id=""></th>
+                      <tr>
+                        <td>
+                          <span class="userNameSpan">{{name}}</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </button>
+                </mat-menu>
+              </div>
+              <div *ngIf="column.header=='Fund Entities'">
+                <ng-container>
+                  <div *ngIf="row.strFundEntities?.length > 1">
+                    <p [matMenuTriggerFor]="menu2">
+                      {{row.strFundEntities[0]}}
+                      <span *ngIf="row.strFundEntities?.length > 1" style="font-weight: 900;cursor: pointer">
+                        +{{row.strFundEntities.length - 1}}
+                        {{row.strFundEntities?.length === 2 ? 'other' :
+                        'others'}}
+                      </span>
+                    </p>
+                  </div>
+                  <div *ngIf="row.strFundEntities?.length == 1">
+                    <p> {{row.strFundEntities[0]}}</p>
+                  </div>
+                </ng-container>
+                <mat-menu class="userPop" #menu2="matMenu">
+                  <button *ngFor="let name of row.strFundEntities" mat-menu-item disabled>
+                    <table>
+                      <caption></caption>
+                      <th id=""></th>
+                      <tr>
+                        <td>
+                          <span class="userNameSpan">{{name}}</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </button>
+                </mat-menu>
+              </div>
+              <div *ngIf="column.header=='Source Systems'">
+                <ng-container>
+                  <div *ngIf="row.strSrcSyms?.length > 1">
+                    <p [matMenuTriggerFor]="menu1">
+                      {{row.strSrcSyms[0]}}
+                      <span *ngIf="row.strSrcSyms?.length > 1" style="font-weight: 900;cursor: pointer">
+                        +{{row.strSrcSyms.length - 1}}
+                        {{row.strSrcSyms?.length === 2 ? 'other' :
+                        'others'}}
+                      </span>
+                    </p>
+                  </div>
+                  <div *ngIf="row.strSrcSyms?.length == 1">
+                    <p> {{row.strSrcSyms[0]}}</p>
+                  </div>
+                </ng-container>
+                <mat-menu class="userPop" #menu1="matMenu">
+                  <button *ngFor="let name of row.strSrcSyms" mat-menu-item disabled>
+                    <table>
+                      <caption></caption>
+                      <th id="">
+                      </th>
+                      <tr>
+                        <td>
+                          <span class="userNameSpan">{{name}}</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </button>
+                </mat-menu>
+              </div>
+              <div *ngIf="column.header=='User ID'">
+                <p> {{ column.cell(row) }}</p>
+              </div>
+              <div *ngIf="column.header=='Given Name'">
+                <p> {{ column.cell(row) }}</p>
+              </div>
+              <div *ngIf="column.header=='Status'">
+                <p *ngIf="column.cell(row).includes('1')"> Active</p>
+                <p *ngIf="column.cell(row).includes('0')"> Inactive</p>
+              </div>
+            </td>
+          </ng-template>
+        </ng-container>
+        <tr mat-header-row class="tableHeader" *matHeaderRowDef="columnsToDisplay">
+        </tr>
+        <tr mat-row *matRowDef="
+                                                  let row;
+                                                  columns: columnsToDisplay
+                                                    | paginate
+                                                      : {                                                       
+                                                          itemsPerPage: size,
+                                                          currentPage: pageIndex,
+                                                          totalItems: randomSize                                                                                                                
+                                                        }
+                                                " [ngClass]="{highlighted: selection.isSelected(row)}"></tr>
+      </table>
+      <div style="padding-top:50px;font-family: Montserrat,sans-serif;font-size: 18px;font-weight: 500;text-align: center;"
+        *ngIf="dataSource.filteredData.length === 0"><img src="assets/images/Group 2223.png" alt="assets/images/Group 2223.png"/>
+      </div>
+      <div class="pegidiv" *ngIf="dataSource.filteredData.length>0">      
+        <pagination-controls (pageChange)="p = $event; paginate(p)" [directionLinks]="directionLinks" class="pagination"
+          [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel">
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 20px;margin-bottom: 20px;" class="row ">
+    <div class="col-12">
+      <button style="float: left;margin-left: 15px;" [hidden]="!isSelectedDelete" class="btn-secondary-default "
+        (click)="openDeleteDialog()">
+        <label>Delete User</label>
+      </button>
+      <button style="float: left;margin-left: 30px;" *ngIf="isSelectedAmmend" mat-button (click)="openUpdateDialog()"
+        class="btn-secondary-default ">
+        <label> Amend User</label>
+      </button>
+      <button style="float: right;margin-right: 15px;" *ngIf="!isSelectedDelete" class="btn-primary-default " mat-button
+        (click)="openInsertDialog()">
+        <label> Add User</label>
+      </button>
+    </div>
+  </div>
+</div>
+<ngx-loading [show]="loading" [template]="loadingTemplate"></ngx-loading>
+<!-- Mat-drover container ends -->

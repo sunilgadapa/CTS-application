@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<LangVersion>8.0</LangVersion>
+		<CodeAnalysisRuleSet>..\.sonarlint\ctrp.webfrontend.asp.netcsharp.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <AdditionalFiles Include="..\.sonarlint\ctrp.webfrontend.asp.net\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.1" />
+		<PackageReference Include="Microsoft.Identity.Web" Version="1.16.1" />		
+		<PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="5.2.9" />
+		<PackageReference Include="Microsoft.PowerBI.Api" Version="3.27.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\OLDMutual.CTS.Reporting.Service\OLDMutual.CTS.Reporting.Service.csproj" />
+		<ProjectReference Include="..\OLDMutual.CTS.Reporting.Shared\OLDMutual.CTS.Reporting.Shared.csproj" />
+	</ItemGroup>
+
+
+</Project>

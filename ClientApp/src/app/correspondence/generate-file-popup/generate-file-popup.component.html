@@ -1,0 +1,62 @@
+<div class="titlediv">
+
+    <mat-dialog-content>
+        <table class="titletable" style="width: 100% ;">
+            <caption></caption>
+            <th id=""></th>
+            <tr>
+                <td style="width: 30%;padding-left: 5%;">
+                    <p class="title">
+                        Generate File
+                    </p>
+                </td>
+
+            </tr>
+        </table>
+        <div class="middiv ">
+            <table style="width: 100%;">
+                <caption></caption>
+                <th id=""></th>
+                <tr>
+                    <td style="width: 20%;">
+                        <label>File Type<span style="color: red;">*</span></label>
+                    </td>
+                    <td style="width: 85%;">
+                        <mat-select (selectionChange)="clearSelectedFile()" disableOptionCentering disableRipple  (openedChange)="toggleArrow()"
+                            [ngClass]="statusddl ? 'ddl3-ddlopen' : 'ddl3-ddlclose'" panelClass="PopFileType"
+                            placeholder="Select" [(ngModel)]="fileTypeData">
+                            <mat-radio-group disableRipple [(ngModel)]="fileTypeData">
+                                <mat-option *ngFor="let filedetail of File_Types;let i=index" [value]="filedetail.Status_Code">
+                                    <mat-radio-button [value]=filedetail.Status_Code id="{{i}}">
+                                        <span style="font-size: 12px !important;">{{filedetail.Status_Description}}
+                                            </span>
+                                    </mat-radio-button>
+                                </mat-option>
+                            </mat-radio-group>
+                        </mat-select>
+                    </td>
+                </tr>
+               
+                <tr style="height: 20px;">
+
+                </tr>
+               
+            </table>
+        </div>
+    </mat-dialog-content>
+</div>
+
+<table style="    padding-bottom: 10px;" class="titletable">
+    <caption></caption>
+    <th id=""></th>
+    <tr style="width: 100%;">
+        <td>
+            <button class="btn-secondary-default cancelbtn" mat-raised-button
+                mat-dialog-close><label>Cancel</label></button>
+        </td>
+        <td style="float: right;">
+            <button [disabled]="fileSelected" class="btn-primary-default savebtn" mat-raised-button
+                (click)="upload()"><label>Generate</label></button>
+        </td>
+    </tr>
+</table>

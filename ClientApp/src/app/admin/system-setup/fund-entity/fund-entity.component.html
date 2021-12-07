@@ -1,0 +1,32 @@
+<label class="page-title">Retirement Fund Entity</label>
+<div class="mainDiv">
+  <div class="tblcontainer">
+    <div class="tablewrapper">
+      <!-- data table start -->
+      <app-data-table (cerrentPageEvent)="SelectCurrentPage($event)" [totalRowdata]="totalRowdata"
+        (newUserEvent)="SelectcheckBoxChnage($event)" (newEditEvent)="openDialog()" [tableData]="tableData"
+        [columns]="columns" [columnsToDisplay]="columnsToDisplay" [isSelectAllEnabled]='false'>
+      </app-data-table>
+      <!-- data table end -->
+      <div
+        style="padding-top:50px;font-family: Montserrat,sans-serif;font-size: 18px;font-weight: 500;text-align: center;"
+        *ngIf="tableData.length === 0"> <img alt="assets/images/Group 2223.png" src="assets/images/Group 2223.png" />
+        <p class="zeroStateText">Add fund entity.</p>
+      </div>
+    </div>
+  </div>
+  <div style="width: 100%;" class="row">
+    <div style="padding-right: 0px;margin-top: 20px;margin-bottom: 20px" class="col-12 ">
+      <button style="float: right;" class=" btn-primary-default" (click)="AddFundPop()" mat-button>
+        <label> Add Fund Entity</label>
+      </button>
+      <button style="float: right;margin-right: 30px;" class="btn-primary-default" [disabled]="!isSelectedSaveChange"
+        (click)="SavechangeFund()" mat-button>
+        <label>Save Changes</label>
+      </button>
+    </div>
+  </div>
+</div>
+<!-- loading section start -->
+<ngx-loading [show]="loading" [template]="loadingTemplate"></ngx-loading>
+<!-- loading section end -->

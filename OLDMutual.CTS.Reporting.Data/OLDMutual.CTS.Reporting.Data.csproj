@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<LangVersion>8.0</LangVersion>
+		<CodeAnalysisRuleSet>..\.sonarlint\ctrp.webfrontend.asp.netcsharp.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <AdditionalFiles Include="..\.sonarlint\ctrp.webfrontend.asp.net\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Dapper" Version="2.0.90" />
+		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />		
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\OLDMutual.CTS.Reporting.Domain\OLDMutual.CTS.Reporting.Domain.csproj" />
+		<ProjectReference Include="..\OLDMutual.CTS.Reporting.Shared\OLDMutual.CTS.Reporting.Shared.csproj" />
+	</ItemGroup>
+
+</Project>

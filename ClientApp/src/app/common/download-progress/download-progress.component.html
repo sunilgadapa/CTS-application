@@ -1,0 +1,24 @@
+<mat-dialog-content>
+  <div *ngIf="download$ | async as download">
+    <div class="middiv" style="margin-right: 35px !important;margin-top:15px !important"
+      *ngIf="download.progress == 100; else other_content">
+      <div class="loader"></div>
+      <div style="position: absolute;top:25px;left:76px">{{download.progress}}%</div>
+      <p style="text-align: center;"> {{ download.progress == 100 ? 'Downloaded' : 'Downloading ..'}}</p>
+      <p *ngIf="downloadDone(download.progress, download.state)"></p>
+      <mat-progress-bar [mode]="download.state == 'PENDING' ? 'buffer' : 'determinate'" [value]="download.progress">
+      </mat-progress-bar>
+    </div>
+    <ng-template #other_content id="random">
+      <div class="middiv" style="margin-right: 35px !important;">
+        <div class="loader"></div>
+        <div style="position: absolute;top:25px;left:76px"><span id="per">5%</span></div>
+        <p style="text-align: center;">Downloading ...</p>
+        <div id="myProgress">
+          <div id="myBar"></div>
+          <p *ngIf="move()"></p>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</mat-dialog-content>

@@ -1,0 +1,337 @@
+.lbluser {
+  position: absolute;
+  left: 0.95%;
+  right: 94.07%;
+  top: 73px;
+  width: 200px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  color: #009677;
+}
+
+.tblcontainer {
+  padding: 1px;
+  background: #ffffff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+}
+
+.tablewrapper {
+  margin: 20px 15px 20px 15px;
+}
+
+.table2 {
+  border-radius: 4px 4px 4px 4px;
+  width: 100%;
+  border-right: solid 3px #969696 !important;
+  border-left: solid 3px #969696 !important;
+  border-bottom: solid 3px #969696 !important;
+  box-shadow: none;
+  font-family: Montserrat,sans-serif;
+  font-style: normal;
+  line-height: 15px;
+  margin-top: 17px;
+}
+
+.table1 {
+  border-radius: 4px 4px 0px 0px;
+  width: 100%;
+  border-right: solid 3px #969696 !important;
+  border-left: solid 3px #969696 !important;
+  box-shadow: none;
+  font-family: Montserrat,sans-serif;
+  font-style: normal;
+  line-height: 15px;
+  margin-top: 17px;
+}
+
+.input-edit {
+  width: 100%;
+  height: 24px;
+  border: 1px solid #808285;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-family: Montserrat,sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.015em;
+  color: #A7A9AC;
+  background-color: transparent;
+}
+
+.scroll-container {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.scroll-container.hide-scrollbar {
+  overflow: auto;
+}
+
+.scroll-container.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-container.show-scroll {
+  overflow: auto;
+}
+
+.table1 tr:nth-child(even) {
+  background-color: #F8F8F8;
+}
+
+.table1 tr.mat-row {
+  height: 39px;
+}
+
+.tableHeader {
+  height: 40px;
+  background: linear-gradient(180deg, #969696 50%, #1E1E1E 244.99%);
+}
+
+table th {
+  font-weight: 600;
+  font-size: 12px;
+  color: white;
+  letter-spacing: 0.035em;
+  font-family: Montserrat,sans-serif;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+table td {
+  font-size: 12px;
+  font-style: normal;
+  line-height: 15px;
+  letter-spacing: 0.025em;
+  color: #282828;
+  padding-left: 10px;
+  padding-right: 10px;
+  white-space: nowrap;
+  width: 10px;
+}
+
+.table tr {
+  vertical-align: top !important;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 0px !important;
+}
+
+pagination-controls {
+  height: 40px;
+  background: #969696;
+  border-radius: 0px 0px 4px 4px;
+  display: flex;
+  align-items: center;
+  /* width: 100%;   */
+  float: right;
+}
+
+:host /deep/ .ngx-pagination {
+  /* margin-left: 1067px; */
+  font-family: Montserrat,sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.pagination /deep/ .ngx-pagination .current {
+  background: #ffffff;
+  border-radius: 15px 15px 15px 15px;
+  width: auto;
+  color: #282828;
+  margin: 5px;
+}
+
+.pagination /deep/ .ngx-pagination li {
+  height: 15px;
+  color: #ffffff;
+}
+
+.pagination /deep/ .ngx-pagination a {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  margin: 5px;
+}
+
+.pagination /deep/ .ngx-pagination a::after {
+  display: none;
+}
+
+.pagination /deep/ .ngx-pagination li::before {
+  display: none;
+}
+
+.pagination /deep/ .ngx-pagination li::after {
+  display: none;
+}
+
+.pagination /deep/ .ngx-pagination a::before {
+  display: none;
+}
+
+.pagination /deep/.ngx-pagination a:hover {
+  background-color: transparent;
+}
+
+.pegidiv {
+  width: 100%;
+  height: 40px;
+  background-color: #969696;
+  border-radius: 0px 0px 4px 4px;
+}
+
+.highlighted {
+  background-color: rgba(20, 240, 3, 0.27) !important;
+  font-weight: 700;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-background, ::ng-deep .mat-checkbox-indeterminate .mat-checkbox-background {
+  border: 1px solid #a7a9ac;
+  background-color: white !important;
+}
+
+::ng-deep .mat-checkbox-checkmark-path {
+  stroke: white !important;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  border: 1px solid #a7a9ac;
+  background-color: #009677 !important;
+  transition-duration: 0ms !important;
+}
+
+.buttongroup1-search {
+  position: absolute;
+  left: 78%;
+  right: 67.57%;
+  top: 29%;
+  bottom: 73.8%;
+  height: 36px;
+  width: 86px;
+}
+
+.buttongroup1-adduser {
+  position: absolute;
+  right: 1.09%;
+  top: 643px;
+  height: 36px;
+  /* width: 5.7%; */
+  display: flex;
+}
+
+.buttongroup1-adduser2 {
+  position: absolute;
+  right: 10%;
+  top: 643px;
+  height: 36px;
+  /* width: 4.6%; */
+  display: flex;
+}
+
+.buttongroup1-adduser3 {
+  position: absolute;
+  right: 17.8%;
+  top: 643px;
+  height: 36px;
+  /* width: 14%; */
+  display: flex;
+}
+
+.buttongroup1-adduser4 {
+  position: absolute;
+  right: 32.9%;
+  top: 643px;
+  height: 36px;
+  display: flex;
+}
+
+.buttongroup2-deleteuser {
+  position: absolute;
+  top: 643px;
+  width: 82px;
+  height: 36px;
+  left: 15px;
+}
+
+.buttongroup2-deleteuser2 {
+  position: absolute;
+  top: 643px;
+  width: 108px;
+  height: 36px;
+  left: 10%;
+}
+
+/* matdilog */
+
+.mat-dialog-containe {
+  padding-left: 6% !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  padding-right: 6% !important;
+}
+
+/* 
+::ng-deep.mat-menu-panel {
+
+  max-width: 247px !important;
+
+} */
+
+.matMenuErrorDesc {
+  padding: 5px !important;
+}
+
+::ng-deep .matMenuErrorDesc.mat-menu-item {
+  height: auto;
+  font-family: Montserrat,sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.015em;
+  padding: 0px !important;
+  color: #B32F2D;
+}
+
+::ng-deep .matMenuDiv.mat-menu-panel {
+  min-width: 112px;
+  max-width: 246px !important;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: calc(100vh - 48px);
+  border-radius: 4px;
+  outline: 0;
+  background: #ECC8C5;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);  
+}
+
+::ng-deep .matMenuTaxPeriodValidationError {
+  background: #DBF4D6;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  min-height: 21px !important;
+}
+
+.spanMenuTaxPeriod {
+  margin: 5px;
+  font-family: Montserrat,sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 12px;
+  align-items: center;
+  letter-spacing: -0.015em;
+  color: #577052;
+}

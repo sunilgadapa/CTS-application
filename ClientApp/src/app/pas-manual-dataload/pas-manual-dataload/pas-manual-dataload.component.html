@@ -1,0 +1,263 @@
+<label class="page-title">Data Load History</label>
+<img title="Refresh" style="cursor: pointer;" class="refreshIcon" [@rotatedState]="state" (click)="rotate()"
+  src="assets/images/Group 46.png" alt="assets/images/Group 46.png" />
+<div class="mainDiv">
+  <div class="middle-strip1">
+    <div>
+      <form [formGroup]="maualdatasearchform">
+        <table style="width: 100%;">
+          <caption></caption>
+          <th id=""></th>
+          <tr style="width: 100%;">
+            <td style="width: 20%;padding-left: 15px;">
+              <label style="left: 1.2% !important;" class="lblstatus">Source Sytem <span
+                  class="required_star">*</span></label>
+              <mat-select [formControlName]="'source_system'" required class="input-default" multiple
+                disableOptionCentering disableRipple
+                [ngClass]="statusddl ? 'ddl form-control ddl-ddlopen' : 'ddl form-control ddl-ddlclose'"
+                placeholder="Select" panelClass="myPanelClassFileTypeDLH" (openedChange)="toggleArrow()">
+
+                <mat-select-trigger>
+
+                  {{maualdatasearchform.controls.source_system.value.length>sourceSystem.length ? 'All' : ''}}
+                  <span *ngIf="maualdatasearchform.controls.source_system.value.length < sourceSystem.length"
+                    class="example-additional-selection">
+
+                    <span *ngFor="let m of maualdatasearchform.controls.source_system.value; let i=index">
+                      <span *ngIf="i!=0">,</span><span> {{m.Name}}</span>
+                    </span>
+                  </span>
+                </mat-select-trigger>
+
+                <mat-option #allSelected (click)="toggleAllSourceSystem()" [value]="0">All</mat-option>
+                <mat-option *ngFor="let filedetail of sourceSystem" [value]="filedetail" (click)="toggleSourceSystem()">
+                  {{filedetail.Name}}
+                </mat-option>
+              </mat-select>
+
+            </td>
+            <td style="width: 20%;padding-left: 30px;">
+              <label style="left: 1.2% !important;" class="lblstatus">File Type <span
+                  class="required_star">*</span></label>
+              <mat-select [formControlName]="'file_type'" required class="input-default" multiple disableOptionCentering
+                disableRipple [ngClass]="statusddl1 ? 'ddl3 ddl3-ddlopen' : 'ddl3 ddl3-ddlclose'" placeholder="Select"
+                panelClass="myPanelClass3DLH" (openedChange)="toggleArrow1()">
+                <mat-select-trigger>
+                  {{maualdatasearchform.controls.file_type.value.length>File_Type.length ? 'All' : ''}}
+                  <span *ngIf="maualdatasearchform.controls.file_type.value.length < File_Type.length"
+                    class="example-additional-selection">
+
+                    <span *ngFor="let m of maualdatasearchform.controls.file_type.value; let i=index">
+                      <span *ngIf="i!=0">,</span><span> {{m.Name}}</span>
+                    </span>
+                  </span>
+                </mat-select-trigger>
+
+
+                <mat-option #allSelected4 (click)="toggleAllFileType()" [value]="0">All</mat-option>
+                <mat-option *ngFor="let fileType of File_Type" [value]="fileType" (click)="toggleFileType()">
+                  {{fileType.Name}}
+                </mat-option>
+              </mat-select>
+            </td>
+            <td style="width: 20%;padding-left: 30px;">
+              <label class="lblstatus">Status <span class="required_star">*</span></label>
+              <mat-select [formControlName]="'status'" required class="input-default" multiple disableOptionCentering
+                disableRipple [ngClass]="statusddl2 ? 'ddl1 ddl1-ddlopen' : 'ddl1 ddl1-ddlclose'" placeholder="Select"
+                panelClass="myPanelClassStatusDLH" (openedChange)="toggleArrow2()">
+
+                <mat-select-trigger>
+                  {{maualdatasearchform.controls.status.value.length>Status_Types.length ? 'All' : ''}}
+                  <span *ngIf="maualdatasearchform.controls.status.value.length < Status_Types.length"
+                    class="example-additional-selection">
+
+                    <span *ngFor="let m of maualdatasearchform.controls.status.value; let i=index">
+                      <span *ngIf="i!=0">,</span><span> {{m.Name}}</span>
+                    </span>
+                  </span>
+                </mat-select-trigger>
+
+                <mat-option #allSelected2 (click)="toggleAllStatus()" [value]="0">All</mat-option>
+                <mat-option *ngFor="let status of Status_Types" [value]="status" (click)="toggleStatus()">
+                  {{status.Name}}
+                </mat-option>
+              </mat-select>
+            </td>
+            <td style="padding-left: 30px;" (click)="getManualUplaodData()">
+              <button style="margin-top: 17px;" class="btn-primary-default"><label>Search</label></button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+  <div class="tblcontainer">
+    <div class="tablewrapper">
+      <table class="table1" mat-table [dataSource]="dataSource" *ngIf="dataSource.filteredData.length>0">
+        <caption></caption>
+        <ng-container *ngFor="let column of columns;" [cdkColumnDef]="column.columnDef">
+          <ng-container *ngIf="column.columnDef === 'status_flag';else notSelect">
+            <th mat-header-cell *matHeaderCellDef id="">
+              <mat-checkbox (change)="$event ? masterToggle() : null" disableRipple
+                [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()" (change)="selectFilesForOperation()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row" style="padding-top: 0%;">
+              <mat-checkbox disableRipple (click)="$event.stopPropagation()"
+                (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                (change)="selectFilesForOperation()">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+          <ng-container *ngIf="column.columnDef === 'status'; else notSelect">
+            <th mat-header-cell *matHeaderCellDef id="">
+              {{ column.header }}
+            </th>
+            <td style="font-weight: 700; padding-top: 0px" mat-cell *matCellDef="let row" [ngStyle]="{'color': 
+                arrColorAmber.includes(row.file_status_code) ? '#E98523':                               
+                arrColorGreen.includes(row.file_status_code) ? '#009677':
+                arrColorRed.includes(row.file_status_code)? '#D23C3C':'#282828'
+                }">
+              {{ column.cell(row) }}
+            </td>
+          </ng-container>
+          <ng-template #notSelect>
+            <th mat-header-cell *cdkHeaderCellDef id="">{{ column.header }}</th>
+            <td mat-cell *cdkCellDef="let row">
+              <div *ngIf="column.header=='Tax Period'">
+                <ng-container>
+                  <div *ngIf="row.strTaxYears?.length > 1">
+                    <p [matMenuTriggerFor]="menu">
+                      <span *ngIf="row.strTaxYears?.length > 1"
+                        style="color: #282828; font-weight: 900; cursor: pointer">
+                        Multiple
+                      </span>
+                    </p>
+                  </div>
+                  <div *ngIf="row.strTaxYears==null">
+                    <p>{{row.taxperiod}}</p>
+                  </div>
+                </ng-container>
+                <mat-menu yPosition="above" xPosition="after" class="matMenuTaxPeriod" #menu="matMenu">
+                  <span class="spanMenuTaxPeriod">{{row.TaxYears}}</span>
+                </mat-menu>
+              </div>
+
+              <div *ngIf="column.header!='Tax Period'">
+                <p> {{ column.cell(row) }}</p>
+              </div>
+            </td>
+          </ng-template>
+        </ng-container>
+        <tr mat-header-row class="tableHeader" *matHeaderRowDef="columnsToDisplay">
+        </tr>
+        <tr mat-row *matRowDef="
+                                                  let row;
+                                                  columns: columnsToDisplay
+                                                    | paginate
+                                                      : {                                                       
+                                                          itemsPerPage: size,
+                                                          currentPage: pageIndex,
+                                                          totalItems: totalRecords                                                                                                              
+                                                        }
+                                                " [ngClass]="{highlighted: selection.isSelected(row)}"></tr>
+      </table>
+      <div
+        style="padding-top:50px;font-family: Montserrat,sans-serif;font-size: 18px;font-weight: 500;text-align: center;"
+        *ngIf="dataSource.filteredData.length === 0"><img src="assets/images/Group 2223.png"
+          alt="assets/images/Group 2223.png" />
+      </div>
+      <div class="pegidiv" *ngIf="dataSource.filteredData.length>0">
+        <pagination-controls (pageChange)="p = $event; paginate(p)" [directionLinks]="directionLinks" class="pagination"
+          [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel">
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div style="width: 100%;margin-top: 20px;margin-bottom: 20px;" class="row ">
+
+    <div class="col-4 ">
+
+
+      <button style="float: left;margin-left: 15px;margin-right: 15px;" [hidden]="!isSelectedDelete"
+        (click)="deleteDialog()" class="btn-secondary-default" mat-raised-button>
+        <label>Delete</label>
+      </button>
+
+
+      <button style="float: left;margin-left: 15px;" [hidden]="!isSelectedSingleToDownload"
+        class="btn-secondary-default " (click)="downloadFile()" mat-raised-button>
+        <label>Download</label>
+      </button>
+
+    </div>
+    <div class="col-8" style="padding-right: 3px;">
+
+
+      <button class="btn-primary-default " [hidden]="uploadFile" style="float: right;" (click)="openDialog()"
+        mat-button>
+        <label>Upload</label>
+      </button>
+    
+      <button [hidden]="!isSelectedSingleToProcess" style="float: right;margin-left: 30px;"
+        (click)="openDialogprocess()" class="btn-primary-default " mat-button>
+        <label>{{processButtonText}}</label>
+      </button>
+
+      <button *ngIf="roleId.includes('11')" [hidden]="!isSelectedSingleToSignOff" style="float: right;margin-left: 30px;"
+        (click)="openDialogSignOff()" class="btn-primary-default " mat-button>
+        <label>Sign off <span *ngIf="partialUpload">With Error</span> </label>
+      </button>
+
+      <div id="RFS" [hidden]="partialUpload">
+        <button [hidden]="!isSelectedSingleToSignOff" style="float: right;" class="btn-primary-default " mat-button>
+          <label>View file overview </label>
+        </button>
+
+        <button [hidden]="!isSelectedSingleToSignOff" style="float: right;margin-right: 30px;"
+          class="btn-primary-default " mat-button>
+          <label>View control total </label>
+        </button>
+      </div>
+
+
+      <div id="SFNWEE" [hidden]="!signedOFF">
+        <button [hidden]="!isSelectedSingleToDownload" style="float: right;" class="btn-primary-default " mat-button>
+          <label>View file overview </label>
+        </button>
+
+        <button [hidden]="!isSelectedSingleToDownload" style="float: right;margin-right: 30px;"
+          class="btn-primary-default " mat-button>
+          <label>View control total </label>
+        </button>
+      </div>
+
+
+      <div id="Rejected" [hidden]="!rejectedFile">
+        <button style="float: right;" class="btn-primary-default " mat-button>
+          <label>File Error Repoert </label>
+        </button>
+      </div>
+      <button [hidden]="!isSelectedSingleToValidate" style="float: right;margin-left: 30px;"
+        (click)="navigateToErrorValidation()" class="btn-primary-default " mat-button>
+        <label>View validation Error</label>
+      </button>
+<div id="parUpload" *ngIf="processButtonText=='Process'">
+      <button [hidden]="(!isSelectedSingleToValidate && !isSelectedSingleNoError)" style="float: right;"
+        class="btn-primary-default " mat-button>
+        <label>View file overview</label>
+      </button>
+
+      <button [hidden]="(!isSelectedSingleToValidate && !isSelectedSingleNoError)"
+        style="float: right;margin-right: 30px;" class="btn-primary-default " mat-button>
+        <label>View control total</label>
+      </button>
+    </div>
+    </div>
+  </div>
+</div>
+<ngx-loading [show]="loading" [template]="loadingTemplate"></ngx-loading>

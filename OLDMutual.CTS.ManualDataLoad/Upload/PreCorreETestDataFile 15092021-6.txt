@@ -1,0 +1,6 @@
+CLIENTNO|SourceSystemId|Title|FIRSTNAME|SurName|TaxYear|EMAIL|MobNumber
+AF2551/0|54120|Mr.|JANEEN BARBARA|harvey|2021|harvey@pwharvey.co.za|12-45-11111
+AO4095/8|98602||Controlnet|Consulting||tichaona@ctrlnet.co.za|12121212
+AO6873/6|101380|Mr.|BERNADETTE RODRIQUES|MACEDO|2019|ber@gmail.com|
+AL8597/0|73104|Mr.|ANTHONY|Stave||mikenicolay.za@gmail.com|101-44-66-505
+AN0007|2873827||Anil|Kumar|2021|anil@gmail.com|3287272

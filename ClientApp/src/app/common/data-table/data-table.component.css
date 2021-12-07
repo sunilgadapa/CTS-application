@@ -1,0 +1,282 @@
+.tableHeader {
+    height: 40px;
+    background: linear-gradient(180deg, #969696 50%, #1E1E1E 244.99%);
+}
+
+table th {
+    font-weight: 600;
+    font-size: 12px;
+    color: white;
+    letter-spacing: 0.04em;
+    font-family: Montserrat,sans-serif;
+    padding-right: 0px !important;
+}
+ .container {
+        display: flex;
+      
+       
+      }
+      img {
+        max-width: 100%
+      }
+      .image {
+        flex-basis: 40%
+      }
+      
+      
+       
+table td {
+    font-weight: normal;
+    font-size: 12px;
+    font-style: normal;
+    /* display: flex; */
+    line-height: 15px;
+    letter-spacing: 0.025em;
+    color: #282828 ;
+    width: 200px;
+    /* padding: 5px; */
+}
+
+::ng-deep mat-checkbox .mat-checkbox-frame{
+  border-radius: 50% !important;
+}
+
+::ng-deep  .mat-checkbox-frame ::ng-deep .mat-checkbox-background {
+  border-radius: 50% !important;
+}
+::ng-deep .custom-frame ,
+  .mat-checkbox-background, .mat-checkbox-frame {
+   border-radius: 70% !important;
+ 
+}
+
+
+table {
+    border-radius: 4px 4px 0px 0px;
+    width: 100%;
+    border-right: solid 3px #969696 !important;
+    border-left: solid 3px #969696 !important;
+    box-shadow: none;
+    font-family: Montserrat,sans-serif;
+    font-style: normal;
+    line-height: 15px;
+}
+
+table tr:nth-child(even) {
+    background-color: #F8F8F8;
+}
+
+table tr.mat-row {
+    height: 39px;
+}
+/* 
+table tr:hover{
+    background-color:  rgba(20, 240, 3, 0.27);;
+} */
+.threeDots:hover{
+    cursor: pointer;
+}
+pagination-controls {
+    height: 40px;
+    background: #969696;
+    border-radius: 0px 0px 4px 4px;
+    display: flex;
+    align-items: center;
+    /* width: 100%;   */
+float: right; 
+}
+
+:host /deep/ .ngx-pagination {
+    /* margin-left: 1067px; */
+    font-family: Montserrat,sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.pagination /deep/ .ngx-pagination .current {
+    background: #ffffff;
+    border-radius: 15px 15px 15px 15px;
+    width: auto;
+    color: #282828;
+    margin: 5px;
+}
+
+.pagination /deep/ .ngx-pagination li {
+    height: 15px;
+    color: #ffffff;
+}
+
+.pagination /deep/ .ngx-pagination a {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    margin: 5px;
+}
+
+.pagination /deep/ .ngx-pagination a::after {
+    display: none;
+}
+
+.pagination /deep/ .ngx-pagination li::before {
+    display: none;
+}
+
+.pagination /deep/ .ngx-pagination li::after {
+    display: none;
+}
+
+.pagination /deep/ .ngx-pagination a::before {
+    display: none;
+}
+
+.pagination /deep/ .ngx-pagination a:hover {
+    background-color: transparent;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-background, ::ng-deep .mat-checkbox-indeterminate .mat-checkbox-background {
+    border: 1px solid #a7a9ac;
+    background-color: white !important;
+}
+
+::ng-deep .mat-checkbox-checkmark-path {
+    stroke: white !important;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+    border: 1px solid #a7a9ac;
+    background-color: #009677 !important;
+    transition-duration: 0ms !important;
+}
+.make-gold {
+    background: rgba(20, 240, 3, 0.27) !important;
+}
+
+
+
+.pegidiv
+{
+width: 100%;
+border-radius: 0px 0px 4px 4px;
+/* background: red; */
+height: 40px;
+background-color: #969696;
+}
+
+/* @media only screen 
+  and (device-width: 1024px) 
+   {
+    :host /deep/ .ngx-pagination {
+        margin-left: 740px;
+    }
+   }
+
+   @media only screen 
+  and (device-width: 768px) 
+   {
+    :host /deep/ .ngx-pagination {
+        margin-left: 501px;
+    }
+   } */
+
+   
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 14px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+
+
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #D23C3C;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 11px;
+    width: 11px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #50B848;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #50B848;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(15px);
+    -ms-transform: translateX(15px);
+    transform: translateX(15px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+.highlighted {
+    background-color:  rgba(20, 240, 3, 0.27) !important;
+    font-weight: 700;
+  }
+
+  .boldText{
+    font-weight: 700;
+  }
+
+  ::ng-deep .mat-radio-checked .mat-radio-label-content{
+    font-family: Montserrat,sans-serif;
+    font-weight: 600;
+    font-style: normal;
+   
+   
+    line-height: 20px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.025em;
+    
+    color: #282828 !important;
+    
+  }
+  ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #282828;
+}
+
+::ng-deep.mat-radio-ripple {
+    display: none;
+    }
+    /* ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+        background-color: #282828 !important;
+      } */

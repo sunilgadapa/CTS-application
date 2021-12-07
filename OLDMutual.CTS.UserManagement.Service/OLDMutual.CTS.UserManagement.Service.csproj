@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <LangVersion>8.0</LangVersion>
+	  <CodeAnalysisRuleSet>..\.sonarlint\ctrp.webfrontend.asp.netcsharp.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\ctrp.webfrontend.asp.net\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OLDMutual.CTS.UserManagement.Data\OLDMutual.CTS.UserManagement.Data.csproj" />
+  </ItemGroup>
+
+</Project>

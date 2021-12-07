@@ -1,0 +1,29 @@
+<ng-container *ngIf="item.module_name === 'Logout'; else notlogout">
+  <mat-divider></mat-divider>
+  <a (click)="Logout()" class="btnLogout" [ngStyle]="{'padding-left': (depth * 12) + 'px'}" mat-list-item>
+    <img style="margin-left: 46px;
+      margin-right: 8px;" title="Logout" src="assets/images/side-nav-icons/logout.png"
+      alt="assets/images/side-nav-icons/logout.png" />
+    <span style=" color: #009677;">Logout</span>
+  </a>
+</ng-container>
+<ng-template #notlogout>
+  <mat-divider *ngIf="!item.isChild"></mat-divider>
+  <a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="onItemSelected(item)" [ngClass]="{'expanded': expanded,'sideNavItem-parent':!item.isChild,'sideNavItem-child':item.isChild,
+  'sideNavItem-nestedChild':item.isNestedChild&&item.isChild}">
+    <img title="{{ item.module_name }}" *ngIf="item.isIcon" class="nav-img-icon" alt="" src="assets/images/side-nav-icons/{{
+                    item.image_name
+                  }}.png" />
+    <span class="nav-img-name">{{ item.module_name }}</span>
+    <span fxFlex *ngIf="item.ChiledMenu && item.ChiledMenu.length">
+      <span fxFlex></span>
+      <mat-icon title="{{ item.module_name }}" [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
+        expand_more
+      </mat-icon>
+    </span>
+  </a>
+  <div *ngIf="expanded">
+    <app-menudrawer *ngFor="let child of item.ChiledMenu" [item]="child" [depth]="depth+1" [drawer]="drawer">
+    </app-menudrawer>
+  </div>
+</ng-template>

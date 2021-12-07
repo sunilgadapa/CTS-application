@@ -1,0 +1,56 @@
+
+.titlediv {
+    background: #ffffff;
+ }
+ 
+ .titletable {
+    background: #F8F8F8;
+    width: 100%;
+    padding-top: 15px;
+ }
+ 
+ ::ng-deep .mat-dialog-container {
+   padding: 0px !important;
+   background: #FFFFFF !important;
+   border: 1px solid #009677 !important;
+   box-sizing: border-box !important;
+   box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.25) !important;
+   border-radius: 4px !important;
+   overflow: unset;
+}
+ .title {
+    font-family: Montserrat,sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.025em;
+    color: #009677;
+ }
+ .middiv {
+    margin-left: 5%;
+    margin-right: 5%;
+ }
+ .deleteMessageP {
+    margin-top: 19px;
+    font-family: Montserrat,sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    letter-spacing: 0.025em;
+    color: #FF9102;
+ }
+
+ .cancelbtn {
+   margin-left: 34px;
+}
+
+.savebtn {
+   margin-right: 34px;
+}

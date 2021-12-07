@@ -1,0 +1,427 @@
+.mainDiv {
+    margin-top: 51px;
+    padding-top: 13px;
+}
+.midDiv {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+    height: 95px;
+}
+.pageName {
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.025em;
+    margin: 0px;
+    margin-left: 13px;
+    color: #009677;
+}
+.mainTable {
+    margin-top: 13px;
+    width: 100%;
+}
+.tabletr {
+    vertical-align: top !important;
+}
+.templateMatCard {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 0px 4px 4px 4px;
+    height: 583px;
+    padding: 0px;
+}
+.gridDiv {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+    height: 460px;
+    margin-top: 27px;
+}
+.search {
+    margin-top: 20px;
+}
+.lblstatus {
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.025em;
+    color: #282828;
+}
+.assignBtn {
+    float: right;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    height: 30px;
+    border: none;
+}
+.assignBtn>label {
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #808285;
+    border: none;
+}
+.tableHeader {
+    height: 40px;
+    background: linear-gradient(180deg, #969696 50%, #1E1E1E 244.99%);
+}
+table th {
+    font-weight: 600;
+    font-size: 12px;
+    color: white;
+    letter-spacing: 0.035em;
+    font-family: Montserrat, sans-serif
+}
+table td {
+    font-weight: normal;
+    font-size: 12px;
+    font-style: normal;
+    /* display: flex; */
+    line-height: 15px;
+    letter-spacing: 0.025em;
+    color: #282828;
+}
+.table1 {
+    border-radius: 4px 4px 0px 0px;
+    width: 100%;
+    border-right: solid 3px #969696 !important;
+    border-left: solid 3px #969696 !important;
+    box-shadow: none;
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    line-height: 15px;
+    margin-top: 17px;
+}
+.table1 tr:nth-child(even) {
+    background-color: #F8F8F8;
+}
+.table1 tr.mat-row {
+    height: 39px;
+}
+/* .table1 tr:hover{
+        background-color:  rgba(20, 240, 3, 0.27);
+    } */
+.pegidiv {
+    width: 100%;
+    /* background: red; */
+    height: 40px;
+    background-color: #969696;
+}
+pagination-controls {
+    height: 40px;
+    background: #969696;
+    border-radius: 0px 0px 4px 4px;
+    display: flex;
+    align-items: center;
+    /* width: 100%;   */
+    float: right;
+}
+:host /deep/ .ngx-pagination {
+    /* margin-left: 1067px; */
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+}
+.pagination /deep/ .ngx-pagination .current {
+    background: #ffffff;
+    border-radius: 15px 15px 15px 15px;
+    width: auto;
+    color: #282828;
+    margin: 5px;
+}
+.pagination /deep/ .ngx-pagination li {
+    height: 15px;
+    color: #ffffff;
+}
+.pagination /deep/ .ngx-pagination a {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    margin: 5px;
+}
+.pagination /deep/ .ngx-pagination a::after {
+    display: none;
+}
+.pagination /deep/ .ngx-pagination li::before {
+    display: none;
+}
+.pagination /deep/ .ngx-pagination li::after {
+    display: none;
+}
+.pagination /deep/ .ngx-pagination a::before {
+    display: none;
+}
+.pagination /deep/.ngx-pagination a:hover {
+    background-color: transparent;
+}
+.notiTypeSelect {
+    border: none;
+    margin-left: 4%;
+    margin-top: 13px;
+    width: 125px;
+    margin-bottom: 13px;
+}
+ 
+::ng-deep .myPanelClassTemplate{
+      position: absolute;
+    margin-top: 30px !important;
+    left: 8px !important;
+    background: #ffffff;
+    box-shadow: 0px 4px 37px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 4px !important;
+}
+.msgLabel {
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    align-items: center;
+    letter-spacing: 0.025em;
+    color: #808285;
+}
+.addTemplateBtn {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    float: right;
+    border: none;
+}
+.addTemplateBtn>label {
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    color: #808285;
+}
+.msgDiv {
+    margin-top: 19px;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+.msgBodyDiv {
+    border: 1px solid #A7A9AC;
+    box-sizing: border-box;
+    /* box-shadow: inset 0px 4px 23px rgba(0, 0, 0, 0.15); */
+    border-radius: 4px;
+    margin-top: 26px;
+    margin-left: 4%;
+    margin-right: 4%;
+    min-height: 70%;
+}
+.fromP {
+    margin-top: 11px;
+    margin-left: 7%;
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    /* display: flex; */
+    align-items: center;
+    letter-spacing: 0.025em;
+    color: #808285;
+}
+.fromSpan {
+    background: #E8F0FA;
+    border-radius: 19px;
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    /* display: flex; */
+    align-items: center;
+    letter-spacing: 0.025em;
+    color: #808285;
+    margin-left: 2%;
+    padding-right: 17px;
+    padding-left: 17px;
+    padding-top: 2px;
+    padding-bottom: 3px;
+}
+.hrLine {
+    margin-left: 4%;
+    border-top: 1px solid rgba(51, 51, 51, 0.15);
+}
+.subSpan {
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+    margin-left: 2%;
+    align-items: center;
+    letter-spacing: 0.025em;
+    color: #808285;
+}
+.gretingP {
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 142%;
+    /* or 20px */
+    margin-left: 7%;
+    /* display: flex; */
+    align-items: center;
+    letter-spacing: 0.025em;
+    margin-top: 14px;
+    color: #808285;
+}
+.msgBodyP {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    white-space: pre-line;
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 142%;
+    margin-left: 7% !important;
+    align-items: center;
+    letter-spacing: 0.025em;
+    color: #808285;
+}
+.firstLineP {
+    margin-top: 35px;
+    margin-bottom: 0px;
+}
+.msgMainP {
+    margin: 0px;
+    margin-bottom: 2px !important;
+}
+.msgBottomP {
+    margin-top: 17px;
+}
+.msgLastP {
+    margin-bottom: 40px;
+}
+.saveBtn {
+    float: right;
+    margin-right: 15px;
+    margin-top: 20px;
+}
+.userNameSpan {
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    align-items: center;
+    letter-spacing: 0.025em;
+    margin-left: 8px;
+    color: #282828;
+}
+.userPop {
+    margin: 0.1px;
+    margin-left: 30px !important;
+}
+.userPop /deep/ .mat-menu-panel {
+    margin-left: 30px !important;
+}
+::ng-deep .myPanelClassTax {
+    position: absolute;
+    min-width: 311px !important;
+    top: 32px;
+    left: 4px;
+    background: #ffffff;
+    box-shadow: 0px 4px 37px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+::ng-deep .myPanelClassEvent {
+    min-width: 308px !important;
+    position: absolute;
+    top: 32px;
+    left: 4px;
+    background: #ffffff;
+    box-shadow: 0px 4px 37px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+.ddl-ddlclose /deep/ .mat-select-arrow {
+    border-left: 20px solid transparent !important;
+    border-right: none !important;
+    border-top: 20px solid transparent !important;
+    border-image-source: url("../../../../assets/images/dashicons_arrow-down-alt2.png") !important;
+    margin-right: 12px;
+    margin-top: 4px;
+}
+.ddl-ddlopen /deep/ .mat-select-arrow {
+    border-left: 20px solid transparent !important;
+    border-right: none !important;
+    border-top: 20px solid transparent !important;
+    border-image-source: url("../../../../assets/images/dashicons_arrow-down-alt2.png") !important;
+    -webkit-transition: all ease-out;
+    transition: all ease-out;
+    transform: rotateX(180deg);
+    margin-right: 12px;
+    margin-top: 4px;
+}
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: unset;
+}
+::ng-deep .mat-option-pseudo-checkbox.mat-pseudo-checkbox-unchecked {
+    border: 1px solid #a7a9ac;
+    background-color: white;
+}
+::ng-deep .mat-option-pseudo-checkbox.mat-pseudo-checkbox-checked {
+    background-color: #009677;
+}
+::ng-deep .mat-checkbox .mat-checkbox-background, ::ng-deep .mat-checkbox-indeterminate .mat-checkbox-background {
+    border: 1px solid #a7a9ac;
+    background-color: white !important;
+}
+::ng-deep .mat-checkbox-checkmark-path {
+    stroke: white !important;
+}
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+    border: 1px solid #a7a9ac;
+    background-color: #009677 !important;
+    transition-duration: 0ms !important;
+}
+.mat-menu-panel {
+    margin-left: 15% !important;
+}
+::ng-deep .myPanelClassTax .ng-animating {
+    display: none !important;
+}
+.highlighted {
+    background-color: rgba(20, 240, 3, 0.27) !important;
+    font-weight: 700 !important;
+}

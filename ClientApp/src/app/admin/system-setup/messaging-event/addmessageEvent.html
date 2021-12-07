@@ -1,0 +1,209 @@
+<div class="titlediv">
+  <table class="titletable" style="width: 100% ;">
+    <caption></caption>
+    <th id=""></th>
+    <tr>
+      <td style="width: 100%;padding-left: 5%;">
+        <p class="title">
+          {{isUpdatebtn? 'Update' : 'Add a'}}  Message Event
+        </p>
+      </td>
+     
+    </tr>
+  </table>
+  <div class="scroll">
+  <div class="middiv ">
+    <form [formGroup]="MessagingForm">
+    <table style="width: 100%;">
+      <caption></caption>
+      <th id=""></th>
+      <tr style="height: 18px;">
+      </tr>
+      <tr class="tabletr">
+        <td style="width: 30%;">
+          <label class="formlbl"><p>Messaging Event<span class="required_star">*</span></p> </label>
+        </td>
+        <td style="width: 70%;">
+        
+            <input type="text" class="input-default inputform" formControlName ="messaging_event" 
+            [ngClass]="{ 'is-invalid': f.messaging_event.errors  && (MessagingForm.controls.messaging_event.touched || MessagingForm.controls.messaging_event.dirty) }" />
+          <div *ngIf=" f.messaging_event.errors  && (MessagingForm.controls.messaging_event.touched || MessagingForm.controls.messaging_event.dirty)" class="invalid-feedback">
+            <div *ngIf="f.messaging_event.errors.required && (MessagingForm.controls.messaging_event.touched || MessagingForm.controls.messaging_event.dirty)" class="valerrortxt">
+              <tr>
+                <td class="valerrortxt">
+                  <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+                </td>
+                <td class="valerrortxt">
+                  Messaging event is required.
+                </td>
+              </tr>
+             </div>
+            <div *ngIf="f.messaging_event.errors.pattern && (MessagingForm.controls.messaging_event.touched || MessagingForm.controls.messaging_event.dirty)" class="valerrortxt">
+              <tr>
+                <td class="valerrortxt">
+                  <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+                </td>
+                <td class="valerrortxt">
+                  {{validation.validationsArray.messagingEvent.addMessagingEvent.messagingEventName.patternMsg}}
+                </td>
+              </tr>
+             
+            </div>
+            <div *ngIf="f.messaging_event.errors.maxlength &&(MessagingForm.controls.messaging_event.touched || MessagingForm.controls.messaging_event.dirty)" class="valerrortxt"> 
+             
+              <tr>
+                <td class="valerrortxt">
+                  <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+                </td>
+                <td class="valerrortxt">
+                  {{validation.validationsArray.messagingEvent.addMessagingEvent.messagingEventName.maxLengthMsg}}
+                </td>
+              </tr>
+            </div>
+            <div *ngIf="f.messaging_event.errors.minlength && (MessagingForm.controls.messaging_event.touched || MessagingForm.controls.messaging_event.dirty)" class="valerrortxt">
+              <tr>
+                <td class="valerrortxt">
+                  <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+                </td>
+                <td class="valerrortxt">
+                  {{validation.validationsArray.messagingEvent.addMessagingEvent.messagingEventName.minLengthMsg}}
+                </td>
+              </tr>
+             
+             
+              </div>
+        </div>
+        </td>
+      </tr>
+      <tr style="height: 18px;">
+      </tr>
+      <tr class="tabletr">
+        <td style="width: 30%;">
+          <label class="formlbl"><p>Messaging Event Type<span class="required_star">*</span></p></label>
+        </td>
+        <td style="width: 70%;">
+        
+          <input type="text"  class="input-default inputform"  formControlName ="message_event_type" 
+          [ngClass]="{ 'is-invalid': f.message_event_type.errors  && (MessagingForm.controls.message_event_type.touched || MessagingForm.controls.message_event_type.dirty) }" />
+           <div *ngIf=" f.message_event_type.errors  && (MessagingForm.controls.message_event_type.touched || MessagingForm.controls.message_event_type.dirty)" class="invalid-feedback">
+          <div *ngIf="f.message_event_type.errors.required && (MessagingForm.controls.message_event_type.touched || MessagingForm.controls.message_event_type.dirty)" class="valerrortxt">
+            <tr>
+              <td class="valerrortxt">
+                <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+              </td>
+              <td class="valerrortxt">
+                Messaging event type is required.
+              </td>
+            </tr>
+          </div>
+          <div *ngIf="f.message_event_type.errors.pattern && (MessagingForm.controls.message_event_type.touched || MessagingForm.controls.message_event_type.dirty)" class="valerrortxt">
+            <tr>
+              <td class="valerrortxt">
+                <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+              </td>
+              <td class="valerrortxt">
+                {{validation.validationsArray.messagingEvent.addMessagingEvent.messagingEventType.patternMsg}}
+              </td>
+            </tr>
+         
+           
+          </div>
+          <div *ngIf="f.message_event_type.errors.maxlength &&(MessagingForm.controls.message_event_type.touched || MessagingForm.controls.message_event_type.dirty)" class="valerrortxt"> 
+            <tr>
+              <td class="valerrortxt">
+                <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+              </td>
+              <td class="valerrortxt">
+                {{validation.validationsArray.messagingEvent.addMessagingEvent.messagingEventType.maxLengthMsg}}
+              </td>
+            </tr>
+          
+          </div>
+          <div *ngIf="f.message_event_type.errors.minlength && (MessagingForm.controls.message_event_type.touched || MessagingForm.controls.message_event_type.dirty)" class="valerrortxt"> 
+            <tr>
+              <td class="valerrortxt">
+                <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+              </td>
+              <td class="valerrortxt">
+                {{validation.validationsArray.messagingEvent.addMessagingEvent.messagingEventType.minLengthMsg}}
+              </td>
+            </tr>
+          
+          </div>
+      </div>
+        </td>
+      </tr>
+      <tr style="height: 18px;">
+      </tr>
+      <tr class="tabletr">
+        <td style="width: 30%;">
+          <label class="formlbl">Description</label>
+        </td>
+        <td style="width: 70%;">
+          <textarea type="textarea" style="height: 100px;resize: vertical;" Rows="5"  class="input-default inputform" formControlName="messaging_event_description"
+          [ngClass]="{ 'is-invalid': f.messaging_event_description.errors  && (MessagingForm.controls.messaging_event_description.touched || MessagingForm.controls.messaging_event_description.dirty) }">
+          </textarea>
+          <div *ngIf=" f.messaging_event_description.errors  && (MessagingForm.controls.messaging_event_description.touched || MessagingForm.controls.messaging_event_description.dirty)" class="invalid-feedback">
+          
+          <div *ngIf="f.messaging_event_description.errors.pattern && (MessagingForm.controls.messaging_event_description.touched || MessagingForm.controls.messaging_event_description.dirty)" class="valerrortxt">
+            
+            <tr>
+              <td class="valerrortxt">
+                <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+              </td>
+              <td class="valerrortxt">
+                {{validation.validationsArray.messagingEvent.addMessagingEvent.messagingEventDescription.patternMsg}}
+              </td>
+            </tr>
+          </div>
+          <div *ngIf="f.messaging_event_description.errors.maxlength &&(MessagingForm.controls.messaging_event_description.touched || MessagingForm.controls.messaging_event_description.dirty)" class="valerrortxt"> 
+          
+            <tr>
+              <td class="valerrortxt">
+                <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+              </td>
+              <td class="valerrortxt">
+                {{validation.validationsArray.messagingEvent.addMessagingEvent.messagingEventDescription.maxLengthMsg}}
+              </td>
+            </tr>
+          
+          
+          </div>
+          <div *ngIf="f.messaging_event_description.errors.minlength && (MessagingForm.controls.messaging_event_description.touched || MessagingForm.controls.messaging_event_description.dirty)" class="valerrortxt"> 
+           
+            <tr>
+              <td class="valerrortxt">
+                <img class="errorIcon"  alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+              </td>
+              <td class="valerrortxt">
+                {{validation.validationsArray.messagingEvent.addMessagingEvent.messagingEventDescription.minLengthMsg}}
+              </td>
+            </tr>
+           
+          </div>
+      </div>
+        </td>
+      </tr>
+      <tr style="height: 24px;">
+      </tr>
+    </table>
+    </form>
+  </div>
+  </div>
+</div>
+<table style="    padding-bottom: 10px;" class="titletable">
+  <caption></caption>
+  <th id=""></th>
+  <tr style="width: 100%;">
+      <td>
+          <button class="btn-secondary-default cancelbtn" mat-raised-button
+              (click)="onNoClick()"><label>Cancel</label></button>
+      </td>
+      <td style="float: right;">
+          <button *ngIf="!isUpdatebtn" (click)="AddMessageEvent()" class="btn-primary-default savebtn" mat-raised-button [disabled]="MessagingForm.invalid"
+           ><label>Add</label></button>
+           <button *ngIf="isUpdatebtn" (click)="AddMessageEvent()" class="btn-primary-default savebtn" mat-raised-button [disabled]="textChanged==false || MessagingForm.invalid"
+           ><label>Update</label></button>
+      </td>
+  </tr>
+</table>

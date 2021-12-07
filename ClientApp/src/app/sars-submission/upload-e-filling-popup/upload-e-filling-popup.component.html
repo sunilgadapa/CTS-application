@@ -1,0 +1,73 @@
+<div class="titlediv">
+
+    <mat-dialog-content>
+        <table class="titletable" style="width: 100% ;">
+            <caption></caption>
+            <th id=""></th>
+            <tr>
+                <td style="width: 30%;padding-left: 5%;">
+                    <p class="title">
+                        Upload
+                    </p>
+                </td>
+
+            </tr>
+        </table>
+        <div class="middiv ">
+            <table style="width: 100%;">
+                <caption></caption>
+                <th id=""></th>
+                
+                <tr>
+                    <td style="width: 20%;">
+                        <label>Select File<span style="color: red;">*</span></label>
+                    </td>
+
+                    <td style="width: 80%;">
+                        <input #myInput style="margin-left: 4px;" type="file" class="file-upload input-default" (change)="setfile(myInput.files)">
+                    </td>
+                </tr>
+                <tr style="height: 20px;">
+
+                </tr>
+                <tr>
+                    <td style="width: 20%;">
+                    </td>
+                    <td style="width: 80%;">
+                        <table style="width: 90%;">
+                            <caption></caption>
+                            <th id=""></th>
+                            <tr style="width: 100%;">
+                                <td   [style.visibility]="progress>0 ? 'visible' : 'hidden'" style="width: 10%;">
+                                    <img src="assets/images/upload-file.svg" alt="assets/images/upload-file.svg" />
+                                </td>
+                                <td [style.visibility]="progress>0 ? 'visible' : 'hidden'" *ngIf="progress>0" style="width: 85%;">
+                                    <mat-progress-bar style="height: 9px;" mode="determinate" [value]="progress">                                       
+                                    </mat-progress-bar>                                   
+                                </td>
+                                <td *ngIf="progress==100" style="width: 5%;">
+                                    <img src="assets/images/file-tik.svg" alt="assets/images/file-tik.svg" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </mat-dialog-content>
+</div>
+
+<table style="    padding-bottom: 10px;" class="titletable">
+    <caption></caption>
+    <th id=""></th>
+    <tr style="width: 100%;">
+        <td>
+            <button class="btn-secondary-default cancelbtn" mat-raised-button
+                mat-dialog-close><label>Cancel</label></button>
+        </td>
+        <td style="float: right;">
+            <button [disabled]="fileSelected" class="btn-primary-default savebtn" mat-raised-button
+                (click)="upload()"><label>Upload</label></button>
+        </td>
+    </tr>
+</table>

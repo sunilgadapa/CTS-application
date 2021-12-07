@@ -1,0 +1,42 @@
+<mat-dialog-content> 
+    <div class="titlediv">
+      <table class="titletable" style="width: 100% ;">
+        <caption></caption>
+<th id=""></th>
+        <tr>
+          <td style="width: 30%;padding-left: 34px;">
+            <p class="title">
+                Save Changes?
+            </p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="middiv ">
+      <tr>
+        <td style="vertical-align: middle;">
+      <img src="assets/images/confirmicon.svg" style="margin-right:10px ;" alt="assets/images/confirmicon.svg"/></td>
+      <td style="vertical-align: inherit;">
+      <p class="MessageP" >
+        Do you want to continue? 
+      </p>
+    </td>
+    </tr>
+        </div>
+  </mat-dialog-content>
+  
+    <table style="padding-bottom: 10px;" class="titletable">
+      <caption></caption>
+<th id=""></th>
+      <tr style="width: 100%;">
+          <td>
+              <button class="btn-secondary-default cancelbtn" mat-raised-button (click)="onCloseClick()"
+                  ><label>NO</label></button>
+          </td>
+          <td style="float: right;">
+              <button class="btn-primary-default savebtn" mat-raised-button
+              (click)="onConfirmClick()"><label>YES</label></button>
+    
+          </td>
+      </tr>
+    </table>

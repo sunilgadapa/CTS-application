@@ -1,0 +1,45 @@
+<mat-dialog-content>
+  <div class="titlediv">
+    <table class="titletable" style="width: 100% ;">
+      <caption></caption>
+      <th id=""></th>
+      <tr>
+        <td style="width: 30%;padding-left: 34px;">
+          <p class="title">
+             {{header}}
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="middiv ">
+    <tr>
+      <td style="vertical-align: middle;">
+        <img src="assets//images/question-mark.png" alt="assets//images/question-mark.png"
+          style="margin-right:10px ;" />
+      </td>
+      <td style="vertical-align: middle;">
+        <p class="pclass">
+          {{message}}
+        </p>
+      </td>
+    </tr>
+    <p class="userNameP">
+      {{description}}
+    </p>
+  </div>
+</mat-dialog-content>
+<table style="padding-bottom: 10px;" class="titletable">
+  <caption></caption>
+  <th id=""></th>
+  <tr style="width: 100%;">
+    <td>
+      <button class="btn-secondary-default cancelbtn" mat-raised-button
+        (click)="onCloseClick()"><label>{{this.cancelButtonText}}</label></button>
+    </td>
+    <td style="float: right;">
+      <button class="btn-primary-default savebtn" mat-raised-button
+        (click)="onConfirmClick()"><label>{{this.confirmButtonText}}</label></button>
+    </td>
+  </tr>
+</table>

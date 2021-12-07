@@ -1,0 +1,19 @@
+
+
+
+ALTER TABLE [dbo].[T_ADDRESS] ALTER COLUMN [address_line1] VARCHAR(250) NULL;
+GO
+ALTER TABLE [dbo].TRG_ITC_Advisor_Detail_DATA ALTER COLUMN PostalsameasResidential VARCHAR(1);
+GO
+ALTER TABLE [dbo].TRG_ITC_ClientDetail_DATA ALTER COLUMN PostalsameasResidential VARCHAR(1);
+GO
+ALTER TABLE [dbo].TRG_ITC_ClientDetail_DATA ALTER COLUMN FICAStatus VARCHAR(1);
+GO
+ALTER TABLE [dbo].TRG_ITC_ClientDetail_DATA ALTER COLUMN SAResidenceInd VARCHAR(1);
+GO
+ALTER TABLE [dbo].TRG_ITC_ClientDetail_DATA ALTER COLUMN Language VARCHAR(1);
+GO
+ALTER TABLE [dbo].TRG_ITC_ClientDetail_DATA ALTER COLUMN CertificateMailingPreference VARCHAR(1);
+GO
+
+

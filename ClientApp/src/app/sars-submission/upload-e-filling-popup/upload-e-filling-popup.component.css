@@ -1,0 +1,148 @@
+.popupTitle {
+  font-family: Montserrat,sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.025em;
+  color: #009677;
+}
+
+mat-dialog-content {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+::ng-deep .mat-dialog-container {
+  /* padding-left: 6% !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-right: 6% !important; */
+  padding: 0px 0px 0px 0px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #009677 !important;
+  box-sizing: border-box !important;
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 4px !important;
+  /* height: 299px; */
+}
+
+::ng-deep .PopFileType {
+  margin-top: 32px !important;
+  min-width: calc(100% + 17px) !important;
+  margin-left: 2px !important;
+}
+
+.input-default {
+  padding-left: 15px;
+  margin-right: 49px;
+  padding-top: 8px;
+  width: 90%;
+  margin-top: 20px;
+}
+
+mat-select {
+  width: 90%;
+  height: 36px;
+  border: 1px solid #A7A9AC;
+  box-sizing: border-box;
+  border-radius: 4px;
+  left: 1.2%;
+  cursor: pointer;
+  top: 18%;  
+  position: relative;
+  font-family: Montserrat,sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.025em;
+  padding-left: 10px;
+  padding-top: 4px
+}
+
+mat-select:focus {
+  background: #E8F0FA;
+  border: 1px solid #A7A9AC;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.ddl3-ddlclose /deep/ .mat-select-arrow {
+  border-left: 20px solid transparent !important;
+    border-right: none !important;
+    border-top: 20px solid transparent !important;
+  border-image-source: url("../../../assets/images/dashicons_arrow-down-alt2.png") !important;
+}
+
+.ddl3-ddlopen /deep/ .mat-select-arrow {
+  border-left: 20px solid transparent !important;
+    border-right: none !important;
+    border-top: 20px solid transparent !important;
+  border-image-source: url("../../../assets/images/dashicons_arrow-down-alt2.png") !important;
+  -webkit-transition: all ease-out;
+  transition: all ease-out;
+  transform: rotateX(180deg);
+}
+
+.mat-progress-bar {
+  width: 100% !important;
+}
+
+.delIcon {
+  border-radius: 0px;
+  position: absolute;
+  height: 23.427734375px;
+  width: 23.424076080322266px;
+  margin: 76px 565px 92px -37px;  
+}
+
+.tickIcon {
+  border-radius: 0px;
+  position: absolute;
+  height: 23.427734375px;
+  width: 23.424076080322266px;
+  margin: 76px 565px 92px -15px;  
+}
+
+.title {
+  font-family: Montserrat,sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.025em;
+  color: #009677;
+}
+
+.middiv {
+  margin-top: 11px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.cancelbtn {
+
+  margin-left: 34px;
+}
+
+.savebtn {
+ 
+  margin-right: 34px;
+}
+::ng-deep .mat-progress-bar-fill::after {
+  background-color:  #00C0E8;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background: #E4E8EB;
+}
+
+::ng-deep .mat-progress-bar {
+  border-radius: 4px;
+}

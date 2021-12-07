@@ -1,0 +1,121 @@
+::ng-deep .mat-dialog-container {
+  padding: 0px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #009677 !important;
+  box-sizing: border-box !important;
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 4px !important;
+  /* height: 97% !important; */
+}
+.sourceval {
+  color: #D23C3C;
+}
+.titlediv {
+  background: #ffffff;
+}
+.title {
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.025em;
+  width: 100%;
+  color: #009677;
+}
+.titletable {
+  background: #F8F8F8;
+  width: 100%;
+  padding-top: 10px;
+}
+.middiv {
+  margin-left: 8%;
+  margin-right: 8%;
+}
+.inputform {
+  width: 100%;
+}
+.tabletr {
+  vertical-align: top !important;
+}
+.cancelbtn {
+  margin-left: 34px;
+}
+.savebtn {
+  margin-right: 34px;
+}
+.scroll {
+  height: 60%;
+  overflow: auto;
+}
+::ng-deep .myPanelClass1 {
+  position: relative;
+  top: 31%;
+  max-width: 229px !important;
+  min-width: 229px !important;
+  left: 13.5%;
+  min-height: 72px !important;
+  background: #ffffff;
+  box-shadow: 0px 4px 37px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+.ddl:focus {
+  background: #E8F0FA;
+  border: 1px solid #A7A9AC;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.ddl-ddlclose /deep/ .mat-select-arrow {
+  border-left: 20px solid transparent !important;
+  border-right: none !important;
+  border-top: 20px solid transparent !important;
+  border-image-source: url("../../../../../assets/images/dashicons_arrow-down-alt2.png") !important;
+}
+.ddl-ddlopen /deep/ .mat-select-arrow {
+  border-left: 20px solid transparent !important;
+  border-right: none !important;
+  border-top: 20px solid transparent !important;
+  border-image-source: url("../../../../../assets/images/dashicons_arrow-down-alt2.png") !important;
+  -webkit-transition: all ease-out;
+  transition: all ease-out;
+  transform: rotateX(180deg);
+}
+::ng-deep .myPanelClassDomainPattren {
+  position: relative;
+  top: 30.5px;
+  /* left: 4px;  */
+  /* min-width: 272px !important; */
+  /* max-width: 229px !important; */
+  /* min-height: 72px !important; */
+  background: #ffffff;
+  box-shadow: 0px 4px 37px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+.ddl {
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.025em;
+  border: 1px solid #dcddde;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding-left: 10px;
+  padding-top: 8px;
+}
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: unset;
+}
+::ng-deep .mat-option-pseudo-checkbox.mat-pseudo-checkbox-unchecked {
+  border: 1px solid #a7a9ac;
+  background-color: white;
+}
+::ng-deep .mat-option-pseudo-checkbox.mat-pseudo-checkbox-checked {
+  background-color: #009677;
+}
+.input-default:focus {
+  outline: none !important;
+}

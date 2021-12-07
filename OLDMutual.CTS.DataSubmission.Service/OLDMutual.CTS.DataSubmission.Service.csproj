@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CodeAnalysisRuleSet>..\.sonarlint\ctrp.webfrontend.asp.netcsharp.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\ctrp.webfrontend.asp.net\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OLDMutual.CTS.DataSubmission.Data\OLDMutual.CTS.DataSubmission.Data.csproj" />
+    <ProjectReference Include="..\OLDMutual.CTS.DataSubmission.Domain\OLDMutual.CTS.DataSubmission.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

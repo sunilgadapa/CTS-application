@@ -1,0 +1,109 @@
+<div class="titlediv">
+  <table class="titletable" style="width: 100% ;">
+    <caption></caption>
+    <th id=""></th>
+    <tr style="width:80%">
+      <td style="width: 30%;padding-left: 30px;">
+        <p class="title">
+          {{header}}
+        </p>
+      </td>
+    </tr>
+    <tr style="width: 20%;">
+    </tr>
+  </table>
+</div>
+<div class="scroll">
+  <table class="dateTable">
+    <caption></caption>
+    <th id=""></th>
+    <tr [ngClass]="dateType == 'Effective Date: ' ? 'date date-effective' : 'date date-expiry'">
+      <label>{{dateType}}</label>
+      <td class="input-wrapper" (click)="picker.open()">
+        <input required [(ngModel)]="effective_date" (click)="picker.open()" class="date" type="text" matInput
+          [matDatepicker]="picker" placeholder="{{datePlaceholder}}">
+        <mat-datepicker #picker></mat-datepicker>
+      </td>
+    </tr>
+  </table>
+  <div class="middiv">
+    <div class="msgBodyDiv">
+      <div *ngIf="templateType=='Email'">
+        <table style="width: 100%;">
+          <caption></caption>
+          <th id=""></th>
+          <tr style="width: 100%;">
+            <td style="width: 20%;">
+              <P class="fromP">From</P>
+            </td>
+            <td><input [disabled]='true' [(ngModel)]="from" type="text" style="width: 80%;"
+                class="emailFields" /></td>
+          </tr>
+        </table>
+        <hr class="hrLine">
+        <table style="width: 100%;">
+          <caption></caption>
+          <th id=""></th>
+          <tr style="width: 100%;">
+            <td style="width: 20%;">
+              <P class="fromP">Subject</P>
+            </td>
+            <td><input [disabled]="header=='Template'" [(ngModel)]="subject" type="text" style="width: 80%;"
+                class="emailFields " /></td>
+          </tr>
+        </table>
+        <hr class="hrLine">
+      </div>
+      <textarea (input)="validate()" [disabled]="header=='Template'" type="textarea" style="height: 380px;margin: 10px;"
+        [(ngModel)]="msgBody" class="input-default inputform">
+          </textarea>
+    </div>
+  </div>
+</div>
+<div class="bottomFixedDiv">
+  <table style="padding-bottom: 10px;" class="titletable">
+    <caption></caption>
+    <th id=""></th>
+    <tr style="width: 100%;">
+      <td>
+        <button class="btn-secondary-default cancelbtn" mat-raised-button
+          (click)="onNoClick()"><label>Cancel</label></button>
+      </td>
+      <td style="float: right;">
+        <button [disabled]="isSaveTemplateEnabled" *ngIf="header!='Template'" (click)="saveTemplate()"
+          class="btn-primary-default savebtn" mat-raised-button><label>Save
+            Template</label></button>
+      </td>
+    </tr>
+  </table>
+  <div class="bottomDiv">
+    <table style="width: 100%;">
+      <caption></caption>
+      <th id=""></th>
+      <tr>
+        <td>
+          <table *ngIf="!isInActivePrevious">
+            <caption></caption>
+            <th id=""></th>
+            <tr>
+              <td (click)="previous()"><img style="cursor: pointer;" src="assets/images/Group 277.png"
+                  alt="assets/images/Group 277.png" /></td>
+              <td><span class="PreviousSpan" (click)="previous()">Previous</span></td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table style="width: 100%;" *ngIf="!isInActive">
+            <caption></caption>
+            <th id=""></th>
+            <tr>
+              <td style="text-align: right;"><span class="PreviousSpan" (click)="next()">Next</span></td>
+              <td style="width: 6%;" (click)="next()"><img style="cursor: pointer;" src="assets/images/Group 2771.png"
+                  alt="assets/images/Group 2771.png" /></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

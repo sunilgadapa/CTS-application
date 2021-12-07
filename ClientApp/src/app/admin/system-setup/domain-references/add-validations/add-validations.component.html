@@ -1,0 +1,214 @@
+<div class="titlediv">
+    <table class="titletable" style="width: 100% ;">
+        <caption></caption>
+        <th id=""></th>
+        <tr>
+            <td style="width: 100%;padding-left: 5%;">
+                <p class="title">
+                    Add validations
+                </p>
+            </td>
+        </tr>
+    </table>
+    <div class="scroll">
+        <div class="middiv ">
+            <form [formGroup]="AddDomainValueValidation">
+                <table style="width: 100%;">
+                    <caption></caption>
+        <th id=""></th>
+                    <tr style="height: 18px;">
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="formlbl">
+                                <p>Domain<span *ngIf="domainSelected==1 || domainSelected==2" class="required_star">*</span></p>
+                            </label>
+                        </td>
+                        <td>
+                            <mat-select style="pointer-events: none;" (selectionChange)="selectDomain()"
+                                style="margin-top: 4px;padding-top: 6px !important;" class="input-default "
+                                disableOptionCentering disableRipple
+                                [ngClass]="statusddl2 ? ' ddl-ddlopen' : 'ddl-ddlclose'" formControlName="domain"
+                                placeholder="Select Domain" panelClass="myPanelClassDomainPattren"
+                                (openedChange)="toggleArrow2()">
+                                <mat-option [value]="domain.LookupTypeId" *ngFor="let domain of domainList">
+                                    {{domain.LookupType}}</mat-option>
+                            </mat-select>
+                            <div *ngIf="f.domain.errors  && (AddDomainValueValidation.controls.domain.touched || AddDomainValueValidation.controls.domain.dirty)"
+                                class="invalid-feedback">
+                                <div
+                                    *ngIf="f.domain.errors.required && (AddDomainValueValidation.controls.domain.touched || AddDomainValueValidation.controls.domain.dirty)">
+                    <tr>
+                        <td class="valerrortxt">
+                            <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+                        </td>
+                        <td class="valerrortxt">
+                            Select domain. </td>
+                    </tr>
+        </div>
+    </div>
+    </td>
+    </tr>
+    <tr style="height: 18px;">
+    </tr>
+    <tr  class="tabletr">
+        <td style="width: 35%;">
+            <label class="formlbl">Max.Length<span class="required_star"  *ngIf="domainSelected==1 || domainSelected==3 ">*</span> </label>
+        </td>
+        <td style="width: 65%;">
+            <input (input)="selectValidation()" type="text" class="input-default inputform" formControlName="maxLength"
+                [ngClass]="{ 'is-invalid': f.maxLength.errors  && (AddDomainValueValidation.controls.maxLength.touched || AddDomainValueValidation.controls.maxLength.dirty) }" />
+            <div *ngIf="f.maxLength.errors  && (AddDomainValueValidation.controls.maxLength.touched || AddDomainValueValidation.controls.maxLength.dirty)"
+                class="invalid-feedback">
+                <div
+                    *ngIf="f.maxLength.errors.required && (AddDomainValueValidation.controls.maxLength.touched || AddDomainValueValidation.controls.maxLength.dirty)">
+    <tr>
+        <td class="valerrortxt">
+            <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+        </td>
+        <td class="valerrortxt">
+            max.Length is required. </td>
+    </tr>
+</div>
+<div
+    *ngIf="f.maxLength.errors.pattern && (AddDomainValueValidation.controls.maxLength.touched || AddDomainValueValidation.controls.maxLength.dirty)">
+    <tr>
+        <td class="valerrortxt">
+            <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+        </td>
+        <td class="valerrortxt">
+            {{validation.validationsArray.domainAndReference.addValidation.maxLength.patternMsg}} </td>
+    </tr>
+</div>
+<div
+    *ngIf="f.maxLength.errors.maxlength && (AddDomainValueValidation.controls.maxLength.touched || AddDomainValueValidation.controls.maxLength.dirty)">
+    <tr>
+        <td class="valerrortxt">
+            <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+        </td>
+        <td class="valerrortxt">
+            {{validation.validationsArray.domainAndReference.addValidation.maxLength.maxLengthMsg}}
+    </tr>
+</div>
+<div
+    *ngIf="f.maxLength.errors.minlength && (AddDomainValueValidation.controls.maxLength.touched || AddDomainValueValidation.controls.maxLength.dirty)">
+    <tr>
+        <td class="valerrortxt">
+            <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+        </td>
+        <td class="valerrortxt">
+            {{validation.validationsArray.domainAndReference.addValidation.maxLength.minLengthMsg}}
+    </tr>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height: 18px;">
+</tr>
+<tr class="tabletr">
+    <td style="width: 35%;">
+        <label class="formlbl">
+            <p ng-hide="maxLength.disable">Min.Length<span *ngIf="domainSelected==1 || domainSelected==3 " class="required_star">*</span></p>
+        </label>
+    </td>
+    <td style="width: 65%;">
+        <input (input)="selectValidation()"  type="text" class="input-default inputform" formControlName="minLength"
+            [ngClass]="{ 'is-invalid': f.minLength.errors  && (AddDomainValueValidation.controls.minLength.touched || AddDomainValueValidation.controls.minLength.dirty) }" />
+        <div *ngIf="f.minLength.errors  && (AddDomainValueValidation.controls.minLength.touched || AddDomainValueValidation.controls.minLength.dirty)"
+            class="invalid-feedback">
+            <div *ngIf="f.minLength.errors.required && (AddDomainValueValidation.controls.minLength.touched || AddDomainValueValidation.controls.minLength.dirty)"
+                class="valerrortxt">
+<tr>
+    <td class="valerrortxt">
+        <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+    </td>
+    <td class="valerrortxt">
+        Min.Length is required.
+</tr>
+</div>
+<div *ngIf="f.minLength.errors.pattern && (AddDomainValueValidation.controls.minLength.touched || AddDomainValueValidation.controls.minLength.dirty)"
+    class="valerrortxt">
+    <tr>
+        <td class="valerrortxt">
+            <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+        </td>
+        <td class="valerrortxt">
+            {{validation.validationsArray.domainAndReference.addValidation.minLength.patternMsg}}
+    </tr>
+</div>
+<div
+    *ngIf="f.minLength.errors.maxlength && (AddDomainValueValidation.controls.minLength.touched || AddDomainValueValidation.controls.minLength.dirty)">
+    <tr>
+        <td class="valerrortxt">
+            <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+        </td>
+        <td class="valerrortxt">
+            {{validation.validationsArray.domainAndReference.addValidation.minLength.maxLengthMsg}}
+    </tr>
+</div>
+<div *ngIf="f.minLength.errors.minlength && (AddDomainValueValidation.controls.minLength.touched || AddDomainValueValidation.controls.minLength.dirty)"
+    class="valerrortxt">
+    <tr>
+        <td class="valerrortxt">
+            <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+        </td>
+        <td class="valerrortxt">
+            {{validation.validationsArray.domainAndReference.addValidation.minLength.minLengthMsg}}
+    </tr>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height: 18px;">
+</tr>
+<tr>
+    <td>
+        <label class="formlbl">
+            <p>Pattern<span *ngIf="domainSelected==1 || domainSelected==3 " class="required_star">*</span></p>
+        </label>
+    </td>
+    <td>
+        <mat-select (selectionChange)="selectValidation()" style="margin-top: 4px;padding-top: 6px !important;"
+            class="input-default " disableOptionCentering disableRippl
+            [ngClass]="statusddl1 ? ' ddl-ddlopen' : 'ddl-ddlclose'" formControlName="pattern"
+            placeholder="Select Pattern" panelClass="myPanelClassDomainPattren" (openedChange)="toggleArrow1()">
+            <mat-option [value]="pattern.PatternId" *ngFor="let pattern of patternList">
+                {{pattern.PatternType}}</mat-option>
+        </mat-select>
+        <div *ngIf="f.pattern.errors  && (AddDomainValueValidation.controls.pattern.touched || AddDomainValueValidation.controls.pattern.dirty)"
+            class="invalid-feedback">
+            <div *ngIf="f.pattern.errors.required && (AddDomainValueValidation.controls.pattern.touched || AddDomainValueValidation.controls.pattern.dirty)"
+                class="valerrortxt">
+<tr>
+    <td class="valerrortxt">
+        <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+    </td>
+    <td class="valerrortxt">
+        Select pattern
+</tr>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height: 18px;">
+</tr>
+</table>
+</form>
+</div>
+</div>
+</div>
+<table style="    padding-bottom: 10px;" class="titletable">
+    <caption></caption>
+        <th id=""></th>
+    <tr style="width: 100%;">
+        <td>
+            <button class="btn-secondary-default cancelbtn" mat-raised-button
+                (click)="onNoClick()"><label>Cancel</label></button>
+        </td>
+        <td style="float: right;">
+            <button class="btn-primary-default savebtn" (click)="saveValidations()" [disabled]="AddDomainValueValidation.invalid"
+                mat-raised-button><label>Save</label></button>
+        </td>
+    </tr>
+</table>
+<ngx-loading [show]="loading" [template]="loadingTemplate"></ngx-loading>

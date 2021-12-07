@@ -1,0 +1,3 @@
+
+
+ALTER TABLE [dbo].T_ADDRESS ALTER COLUMN [address_line1] VARCHAR(250) Null;

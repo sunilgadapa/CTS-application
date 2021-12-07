@@ -1,0 +1,149 @@
+<!-- Submission start -->
+<div class="greeting-container">
+  <p>Welcome to the Old Mutual</p>
+  <p> Customer Tax Reporting Platform</p>
+  <div *ngIf="roleId.includes('14') || roleId.includes('15')" class="header">
+    <table style="height: 100%;">
+      <caption></caption>
+      <th id=""></th>
+      <tr>
+        <td style="padding-left: 17px;"><img src='assets/images/submission_progress.png'
+            alt="assets/images/submission_progress.png"> </td>
+        <td style="padding-left: 23px;"> <label class="subProcesslbl">Submission Progress</label> </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div *ngIf="roleId.includes('14') || roleId.includes('15')" class="sub-progress-container">
+  <table class="table_container">
+    <caption></caption>
+    <th id=""></th>
+    <tr class="top-header">
+      <th style="border-right: 1px solid #DCDDDE;" scope="col">Fund Entity</th>
+      <th scope="col">File Loaded</th>
+      <th scope="col">Promoted</th>
+      <th scope="col">Logical File</th>
+      <th scope="col">Submitted to SARS (Test)</th>
+      <th scope="col">Submitted to SARS (Live)</th>
+      <th scope="col">SARS Response</th>
+      <th scope="col">Certificate Generated</th>
+      <th scope="col">E-filing Completed</th>
+      <th scope="col">Due Date</th>
+    </tr>
+    <tr style="height: 37px;" *ngFor="let i of data">
+      <th scope="row" class="side-header">{{i.fundEntity}}</th>
+      <td [style.background-color]="i.fileLoaded"></td>
+      <td [style.background-color]="i.promoted"></td>
+      <td [style.background-color]="i.logicalFile"></td>
+      <td [style.background-color]="i.test"></td>
+      <td [style.background-color]="i.live"></td>
+      <td [style.background-color]="i.sarsResponse"></td>
+      <td [style.background-color]="i.certificateGenerated"></td>
+      <td [style.background-color]="i.eFillingCompleted"></td>
+      <td [style.background-color]="i.dueDate"></td>
+    </tr>
+  </table>
+  <div class="table_footer">
+    <button class="btn-primary-default"><label>Correspondence Overview</label></button>
+    <button class="btn-primary-default"><label>Data Load Overview</label></button>
+    <button class="btn-primary-default"><label>Submission Overview</label></button>
+  </div>
+</div>
+<div style="margin-top: 30px;margin-left: 64px;margin-right: 64px;margin-bottom: 30px;">
+  <mat-accordion *ngIf="roleId.includes('14') || roleId.includes('16') || roleId.includes('11')">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header class="matheader">
+        <mat-panel-title class="matrxpantitle">
+          <p style="margin: 0px !important;"> <img class="expicond" src="assets/images/data-file.svg"
+              alt="assets/images/data-file.svg" />Data Load -
+            Recent Error</p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="divWithBorder"></div>
+      <table class="tabledataload" mat-table [dataSource]="dataSource" *ngIf="dataSource.filteredData.length>0">
+        <caption></caption>
+        <ng-container *ngFor="let column of columns;" [cdkColumnDef]="column.columnDef">
+          <th mat-header-cell *cdkHeaderCellDef id="">{{ column.header }}</th>
+          <td mat-cell *cdkCellDef="let row">
+            {{ column.cell(row) }}
+          </td>
+        </ng-container>
+        <tr mat-header-row class="tableHeader" *matHeaderRowDef="columnsToDisplay">
+        </tr>
+        <tr mat-row *matRowDef="
+                                                  let row;
+                                                  columns: columnsToDisplay
+                                                    | paginate
+                                                      : {                                                       
+                                                          itemsPerPage: size,
+                                                          currentPage:pageIndex ,
+                                                          totalItems: totalItems                                                                                                                
+                                                        }
+                                                "></tr>
+      </table>
+      <div
+        style="padding-top:50px;font-family: Montserrat,sans-serif;font-size: 18px;font-weight: 500;text-align: center;"
+        *ngIf="dataSource.filteredData.length === 0"><img src="assets/images/Group 2223.png"
+          alt="assets/images/Group 2223.png" />
+      </div>
+      <div class="pegidiv" *ngIf="dataSource.filteredData.length>0">
+        <pagination-controls (pageChange)="p = $event; paginateDataLoadErrors(p)" [directionLinks]="directionLinks" class="pagination"
+          [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel">
+        </pagination-controls>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div style="margin-top: 30px;">
+    <mat-accordion *ngIf="roleId.includes('14') || roleId.includes('15')">
+      <mat-expansion-panel (opened)="panelOpenState2 = true" (closed)="panelOpenState2 = false">
+        <mat-expansion-panel-header class="matheadersars">
+          <mat-panel-title class="matrxpantitlesars">
+            <img class="expicond" src="assets/images/carbon_document-import.svg"
+              alt="assets/images/carbon_document-import.svg" />
+            <p style="margin: 0px !important;"> <span>SARS Submission - Recent Error</span></p>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="divWithBorder"></div>
+        <table mat-table [dataSource]="DataSarss" class="tabledataload">
+          <caption></caption>
+          <!-- Position Column -->
+          <ng-container matColumnDef="Tax Module">
+            <th mat-header-cell *matHeaderCellDef class="sourcename" id="">Tax Module</th>
+            <td mat-cell *matCellDef="let element" class="gridata"> {{element.tax_module}} </td>
+          </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="Submission File Name">
+            <th mat-header-cell *matHeaderCellDef class="sourcename" id=""> Submission File Name </th>
+            <td mat-cell *matCellDef="let element" class="gridata"> {{element.subfilename}} </td>
+          </ng-container>
+          <!-- Weight Column -->
+          <ng-container matColumnDef="SARS Response Description">
+            <th mat-header-cell *matHeaderCellDef class="sourcename" id=""> SARS Response Description </th>
+            <td mat-cell *matCellDef="let element" style="font-weight: 600;" class="gridata"> <label
+                [style.color]="element.sars_res=='Partial upload by SARS'? '#E98523':'#D23C3C'">{{element.sars_res}}</label>
+            </td>
+          </ng-container>
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="Date Response Received">
+            <th mat-header-cell *matHeaderCellDef class="sourcename" id=""> Date Response Received </th>
+            <td mat-cell *matCellDef="let element" class="gridata"> {{element.datetime}} </td>
+          </ng-container>
+          <tr mat-header-row class="tableHeader" *matHeaderRowDef="displayedColumnssars; sticky: true"></tr>
+          <tr mat-row *matRowDef="
+            let row;
+            columns: displayedColumnssars
+              | paginate
+                : {
+                    itemsPerPage: size,
+                    currentPage: p,
+                    totalItems: DataSarss.length
+                  }
+          "></tr>
+        </table>
+        <pagination-controls (pageChange)="p = $event; paginate(p)" [directionLinks]="directionLinks" class="pagination"
+          [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"></pagination-controls>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+<!-- Mat-drover container ends -->

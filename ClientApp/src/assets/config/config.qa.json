@@ -1,0 +1,14 @@
+{
+    "env": "QA",
+    "identityBaseUrl": "https://app.customertaxplatform.qa.omapps.net:64431/api/",
+    "userManagementBaseUrl": "https://app.customertaxplatform.qa.omapps.net:64432/api/",
+    "domainDefinitionBaseUrl": "https://app.customertaxplatform.qa.omapps.net:64433/api/",
+    "adminBaseUrl": "https://app.customertaxplatform.qa.omapps.net:64434/api/",
+    "manualDataloadBaseUrl": "https://app.customertaxplatform.qa.omapps.net:64435/api/",   
+    "reportingBaseUrl": "https://app.customertaxplatform.qa.omapps.net:64436/api/",  
+    "snsNotificationBaseUrl":"https://app.customertaxplatform.qa.omapps.net:64437/api/",
+    "signalRBaseUrl":"https://app.customertaxplatform.qa.omapps.net:64437/", 
+    "tenantId": "00691924-e082-4301-a3dc-1732afd14289",
+    "uiClienId": "4eb2bd8f-3e95-424c-89d9-2c90d2c7c786",
+    "sessionTimeOut": "3600000"    
+  }

@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>	  
+	  <LangVersion>8.0</LangVersion>	  
+	  <CodeAnalysisRuleSet>..\.sonarlint\ctrp.webfrontend.asp.netcsharp.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\ctrp.webfrontend.asp.net\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.1" />
+		<PackageReference Include="Microsoft.Identity.Web" Version="1.16.0" />		
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OLDMutual.CTS.DomainDefinition.Data\OLDMutual.CTS.DomainDefinition.Data.csproj" />
+    <ProjectReference Include="..\OLDMutual.CTS.DomainDefinition.Service\OLDMutual.CTS.DomainDefinition.Service.csproj" />
+    <ProjectReference Include="..\OLDMutual.CTS.DomainDefinition.Shared\OLDMutual.CTS.DomainDefinition.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

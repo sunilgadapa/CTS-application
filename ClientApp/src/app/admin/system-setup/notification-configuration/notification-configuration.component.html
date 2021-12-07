@@ -1,0 +1,261 @@
+<div class="mainDiv">
+    <p class="pageName">Notification Configuration</p>
+    <table class="mainTable">
+        <caption></caption>
+        <th id=""></th>
+        <tr class="tabletr" style="width: 100%;">
+            <td style="width: 59%;padding: 0px;">
+                <div class="midDiv">
+                    <div style="padding-top: 12px;margin-left: 3px;" class="row">
+                        <div class="col-5">
+                            <label class="lblstatus">Tax Type <span class="required_star">*</span></label>
+                            <mat-select disableOptionCentering class="input-default" [(ngModel)]="taxId"
+                                (selectionChange)="selectTaxModules($event)"
+                                [ngClass]="statusddl ? 'ddl ddl-ddlopen' : 'ddl ddl-ddlclose'"
+                                panelClass="myPanelClassTax" (openedChange)="toggleArrowTaxtype()" disableRipple
+                                placeholder="Select">
+                                <mat-radio-group [(ngModel)]="taxId">
+                                    <mat-option *ngFor="let tax of taxModules;let i=index"
+                                        [value]="tax.lookup_value_id">
+                                        <mat-radio-button [value]=tax.lookup_value_id id="{{i}}">
+                                            <span style="font-size: 12px !important;"> {{
+                                                tax.lookup_value_name
+                                                }} </span>
+                                        </mat-radio-button>
+                                    </mat-option>
+                                </mat-radio-group>
+                            </mat-select>
+                        </div>
+                        <div class="col-5">
+                            <label class="lblstatus">Event <span class="required_star">*</span></label>
+                            <mat-select disableOptionCentering [(ngModel)]="eventId" [disabled]="!isTaxSelected"
+                                class="input-default" [ngClass]="eventddl ? 'ddl ddl-ddlopen' : 'ddl ddl-ddlclose'"
+                                panelClass="myPanelClassEvent" (openedChange)="toggleArrowEvent()" disableRipple
+                                placeholder="Select">
+                                <mat-radio-group [(ngModel)]="eventId">
+                                    <mat-option *ngFor="let event of eventData; let i=index"
+                                        [value]="event.messaging_event_id">
+                                        <mat-radio-button [value]=event.messaging_event_id id="{{i}}">
+                                            <span style="font-size: 12px !important;">
+                                                {{
+                                                event.messaging_event
+                                                }}
+                                            </span>
+                                        </mat-radio-button>
+                                    </mat-option>
+                                </mat-radio-group>
+                            </mat-select>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn-primary-default search"
+                                (click)="getTableData()"><label>Search</label></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="gridDiv">
+                    <div style="padding-top: 12px;margin-left: 5px;margin-right: 4px;" class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-4">
+                                    <mat-radio-group [(ngModel)]="selectedradio" disableRipple
+                                        aria-label="Select an option">
+                                        <mat-radio-button value="1"><span style="font-size: 17px;">Role </span>
+                                        </mat-radio-button>
+                                        <mat-radio-button style="margin-left: 52px;" value="2"><span
+                                                style="font-size: 17px;">Users</span>
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                                <div class="col-8">
+                                    <button class="assignBtn" (click)="openAssignRole()"><label>{{selectedradio=='1'? '
+                                            Assign
+                                            Role' : 'Add User'}}
+                                        </label></button>
+                                </div>
+                            </div>
+                            <div *ngIf="selectedradio=='2'">
+                                <table class="table1" mat-table [dataSource]="dataSource2"
+                                    *ngIf="dataSource2.filteredData.length>0">
+                                    <caption></caption>
+                                    <ng-container *ngFor="let column of columns2;" [cdkColumnDef]="column.columnDef">
+                                        <ng-container *ngIf="column.columnDef === 'StatusFlag'; else notSelect">
+                                            <th mat-header-cell *matHeaderCellDef id="">
+                                                {{ column.header }}
+                                            </th>
+                                            <td mat-cell *matCellDef="let row">
+                                                <mat-checkbox (click)="$event.stopPropagation()"
+                                                    (change)="$event ? selection2.toggle(row) : null"
+                                                    [checked]="selection2.isSelected(row)"
+                                                    (change)="selectRow($event,row)" (click)="highlightRowUser(row)">
+                                                </mat-checkbox>
+                                            </td>
+                                        </ng-container>
+                                        <ng-template #notSelect>
+                                            <th mat-header-cell *cdkHeaderCellDef id="">{{ column.header }}</th>
+                                            <td mat-cell *cdkCellDef="let row">
+                                                <p> {{ column.cell(row) }}</p>
+                                            </td>
+                                        </ng-template>
+                                    </ng-container>
+                                    <tr mat-header-row class="tableHeader" *matHeaderRowDef="columnsToDisplay2">
+                                    </tr>
+                                    <tr mat-row *matRowDef="
+                                                  let row;
+                                                  columns: columnsToDisplay2
+                                                    | paginate
+                                                      : {
+                                                          id:'user',
+                                                          itemsPerPage: size,
+                                                          currentPage: p,
+                                                          totalItems: tableData2.length
+                                                        }
+                                                " [ngClass]="{highlighted: selectionUser.isSelected(row)}"
+                                        (click)="highlightRowUser(row)"></tr>
+                                </table>
+                                <div style="text-align: center;padding-top:50px;font-family: Montserrat,sans-serif;font-size: 18px;font-weight: 500;"
+                                    *ngIf="dataSource2.filteredData.length === 0">
+                                    <img src="assets/images/Group 2223.png" alt="assets/images/Group 2223.png" />
+                                    <p *ngIf="!eventId" class="zeroStateText">Select tax type and Event </p>
+                                    <p *ngIf="eventId" class="zeroStateText">Click on Add User</p>
+                                </div>
+                                <div class="pegidiv" *ngIf="dataSource2.filteredData.length>0">
+                                    <pagination-controls id="user" (pageChange)="p = $event; paginate1(p)"
+                                        [directionLinks]="directionLinks" class="pagination"
+                                        [previousLabel]="userLabels.previousLabel" [nextLabel]="userLabels.nextLabel">
+                                    </pagination-controls>
+                                </div>
+                            </div>
+                            <div *ngIf="selectedradio=='1'">
+                                <table class="table1" mat-table [dataSource]="dataSource"
+                                    *ngIf="dataSource.filteredData.length>0">
+                                    <caption></caption>
+                                    <ng-container *ngFor="let column of columns;" [cdkColumnDef]="column.columnDef">
+                                        <ng-container *ngIf="column.columnDef === 'StatusFlag'; else notSelect">
+                                            <th mat-header-cell *matHeaderCellDef id="">
+                                                {{ column.header }}
+                                            </th>
+                                            <td mat-cell *matCellDef="let row">
+                                                <mat-checkbox (click)="$event.stopPropagation()"
+                                                    (change)="$event ? selection.toggle(row) : null"
+                                                    [checked]="selection.isSelected(row)"
+                                                    (change)="selectRow($event,row)" (click)="highlightRowRole(row)">
+                                                </mat-checkbox>
+                                            </td>
+                                        </ng-container>
+                                        <ng-template #notSelect>
+                                            <th mat-header-cell *cdkHeaderCellDef id="">{{ column.header }}</th>
+                                            <td mat-cell *cdkCellDef="let row">
+                                                <div *ngIf="column.header=='User Name'">
+                                                    <ng-container>
+                                                        <div *ngIf="row.strUserNames?.length > 1">
+                                                            <p [matMenuTriggerFor]="menu">
+                                                                {{row.strUserNames[0]}}
+                                                                <span *ngIf="row.strUserNames?.length > 1"
+                                                                    style="font-weight: 900; cursor: pointer">
+                                                                    +{{row.strUserNames.length - 1}}
+                                                                    {{row.strUserNames?.length === 2 ? 'other' :
+                                                                    'others'}}
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                        <div *ngIf="row.strUserNames?.length == 1">
+                                                            <p> {{row.strUserNames[0]}}</p>
+                                                        </div>
+                                                    </ng-container>
+                                                    <mat-menu class="userPop" #menu="matMenu">
+                                                        <button *ngFor="let name of row.strUserNames" mat-menu-item
+                                                            disabled>
+                                                            <table>
+                                                                <caption></caption>
+                                                                <th id=""></th>
+                                                                <tr>
+                                                                    <td>
+                                                                        <img src="assets/images/user icon.png"
+                                                                            alt="assets/images/user icon.png" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="userNameSpan">{{name}}</span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </button>
+                                                    </mat-menu>
+                                                </div>
+                                                <div *ngIf="column.header!='User Name'">
+                                                    <p> {{ column.cell(row) }}</p>
+                                                </div>
+                                            </td>
+                                        </ng-template>
+                                    </ng-container>
+                                    <tr mat-header-row class="tableHeader" *matHeaderRowDef="columnsToDisplay">
+                                    </tr>
+                                    <tr mat-row *matRowDef="
+                                                  let row;
+                                                  columns: columnsToDisplay
+                                                    | paginate
+                                                      : {
+                                                          id:'role',
+                                                          itemsPerPage: size,
+                                                          currentPage: p,
+                                                          totalItems: tableData.length
+                                                        }
+                                                " [ngClass]="{highlighted: selectionRole.isSelected(row)}"
+                                        (click)="highlightRowRole(row)"></tr>
+                                </table>
+                                <div style="text-align:center;padding-top:50px;font-family: Montserrat,sans-serif;font-size: 18px;font-weight: 500;"
+                                    *ngIf="dataSource.filteredData.length === 0">
+                                    <img src="assets/images/Group 2223.png" alt="assets/images/Group 2223.png" />
+                                    <p *ngIf="eventId" class="zeroStateText">Click on Assign Role</p>
+                                    <p *ngIf="!eventId" class="zeroStateText">Select tax type and Event </p>
+                                </div>
+                                <div class="pegidiv" *ngIf="dataSource.filteredData.length>0">
+                                    <pagination-controls id="role" (pageChange)="p = $event; paginate(p)"
+                                        [directionLinks]="directionLinks" class="pagination"
+                                        [previousLabel]="roleLabels.previousLabel" [nextLabel]="roleLabels.nextLabel">
+                                    </pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td style="width: 41%;padding: 0px;">
+                <mat-card class="templateMatCard">
+                    <div style="border-bottom: 1px solid #DCDDDE;">
+                        <mat-select (openedChange)="toggleArrowTemplate()"  disableOptionCentering [disabled]="disableNotificationTypes" class="notiTypeSelect" 
+                            placeholder="Select" [ngClass]="templateDDl ? 'ddl ddl-ddlopen' : 'ddl ddl-ddlclose'" (change)="assignType()" [(ngModel)]="selectedType"  panelClass="myPanelClassTemplate" >
+                            <mat-radio-group [(ngModel)]="selectedType">
+                            <mat-option *ngFor="let item of notificationTypes; let i=index" [value]="item.lookup_value_id">
+                                <mat-radio-button [value]="item.lookup_value_id" id="{{i}}">  {{item.lookup_value_name}}
+                           </mat-radio-button>
+                                </mat-option>
+                            </mat-radio-group>
+                        </mat-select>
+                    </div>
+                    <div class="msgDiv">
+                        <span class="msgLabel">Message</span>
+                        <button (click)="openAddTemplate()" class="addTemplateBtn"><label>Add
+                                Tempalte</label></button>
+                    </div>
+                    <div class="msgBodyDiv">
+                        <div *ngIf="templateTypeName=='Email'">
+                            <P class="fromP">From: <span class="fromSpan">{{tempalteSubject[1]}}</span></P>
+                            <hr class="hrLine">
+                            <P class="fromP">Subject: <span class="subSpan">{{templateFrom[1]}}</span></P>
+                            <hr class="hrLine">
+                        </div>
+                        <p class="msgBodyP  ">{{templateBody[1]}} </p>
+                    </div>
+                </mat-card>
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+</div>
+<div style="margin-bottom: 77px;">
+    <button class="btn-primary-default saveBtn" [disabled]="!isSelectedSaveChange" mat-button (click)="saveChanges()">
+        <label>Save Changes</label>
+    </button>
+</div>
+<ngx-loading [show]="loading" [template]="loadingTemplate"></ngx-loading>

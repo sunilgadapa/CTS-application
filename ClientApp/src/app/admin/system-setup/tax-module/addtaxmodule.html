@@ -1,0 +1,134 @@
+<div class="titlediv">
+  <table class="titletable" style="width: 100% ;">
+    <caption></caption>
+    <th id="tabletax"></th>
+    <tr>
+      <td style="width: 100%;padding-left: 5%;">
+        <p class="title">
+          {{isUpdatebtn? 'Update' : 'Add a'}}  Tax Module
+        </p>
+      </td>
+     
+    </tr>
+  </table>
+  <div class="middiv ">
+    <form [formGroup]="registerForm">
+    <table style="width: 100%;">
+      <caption></caption>
+      <th id="tabletax"></th>
+      <tr style="height: 18px;">
+      </tr>
+      <tr class="tabletr">
+        <td style="width: 30%;">
+          <label class="formlbl">Tax Module<span class="required_star">*</span> </label>
+        </td>
+        <td style="width: 70%;">
+          <input  placeholder="Tax Module"  formControlName="lookup_value_name" type="text" class="input-default inputform"
+          [ngClass]="{ 'is-invalid':  f.lookup_value_name.errors  && (registerForm.controls.lookup_value_name.touched || registerForm.controls.lookup_value_name.dirty) }"/>
+          <div *ngIf=" f.lookup_value_name.errors  && (registerForm.controls.lookup_value_name.touched || registerForm.controls.lookup_value_name.dirty)" class="invalid-feedback">
+            <div *ngIf="f.lookup_value_name.errors.required && (registerForm.controls.lookup_value_name.touched || registerForm.controls.lookup_value_name.dirty)" class="valerrortxt">
+              <tr>
+                <td class="valerrortxt">
+                  <img class="errorIcon" alt="./assets/images/Icon_Error.png"  src="./assets/images/Icon_Error.png" />
+                </td>
+                <td class="valerrortxt">
+                  Tax module is required.
+                </td>
+              </tr>
+ 
+            </div>
+            <div *ngIf="f.lookup_value_name.errors.pattern && (registerForm.controls.lookup_value_name.touched || registerForm.controls.lookup_value_name.dirty)" class="valerrortxt">
+              <tr>
+                <td class="valerrortxt">
+                  <img class="errorIcon" alt="./assets/images/Icon_Error.png" src="./assets/images/Icon_Error.png" />
+                </td>
+                <td class="valerrortxt">
+                  {{this.validation.validationsArray.taxModule.addTaxModule.taxModuleName.patternMsg}}
+                </td>
+              </tr>
+              
+            </div>
+            <div *ngIf="f.lookup_value_name.errors.maxlength &&(registerForm.controls.lookup_value_name.touched || registerForm.controls.lookup_value_name.dirty)" class="valerrortxt">
+              <tr>
+                <td class="valerrortxt">
+                  <img class="errorIcon" alt="" src="./assets/images/Icon_Error.png" />
+                </td>
+                <td class="valerrortxt">
+                  {{this.validation.validationsArray.taxModule.addTaxModule.taxModuleName.maxLengthMsg}}
+                </td>
+              </tr>
+             
+            </div>
+            <div *ngIf="f.lookup_value_name.errors.minlength && (registerForm.controls.lookup_value_name.touched || registerForm.controls.lookup_value_name.dirty)" class="valerrortxt">
+              <tr>
+                <td class="valerrortxt">
+                  <img class="errorIcon" alt="" src="./assets/images/Icon_Error.png" />
+                </td>
+                <td class="valerrortxt">
+                  {{this.validation.validationsArray.taxModule.addTaxModule.taxModuleName.minLengthMsg}}  
+                </td>
+              </tr>
+            
+              
+            
+            </div>
+        </div>
+        </td>
+      </tr>
+      <tr style="height: 18px;">
+      </tr>
+      <tr class="tabletr">
+        <td style="width: 30%;">
+          <label class="formlbl">Module Name Description<span class="required_star"></span></label>
+        </td>
+        <td style="width: 70%;">
+          <input  placeholder="Module Name"  formControlName="lookup_value_description" type="text" class="input-default inputform" 
+         />
+            <div *ngIf=" f.lookup_value_description.errors  && (registerForm.controls.lookup_value_description.touched || registerForm.controls.lookup_value_description.dirty)" class="invalid-feedback">
+             <div *ngIf="f.lookup_value_description.errors.maxlength &&(registerForm.controls.lookup_value_description.touched || registerForm.controls.lookup_value_description.dirty)" class="valerrortxt">
+            
+            <tr>
+              <td class="valerrortxt">
+                <img class="errorIcon" alt="" src="./assets/images/Icon_Error.png" />
+              </td>
+              <td class="valerrortxt">
+                {{this.validation.validationsArray.taxModule.addTaxModule.moduleName.maxLengthMsg}} 
+              </td>
+            </tr>
+          </div>
+          <div *ngIf="f.lookup_value_description.errors.minlength && (registerForm.controls.lookup_value_description.touched || registerForm.controls.lookup_value_description.dirty)" class="valerrortxt">
+            <tr>
+              <td class="valerrortxt">
+                <img class="errorIcon" alt="" src="./assets/images/Icon_Error.png" />
+              </td>
+              <td class="valerrortxt">
+                {{this.validation.validationsArray.taxModule.addTaxModule.moduleName.minLengthMsg}}  
+              </td>
+            </tr>
+          </div>
+      </div>
+        </td>
+      </tr>
+      <tr style="height: 18px;">
+      </tr>
+    </table>
+    </form>
+  </div>
+</div>
+<table style="padding-bottom: 10px;" class="titletable">
+  <caption></caption>
+  <th id="tabletax"></th>
+  <tr style="width: 100%;">
+      <td>
+          <button class="btn-secondary-default cancelbtn" mat-raised-button mat-dialog-close
+              ><label>Cancel</label></button>
+      </td>
+      <td style="float: right;">
+        <button *ngIf="!isUpdatebtn" (click)="TaxModuledata()" class="btn-primary-default savebtn" mat-raised-button [disabled]="registerForm.invalid"
+         ><label>Add</label></button>
+         <button *ngIf="isUpdatebtn" (click)="TaxModuledata()" class="btn-primary-default savebtn" mat-raised-button [disabled]="textChanged==false || registerForm.invalid"
+         ><label>Update</label></button>
+      </td>
+  </tr>
+</table>
+<ngx-loading [show]="loading" [template]="loadingTemplate"></ngx-loading>

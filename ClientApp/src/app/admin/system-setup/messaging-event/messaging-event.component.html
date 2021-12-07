@@ -1,0 +1,59 @@
+  <label class="page-title">Messaging Event</label>
+      <div class="mainDiv">
+      <div class="container1 row">
+        
+        <div style="margin-top: 6px;" class="selectTypeDiv" class="col-3">
+          <label class="filetype">Tax Type <span class="required_star">*</span></label><br>
+          <mat-select style="margin-top: 4px;padding-top: 6px !important;" class="input-default " disableOptionCentering disableRipple
+            [ngClass]="statusddl1 ? ' ddl-ddlopen' : 'ddl-ddlclose'" placeholder="Select Tax Type"
+            panelClass="myPanelClassTaxType" (openedChange)="toggleArrow1()"
+            [(ngModel)]="newMessageData.lookup_value_id">
+            <mat-radio-group [(ngModel)]="newMessageData.lookup_value_id" >
+            <mat-option *ngFor="let a of Tax_modules;let i=index" [value]=a.lookup_value_id>
+              <mat-radio-button [value]=a.lookup_value_id id="{{i}}">{{a.lookup_value_name}}</mat-radio-button>  
+            
+            </mat-option>
+          </mat-radio-group>
+          </mat-select>
+        </div>
+       <div style="margin-top: 13px;" class="selectTypeDiv" class="col-9">
+        <button  style="margin-top: 17px;" class="btn-primary-default " (click)="GetMessageEventData()" mat-button>
+          <label>Search</label>
+        </button>
+       </div>
+       
+      
+      
+        
+      </div>
+      <div class="tblcontainer">
+        <div class="tablewrapper">
+          <app-data-table [tableData]="tableData" [totalRowdata]="totalRowdata"
+            (newUserEvent)="SelectcheckBoxChnage($event)" [columns]="columns" [columnsToDisplay]="columnsToDisplay"
+            [isSelectAllEnabled]='false' (cerrentPageEvent)="SelectCurrentPage($event)">
+          </app-data-table>
+          <div style="padding-top:50px;font-family: Montserrat,sans-serif;font-size: 18px;font-weight: 500;text-align: center;"
+            *ngIf="tableData.length === 0"> <img alt="assets/images/nodatafound.png" src="assets/images/nodatafound.png"/>
+            <p *ngIf="newMessageData.lookup_value_id && tableData.length === 0" class="zeroStateText">Click on add event.</p>
+          <p *ngIf="!newMessageData.lookup_value_id" class="zeroStateText">Select tax type.</p>
+          </div>
+        
+        </div>
+      </div>
+      <div style="width: 100%;margin-top: 20px;margin-bottom: 20px;" class="row ">
+        <div style="padding-right: 0px;" class="col-12 ">
+          <button style="float: right;" class=" btn-primary-default" (click)="AddSourcePop()"
+          mat-button>
+          <label> Add Event</label>
+        </button>
+            <button style="float: right;margin-right: 30px;" class=" btn-primary-default" [disabled]="!isSelectedSaveChange"
+              (click)="SaveMessagingEvent()" mat-button>
+              <label>Save Changes</label>
+            </button>
+           
+          
+        </div>
+      </div>
+    </div>
+    <ngx-loading [show]="loading"
+    [template]="loadingTemplate"></ngx-loading>

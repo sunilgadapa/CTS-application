@@ -1,0 +1,94 @@
+<div class="titlediv">
+  <table class="titletable" style="width: 100% ;">
+    <caption></caption>
+    <th id=""></th>
+    <tr>
+      <td style="width: 30%;padding-left: 5%;">
+        <p *ngIf="action=='1'" class="title">
+          Assign Role
+        </p>
+        <p *ngIf="action=='2'" class="title">
+          Add User
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="scroll">
+  <div *ngIf="action=='1'" class="middiv ">
+    <table style="width: 100%;">
+      <caption></caption>
+      <th id=""></th>
+      <tr style="height: 18px;">
+      </tr>
+      <tr class="tabletr">
+        <td style="width: 30%;">
+          <label class="formlbl">Role Name<span class="required_star">*</span> </label>
+        </td>
+        <td style="width: 70%;">
+          <mat-select disableOptionCentering class="input-default" [(ngModel)]="assignRoleOrAddUserRequestData.RoleId"
+            [ngClass]="roleddl ? 'ddl ddl-ddlopen' : 'ddl ddl-ddlclose'" panelClass="myPanelClassassignRoleRoll"
+            (openedChange)="toggleArrowRole()" disableRipple placeholder="Select">
+            <mat-radio-group [(ngModel)]="assignRoleOrAddUserRequestData.RoleId">
+              <mat-option *ngFor="let role of rolesData;let i=index" [value]="role.RoleId">
+                <mat-radio-button [value]=role.RoleId id="{{i}}">
+                  <span style="font-size:12px"> {{role.RoleName}}</span>
+                </mat-radio-button>
+              </mat-option>
+            </mat-radio-group>
+          </mat-select>
+        </td>
+      </tr>
+      <tr style="height: 46px;">
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="action=='2'" class="middiv ">
+    <table style="width: 100%;">
+      <caption></caption>
+      <th id=""></th>
+      <tr style="height: 18px;">
+      </tr>
+      <tr class="tabletr">
+        <td style="width: 30%;">
+          <label class="formlbl">Add User<span class="required_star">*</span> </label>
+        </td>
+        <td style="width: 70%;">
+          <mat-select disableOptionCentering class="input-default" [(ngModel)]="assignRoleOrAddUserRequestData.Id"
+            [ngClass]="roleddl ? 'ddl ddl-ddlopen' : 'ddl ddl-ddlclose'" panelClass="myPanelClassassignRoleRoll"
+            (openedChange)="toggleArrowRole()" disableRipple placeholder="Select">
+            <mat-radio-group [(ngModel)]="assignRoleOrAddUserRequestData.Id">
+              <input (keyup)="onKey($event)" placeholder="Filter..."
+                style="height: 30px; width: 97%;font-family: Montserrat,sans-serif;">
+              <mat-option *ngFor="let user of selectedStates;let i=index" value="{{user.Id}}">
+                <mat-radio-button value="{{user.Id}}" id="{{i}}">
+                  <span style="font-size:12px">
+                    {{user.UserName}}
+                  </span>
+                </mat-radio-button>
+              </mat-option>
+            </mat-radio-group>
+          </mat-select>
+        </td>
+      </tr>
+      <tr style="height: 46px;">
+      </tr>
+    </table>
+  </div>
+  <table style="    padding-bottom: 10px;" class="titletable">
+    <caption></caption>
+    <th id=""></th>
+    <tr style="width: 100%;">
+      <td>
+        <button class="btn-secondary-default cancelbtn" mat-raised-button
+          mat-dialog-close (click)="closePopup()"><label>Cancel</label></button>
+      </td>
+      <td style="float: right;">
+        <button *ngIf="action=='1'" [disabled]="!assignRoleOrAddUserRequestData.RoleId" (click)="assignRoleORUser()"
+          class="btn-primary-default savebtn" mat-raised-button><label>Assign</label></button>
+        <button *ngIf="action=='2'" [disabled]="!assignRoleOrAddUserRequestData.Id" (click)="assignRoleORUser()"
+          class="btn-primary-default savebtn" mat-raised-button><label>Assign</label></button>
+      </td>
+    </tr>
+  </table>
+  <ngx-loading [show]="loading" [template]="loadingTemplate"></ngx-loading>

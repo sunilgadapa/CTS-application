@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>    
+	  <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <LangVersion>8.0</LangVersion>
+	  <CodeAnalysisRuleSet>..\.sonarlint\ctrp.webfrontend.asp.netcsharp.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\ctrp.webfrontend.asp.net\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.7.2.45" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+	  <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.0.1" />
+	  <PackageReference Include="AWSSDK.S3" Version="3.7.1.7" />
+	  <PackageReference Include="Microsoft.Identity.Web" Version="1.16.1" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OLDMutual.CTS.Admin.Service\OLDMutual.CTS.Admin.Service.csproj" />
+    <ProjectReference Include="..\OLDMutual.CTS.ManualDataLoad.Data\OLDMutual.CTS.ManualDataLoad.Data.csproj" />
+    <ProjectReference Include="..\OLDMutual.CTS.ManualDataLoad.Domain\OLDMutual.CTS.ManualDataLoad.Domain.csproj" />
+    <ProjectReference Include="..\OLDMutual.CTS.SnsNotfication.Domain\OLDMutual.CTS.SnsNotification.Domain.csproj" />
+    <ProjectReference Include="..\OLDMutual.CTS.SnsNotification.Data\OLDMutual.CTS.SnsNotification.Data.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,85 @@
+::ng-deep .mat-dialog-container {
+  padding: 0px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #009677 !important;
+  box-sizing: border-box !important;
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 4px !important;
+  /* height: 97% !important; */
+}
+
+.title {
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.025em;
+  color: #009677;
+}
+
+.titlediv {
+  background: #ffffff;
+}
+
+.middiv {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.inputform {
+  width: 100%;
+}
+
+.tabletr {
+  vertical-align: top !important;
+}
+
+.savebtn {
+  margin-right: 24px;
+}
+
+.cancelbtn {
+  margin-left: 24px;
+}
+
+::ng-deep .myPanelClassassignRoleRoll {
+  position: relative;
+  top: 30px;
+  min-width: 104% !important;
+  left: 1%;
+  max-height: 111px !important;
+  background: #ffffff;
+  box-shadow: 0px 4px 37px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.ddl-ddlclose /deep/ .mat-select-arrow {
+  border-left: 20px solid transparent !important;
+  border-right: none !important;
+  border-top: 20px solid transparent !important;
+  border-image-source: url("../../../../../assets/images/dashicons_arrow-down-alt2.png") !important;
+  margin-right: 12px;
+  margin-top: 4px;
+}
+
+.ddl-ddlopen /deep/ .mat-select-arrow {
+  border-left: 20px solid transparent !important;
+  border-right: none !important;
+  border-top: 20px solid transparent !important;
+  border-image-source: url("../../../../../assets/images/dashicons_arrow-down-alt2.png") !important;
+  -webkit-transition: all ease-out;
+  transition: all ease-out;
+  transform: rotateX(180deg);
+  margin-right: 12px;
+  margin-top: 4px;
+}
+
+input:focus {
+  outline: transparent !important;
+  outline-style: transparent !important;
+  box-shadow: transparent !important;
+  border-color: transparent !important;
+}
